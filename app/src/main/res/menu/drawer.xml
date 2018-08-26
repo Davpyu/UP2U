@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nws"
+        android:icon="@drawable/icons8_news_filled"
+        android:title="News" />
+    <item
+        android:id="@+id/frm"
+        android:icon="@drawable/if_forum_465058"
+        android:title="Forum" />
+    <item
+        android:id="@+id/stt"
+        android:icon="@drawable/ic_settings_black_24dp"
+        android:title="Setting" />
+</menu>
