@@ -35,7 +35,6 @@ public class HomeActivity extends AppCompatActivity {
     @BindView(R.id.nav_view)
     NavigationView navigationView;
     ActionBarDrawerToggle actionBarDrawerToggle;
-    private String mTitle = "News";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +58,7 @@ public class HomeActivity extends AppCompatActivity {
     }
     private void configureNavigationDrawer() {
         final Fragment ff = new NewsFragment();
+        toolbar.setTitle(getString(R.string.news));
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame, ff);
         transaction.commit();
@@ -69,16 +69,24 @@ public class HomeActivity extends AppCompatActivity {
                 int itemId = item.getItemId();
 
                 if (itemId == R.id.nws){
-                    mTitle = "News";
+                    toolbar.setTitle(getString(R.string.news));
                     f = new NewsFragment();
+                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.frame, f);
+                    transaction.commit();
+                    drawerLayout.closeDrawers();
+                    return true;
                 } else if (itemId == R.id.frm){
-                    mTitle = "Lounge";
+                    toolbar.setTitle(getString(R.string.lounge));
                     f = new ForumFragment();
+                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.frame, f);
+                    transaction.commit();
+                    drawerLayout.closeDrawers();
+                    return true;
                 } else if (itemId == R.id.stt){
-                    mTitle = "Setting";
+                    toolbar.setTitle(getString(R.string.setting));
                     f = new SettingFragment();
-                }
-                if (f != null){
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                     transaction.replace(R.id.frame, f);
                     transaction.commit();
@@ -96,7 +104,6 @@ public class HomeActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
-        actionBar.setTitle(mTitle);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout,toolbar,R.string.app_name,R.string.app_name);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();

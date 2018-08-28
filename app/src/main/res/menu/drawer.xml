@@ -3,13 +3,13 @@
     <item
         android:id="@+id/nws"
         android:icon="@drawable/icons8_news_filled"
-        android:title="News" />
+        android:title="@string/news" />
     <item
         android:id="@+id/frm"
         android:icon="@drawable/if_forum_465058"
-        android:title="Forum" />
+        android:title="@string/lounge" />
     <item
         android:id="@+id/stt"
         android:icon="@drawable/ic_settings_black_24dp"
-        android:title="Setting" />
+        android:title="@string/setting" />
 </menu>

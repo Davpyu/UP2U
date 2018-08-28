@@ -47,7 +47,8 @@
         <activity
             android:name=".HomeActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".Toolbar"></activity>
+        <activity android:name=".Toolbar" />
+        <activity android:name=".LoginAdminActivity"></activity>
     </application>
 
 </manifest>
