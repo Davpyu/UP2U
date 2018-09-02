@@ -2,10 +2,19 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bnv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menu="@menu/bnv"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorAccent"
+        app:itemIconTint="#fff"
+        app:itemTextColor="#fff"/>
 
     <android.support.v4.widget.DrawerLayout
         android:id="@+id/drawer_layout"
@@ -38,6 +47,4 @@
             app:itemTextColor="@color/colorAccent"
             app:menu="@menu/drawer" />
     </android.support.v4.widget.DrawerLayout>
-
-
 </RelativeLayout>

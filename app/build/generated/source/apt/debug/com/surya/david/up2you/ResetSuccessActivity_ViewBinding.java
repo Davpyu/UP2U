@@ -14,7 +14,7 @@ import java.lang.Override;
 public class ResetSuccessActivity_ViewBinding implements Unbinder {
   private ResetSuccessActivity target;
 
-  private View view2131230757;
+  private View view2131230760;
 
   @UiThread
   public ResetSuccessActivity_ViewBinding(ResetSuccessActivity target) {
@@ -28,7 +28,7 @@ public class ResetSuccessActivity_ViewBinding implements Unbinder {
     View view;
     view = Utils.findRequiredView(source, R.id.btn_back_login, "field 'backlogin' and method 'onViewClick'");
     target.backlogin = Utils.castView(view, R.id.btn_back_login, "field 'backlogin'", Button.class);
-    view2131230757 = view;
+    view2131230760 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -46,7 +46,7 @@ public class ResetSuccessActivity_ViewBinding implements Unbinder {
 
     target.backlogin = null;
 
-    view2131230757.setOnClickListener(null);
-    view2131230757 = null;
+    view2131230760.setOnClickListener(null);
+    view2131230760 = null;
   }
 }

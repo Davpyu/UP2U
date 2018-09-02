@@ -3,11 +3,12 @@ package com.surya.david.up2you;
 
 import android.support.annotation.CallSuper;
 import android.support.annotation.UiThread;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import butterknife.Unbinder;
 import butterknife.internal.Utils;
 import java.lang.IllegalStateException;
@@ -26,9 +27,12 @@ public class HomeActivity_ViewBinding implements Unbinder {
     this.target = target;
 
     target.drawerLayout = Utils.findRequiredViewAsType(source, R.id.drawer_layout, "field 'drawerLayout'", DrawerLayout.class);
-    target.layout = Utils.findRequiredViewAsType(source, R.id.layout, "field 'layout'", RelativeLayout.class);
     target.toolbar = Utils.findRequiredViewAsType(source, R.id.toolbar, "field 'toolbar'", Toolbar.class);
     target.navigationView = Utils.findRequiredViewAsType(source, R.id.nav_view, "field 'navigationView'", NavigationView.class);
+    target.bnv = Utils.findRequiredViewAsType(source, R.id.bnv, "field 'bnv'", BottomNavigationView.class);
+    target.sort = Utils.findRequiredViewAsType(source, R.id.bs_sort, "field 'sort'", LinearLayout.class);
+    target.filter = Utils.findRequiredViewAsType(source, R.id.bs_filter, "field 'filter'", LinearLayout.class);
+    target.search = Utils.findRequiredViewAsType(source, R.id.bs_search, "field 'search'", LinearLayout.class);
   }
 
   @Override
@@ -39,8 +43,11 @@ public class HomeActivity_ViewBinding implements Unbinder {
     this.target = null;
 
     target.drawerLayout = null;
-    target.layout = null;
     target.toolbar = null;
     target.navigationView = null;
+    target.bnv = null;
+    target.sort = null;
+    target.filter = null;
+    target.search = null;
   }
 }

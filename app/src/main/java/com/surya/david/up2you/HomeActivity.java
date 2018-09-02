@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -18,6 +20,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import butterknife.BindView;
@@ -28,13 +31,13 @@ public class HomeActivity extends AppCompatActivity {
 
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
-    @BindView(R.id.layout)
-    RelativeLayout layout;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.nav_view)
     NavigationView navigationView;
     ActionBarDrawerToggle actionBarDrawerToggle;
+    @BindView(R.id.bnv)
+    BottomNavigationView bnv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
