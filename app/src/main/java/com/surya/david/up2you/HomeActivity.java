@@ -1,8 +1,6 @@
 package com.surya.david.up2you;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -16,16 +14,11 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -38,18 +31,26 @@ public class HomeActivity extends AppCompatActivity {
     ActionBarDrawerToggle actionBarDrawerToggle;
     @BindView(R.id.bnv)
     BottomNavigationView bnv;
+    @BindView(R.id.bs_sort)
+    LinearLayout bsSort;
+    @BindView(R.id.bs_filter)
+    LinearLayout bsFilter;
+    @BindView(R.id.bs_search)
+    LinearLayout bsSearch;
+    BottomSheetBehavior sheetBehavior;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
         configureNavigationDrawer();
+        configurebnv();
         configureToolbar();
     }
 
     @Override
     public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)){
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawers();
         } else {
             Intent intent = new Intent(Intent.ACTION_MAIN);
@@ -59,6 +60,7 @@ public class HomeActivity extends AppCompatActivity {
         }
 
     }
+
     private void configureNavigationDrawer() {
         final Fragment ff = new NewsFragment();
         toolbar.setTitle(getString(R.string.news));
@@ -71,7 +73,7 @@ public class HomeActivity extends AppCompatActivity {
                 Fragment f = ff;
                 int itemId = item.getItemId();
 
-                if (itemId == R.id.nws){
+                if (itemId == R.id.nws) {
                     toolbar.setTitle(getString(R.string.news));
                     f = new NewsFragment();
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -79,7 +81,7 @@ public class HomeActivity extends AppCompatActivity {
                     transaction.commit();
                     drawerLayout.closeDrawers();
                     return true;
-                } else if (itemId == R.id.frm){
+                } else if (itemId == R.id.frm) {
                     toolbar.setTitle(getString(R.string.lounge));
                     f = new ForumFragment();
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -87,7 +89,7 @@ public class HomeActivity extends AppCompatActivity {
                     transaction.commit();
                     drawerLayout.closeDrawers();
                     return true;
-                } else if (itemId == R.id.stt){
+                } else if (itemId == R.id.stt) {
                     toolbar.setTitle(getString(R.string.setting));
                     f = new SettingFragment();
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -102,12 +104,47 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
+    private void configurebnv() {
+        bnv.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int itemId = item.getItemId();
+                if(itemId == R.id.sort){
+                    sheetBehavior = BottomSheetBehavior.from(bsSort);
+                    if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED){
+                        sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                    } else {
+                        sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                    }
+                    return true;
+                }else if(itemId == R.id.filter){
+                    sheetBehavior = BottomSheetBehavior.from(bsFilter);
+                    if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED){
+                        sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                    } else {
+                        sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                    }
+                    return true;
+                }else if(itemId == R.id.search){
+                    sheetBehavior = BottomSheetBehavior.from(bsSearch);
+                    if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED){
+                        sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                    } else {
+                        sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                    }
+                    return true;
+                }
+                return false;
+            }
+        });
+    }
+
     private void configureToolbar() {
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout,toolbar,R.string.app_name,R.string.app_name);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);

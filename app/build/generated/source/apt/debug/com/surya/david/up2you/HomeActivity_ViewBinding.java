@@ -30,9 +30,9 @@ public class HomeActivity_ViewBinding implements Unbinder {
     target.toolbar = Utils.findRequiredViewAsType(source, R.id.toolbar, "field 'toolbar'", Toolbar.class);
     target.navigationView = Utils.findRequiredViewAsType(source, R.id.nav_view, "field 'navigationView'", NavigationView.class);
     target.bnv = Utils.findRequiredViewAsType(source, R.id.bnv, "field 'bnv'", BottomNavigationView.class);
-    target.sort = Utils.findRequiredViewAsType(source, R.id.bs_sort, "field 'sort'", LinearLayout.class);
-    target.filter = Utils.findRequiredViewAsType(source, R.id.bs_filter, "field 'filter'", LinearLayout.class);
-    target.search = Utils.findRequiredViewAsType(source, R.id.bs_search, "field 'search'", LinearLayout.class);
+    target.bsSort = Utils.findRequiredViewAsType(source, R.id.bs_sort, "field 'bsSort'", LinearLayout.class);
+    target.bsFilter = Utils.findRequiredViewAsType(source, R.id.bs_filter, "field 'bsFilter'", LinearLayout.class);
+    target.bsSearch = Utils.findRequiredViewAsType(source, R.id.bs_search, "field 'bsSearch'", LinearLayout.class);
   }
 
   @Override
@@ -46,8 +46,8 @@ public class HomeActivity_ViewBinding implements Unbinder {
     target.toolbar = null;
     target.navigationView = null;
     target.bnv = null;
-    target.sort = null;
-    target.filter = null;
-    target.search = null;
+    target.bsSort = null;
+    target.bsFilter = null;
+    target.bsSearch = null;
   }
 }

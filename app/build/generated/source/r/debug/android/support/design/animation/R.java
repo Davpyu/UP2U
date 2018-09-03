@@ -123,12 +123,12 @@ public final class R {
         public static final int mtrl_linear_out_slow_in = 0x7f0a0003;
     }
     public static final class layout {
-        public static final int notification_action = 0x7f0b0044;
-        public static final int notification_action_tombstone = 0x7f0b0045;
-        public static final int notification_template_custom_big = 0x7f0b004c;
-        public static final int notification_template_icon_group = 0x7f0b004d;
-        public static final int notification_template_part_chronometer = 0x7f0b0051;
-        public static final int notification_template_part_time = 0x7f0b0052;
+        public static final int notification_action = 0x7f0b0045;
+        public static final int notification_action_tombstone = 0x7f0b0046;
+        public static final int notification_template_custom_big = 0x7f0b004d;
+        public static final int notification_template_icon_group = 0x7f0b004e;
+        public static final int notification_template_part_chronometer = 0x7f0b0052;
+        public static final int notification_template_part_time = 0x7f0b0053;
     }
     public static final class string {
         public static final int status_bar_notification_info_overflow = 0x7f0e0048;
