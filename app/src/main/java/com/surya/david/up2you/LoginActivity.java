@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
+import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -14,6 +15,8 @@ public class LoginActivity extends AppCompatActivity {
     Button forgotpass;
     @BindView(R.id.btn_loginui)
     Button btnLoginui;
+    @BindView(R.id.register)
+    TextView register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,12 @@ public class LoginActivity extends AppCompatActivity {
     @OnClick(R.id.btn_loginui)
     public void onViewClicked() {
         Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.register)
+    public void onViewClicke() {
+        Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }
 }

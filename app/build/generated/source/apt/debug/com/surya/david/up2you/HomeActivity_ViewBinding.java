@@ -4,6 +4,7 @@ package com.surya.david.up2you;
 import android.support.annotation.CallSuper;
 import android.support.annotation.UiThread;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
@@ -33,6 +34,7 @@ public class HomeActivity_ViewBinding implements Unbinder {
     target.bsSort = Utils.findRequiredViewAsType(source, R.id.bs_sort, "field 'bsSort'", LinearLayout.class);
     target.bsFilter = Utils.findRequiredViewAsType(source, R.id.bs_filter, "field 'bsFilter'", LinearLayout.class);
     target.bsSearch = Utils.findRequiredViewAsType(source, R.id.bs_search, "field 'bsSearch'", LinearLayout.class);
+    target.coLayout = Utils.findRequiredViewAsType(source, R.id.co_layout, "field 'coLayout'", CoordinatorLayout.class);
   }
 
   @Override
@@ -49,5 +51,6 @@ public class HomeActivity_ViewBinding implements Unbinder {
     target.bsSort = null;
     target.bsFilter = null;
     target.bsSearch = null;
+    target.coLayout = null;
   }
 }

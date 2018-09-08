@@ -45,7 +45,7 @@
                     android:layout_height="match_parent"
                     android:drawableStart="@drawable/ic_person_outline_black_24dp"
                     android:hint="Username"
-                    android:inputType="textPersonName"
+                    android:inputType="textPersonName|textEmailAddress"
                     android:drawablePadding="10dp"/>
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
@@ -96,5 +96,19 @@
                 android:text="Login"
                 android:textSize="20sp" />
         </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp">
+        <TextView
+            android:id="@+id/register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dont have an Account? Click here"
+            android:textColor="#fff"/>
     </LinearLayout>
 </RelativeLayout>

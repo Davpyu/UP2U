@@ -13,16 +13,14 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".SplashScreenActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/apptheme1">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:screenOrientation="portrait" />
         <activity
             android:name=".LoginActivity"
             android:screenOrientation="portrait" />
@@ -48,8 +46,8 @@
             android:name=".HomeActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".Toolbar" />
-        <activity android:name=".LoginAdminActivity" />
-        <activity android:name=".HomeAdminActivity"></activity>
+        <activity android:name=".AddThreadActivity" />
+        <activity android:name=".ProfileActivity"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddThreadActivity">
+    <include layout="@layout/activity_toolbar"/>
+    <TextView
+        android:id="@+id/judul_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Buat Thread"
+        android:textSize="40sp"
+        android:layout_below="@id/toolbar"
+        android:layout_centerHorizontal="true"/>
+    <EditText
+        android:id="@+id/add_judul"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:hint="Judul Thread"
+        android:layout_below="@id/judul_add"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"/>
+    <EditText
+        android:id="@+id/isithread"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_below="@id/add_judul"
+        android:inputType="textMultiLine"
+        android:hint="Ketikkan isi"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"/>
+    <TextView
+        android:id="@+id/gambar_video"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Gambar / Video"
+        android:layout_below="@id/isithread"
+        android:layout_marginTop="5dp"
+        android:drawableStart="@drawable/ic_menu_camera"/>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/send_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_send_black_24dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="30dp"
+        android:layout_marginEnd="30dp"
+        android:tint="#fff"/>
+</RelativeLayout>

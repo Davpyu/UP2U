@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="160dp"
     android:orientation="vertical"
+    android:id="@+id/header"
     android:paddingTop="45dp"
     android:background="@color/colorAccent">
     <de.hdodenhof.circleimageview.CircleImageView
@@ -19,6 +20,6 @@
         android:textStyle="bold"
         android:layout_marginTop="5dp"
         android:layout_gravity="center_horizontal"
-        android:text="TextView"/>
+        android:text="User"/>
 
 </LinearLayout>
