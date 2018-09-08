@@ -32,19 +32,6 @@ public class HomeActivity extends AppCompatActivity {
     @BindView(R.id.nav_view)
     NavigationView navigationView;
     ActionBarDrawerToggle actionBarDrawerToggle;
-    @BindView(R.id.bnv)
-    BottomNavigationView bnv;
-    @BindView(R.id.bs_sort)
-    LinearLayout bsSort;
-    @BindView(R.id.bs_filter)
-    LinearLayout bsFilter;
-    @BindView(R.id.bs_search)
-    LinearLayout bsSearch;
-    BottomSheetBehavior sheetBehavior;
-    BottomSheetBehavior bottomSheetBehavior;
-    BottomSheetBehavior behavior;
-    @BindView(R.id.co_layout)
-    CoordinatorLayout coLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,17 +40,6 @@ public class HomeActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         configureToolbar();
         configureNavigationDrawer();
-        configurebnv();
-        View headerView = navigationView.getHeaderView(0);
-        LinearLayout header = (LinearLayout)headerView.findViewById(R.id.header);
-        header.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Toast.makeText(HomeActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(HomeActivity.this,ProfileActivity.class);
-                startActivity(i);
-            }
-        });
     }
 
     @Override
@@ -81,6 +57,21 @@ public class HomeActivity extends AppCompatActivity {
     private void configureNavigationDrawer() {
         final Fragment ff = new NewsFragment();
         toolbar.setTitle(getString(R.string.news));
+        View headerView = navigationView.getHeaderView(0);
+        LinearLayout header = (LinearLayout)headerView.findViewById(R.id.header);
+        header.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Toast.makeText(HomeActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
+                Fragment ft = ff;
+                ft = new ProfileFragment();
+                toolbar.setTitle(getString(R.string.profile));
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame, ft);
+                transaction.commit();
+                drawerLayout.closeDrawers();
+            }
+        });
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame, ff);
         transaction.commit();
@@ -96,8 +87,6 @@ public class HomeActivity extends AppCompatActivity {
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                     transaction.replace(R.id.frame, f);
                     transaction.commit();
-                    bnv.setVisibility(View.VISIBLE);
-                    coLayout.setVisibility(View.VISIBLE);
                     drawerLayout.closeDrawers();
                     return true;
                 } else if (itemId == R.id.frm) {
@@ -106,8 +95,6 @@ public class HomeActivity extends AppCompatActivity {
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                     transaction.replace(R.id.frame, f);
                     transaction.commit();
-                    bnv.setVisibility(View.VISIBLE);
-                    coLayout.setVisibility(View.VISIBLE);
                     drawerLayout.closeDrawers();
                     return true;
                 } else if (itemId == R.id.stt) {
@@ -116,77 +103,10 @@ public class HomeActivity extends AppCompatActivity {
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                     transaction.replace(R.id.frame, f);
                     transaction.commit();
-                    bnv.setVisibility(View.GONE);
-                    coLayout.setVisibility(View.GONE);
                     drawerLayout.closeDrawers();
                     return true;
                 }
 
-                return false;
-            }
-        });
-    }
-
-    private void configurebnv() {
-        bnv.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int itemId = item.getItemId();
-                sheetBehavior = BottomSheetBehavior.from(bsSort);
-                bottomSheetBehavior = BottomSheetBehavior.from(bsFilter);
-                behavior = BottomSheetBehavior.from(bsSearch);
-                if (itemId == R.id.sort) {
-
-                    if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
-                        sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-                        if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-                            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                        }else if (behavior.getState() == BottomSheetBehavior.STATE_EXPANDED){
-                            behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                        } else if ((bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED || behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) && sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED){
-                            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                            behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                        }
-                    } else {
-                        sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                    }
-
-                    return true;
-                } else if (itemId == R.id.filter) {
-
-                    if (bottomSheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
-                        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-                        if (sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-                            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                        }else if (behavior.getState() == BottomSheetBehavior.STATE_EXPANDED){
-                            behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                        }else if ((sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED || behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) && bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED){
-                            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                            behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                        }
-                    } else {
-                        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                    }
-
-                    return true;
-                } else if (itemId == R.id.search) {
-
-                    if (behavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
-                        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-                        if (sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-                            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                        }else if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-                            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                        }else if ((sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED || bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) && behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-                            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                        }
-                    } else {
-                        behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                    }
-
-                    return true;
-                }
                 return false;
             }
         });

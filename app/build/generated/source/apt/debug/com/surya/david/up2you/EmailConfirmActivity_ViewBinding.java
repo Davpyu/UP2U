@@ -14,7 +14,7 @@ import java.lang.Override;
 public class EmailConfirmActivity_ViewBinding implements Unbinder {
   private EmailConfirmActivity target;
 
-  private View view2131230952;
+  private View view2131230948;
 
   @UiThread
   public EmailConfirmActivity_ViewBinding(EmailConfirmActivity target) {
@@ -28,7 +28,7 @@ public class EmailConfirmActivity_ViewBinding implements Unbinder {
     View view;
     view = Utils.findRequiredView(source, R.id.submit_code, "field 'submitcode' and method 'onViewClicked'");
     target.submitcode = Utils.castView(view, R.id.submit_code, "field 'submitcode'", Button.class);
-    view2131230952 = view;
+    view2131230948 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -46,7 +46,7 @@ public class EmailConfirmActivity_ViewBinding implements Unbinder {
 
     target.submitcode = null;
 
-    view2131230952.setOnClickListener(null);
-    view2131230952 = null;
+    view2131230948.setOnClickListener(null);
+    view2131230948 = null;
   }
 }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AddThreadActivity">
-    <include layout="@layout/activity_toolbar"/>
+    <include layout="@layout/toolbar"/>
     <TextView
         android:id="@+id/judul_add"
         android:layout_width="wrap_content"

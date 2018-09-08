@@ -45,9 +45,7 @@
         <activity
             android:name=".HomeActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".Toolbar" />
         <activity android:name=".AddThreadActivity" />
-        <activity android:name=".ProfileActivity"></activity>
     </application>
 
 </manifest>

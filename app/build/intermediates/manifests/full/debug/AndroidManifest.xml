@@ -65,9 +65,7 @@
         <activity
             android:name="com.surya.david.up2you.HomeActivity"
             android:screenOrientation="portrait" />
-        <activity android:name="com.surya.david.up2you.Toolbar" />
         <activity android:name="com.surya.david.up2you.AddThreadActivity" />
-        <activity android:name="com.surya.david.up2you.ProfileActivity" />
         <activity
             android:name="com.nguyenhoanglam.imagepicker.ui.imagepicker.ImagePickerActivity"
             android:configChanges="orientation|screenSize"

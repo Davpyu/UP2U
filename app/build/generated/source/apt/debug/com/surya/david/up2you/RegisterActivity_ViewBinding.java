@@ -5,6 +5,7 @@ import android.support.annotation.CallSuper;
 import android.support.annotation.UiThread;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import butterknife.Unbinder;
 import butterknife.internal.DebouncingOnClickListener;
 import butterknife.internal.Utils;
@@ -15,6 +16,8 @@ public class RegisterActivity_ViewBinding implements Unbinder {
   private RegisterActivity target;
 
   private View view2131230766;
+
+  private View view2131230976;
 
   @UiThread
   public RegisterActivity_ViewBinding(RegisterActivity target) {
@@ -35,6 +38,15 @@ public class RegisterActivity_ViewBinding implements Unbinder {
         target.onViewClicked();
       }
     });
+    view = Utils.findRequiredView(source, R.id.tl, "field 'tl' and method 'onDateClick'");
+    target.tl = Utils.castView(view, R.id.tl, "field 'tl'", TextView.class);
+    view2131230976 = view;
+    view.setOnClickListener(new DebouncingOnClickListener() {
+      @Override
+      public void doClick(View p0) {
+        target.onDateClick();
+      }
+    });
   }
 
   @Override
@@ -45,8 +57,11 @@ public class RegisterActivity_ViewBinding implements Unbinder {
     this.target = null;
 
     target.reguser = null;
+    target.tl = null;
 
     view2131230766.setOnClickListener(null);
     view2131230766 = null;
+    view2131230976.setOnClickListener(null);
+    view2131230976 = null;
   }
 }
