@@ -2,37 +2,75 @@
 <instant-run
     abi="arm64-v8a,armeabi-v7a,armeabi"
     api-level="25"
-    build-mode="HOT_WARM"
+    build-mode="FULL"
     density="xhdpi"
     format="10"
+    ir-eligibility="CLASS_ADDED"
     plugin-version="3.1.3"
-    timestamp="1536416336748"
+    timestamp="1536502146598"
     token="-4921045747662506404"
-    verifier="COMPATIBLE" >
+    verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="21461" />
+        duration="13585" />
     <task
         name="instant-run-dex"
-        duration="585" />
+        duration="0" />
     <task
         name="instant-run-transform"
-        duration="351" />
+        duration="1438" />
     <task
         name="verifier"
-        duration="20" />
+        duration="144" />
 
     <artifact
-        location="/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/reload-dex/debug/classes.dex"
-        type="RELOAD_DEX" />
+        location="/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/split-apk/debug/dep/dependencies.apk"
+        type="SPLIT" />
+    <artifact
+        location="/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/split-apk/debug/slices/slice_0.apk"
+        type="SPLIT" />
+    <artifact
+        location="/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
+        type="SPLIT" />
+    <artifact
+        location="/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/split-apk/debug/slices/slice_2.apk"
+        type="SPLIT" />
+    <artifact
+        location="/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
+        type="SPLIT" />
+    <artifact
+        location="/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
+        type="SPLIT" />
+    <artifact
+        location="/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/split-apk/debug/slices/slice_5.apk"
+        type="SPLIT" />
+    <artifact
+        location="/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/split-apk/debug/slices/slice_6.apk"
+        type="SPLIT" />
+    <artifact
+        location="/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
+        type="SPLIT" />
+    <artifact
+        location="/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/split-apk/debug/slices/slice_8.apk"
+        type="SPLIT" />
+    <artifact
+        location="/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/split-apk/debug/slices/slice_9.apk"
+        type="SPLIT" />
+    <artifact
+        location="/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/instant-run-apk/debug/app-debug.apk"
+        type="SPLIT_MAIN" />
 
     <build
         build-mode="FULL"
-        timestamp="1536416139634"
-        verifier="FULL_BUILD_REQUESTED" >
+        ir-eligibility="CLASS_ADDED"
+        timestamp="1536502146598"
+        verifier="COLD_SWAP_REQUESTED" >
         <artifact
-            location="/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/split-apk/debug/slices/slice_5.apk"
+            location="/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/split-apk/debug/dep/dependencies.apk"
+            type="SPLIT" />
+        <artifact
+            location="/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/split-apk/debug/slices/slice_0.apk"
             type="SPLIT" />
         <artifact
             location="/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
@@ -44,45 +82,26 @@
             location="/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
             type="SPLIT" />
         <artifact
+            location="/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
+            type="SPLIT" />
+        <artifact
+            location="/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/split-apk/debug/slices/slice_5.apk"
+            type="SPLIT" />
+        <artifact
             location="/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/split-apk/debug/slices/slice_6.apk"
-            type="SPLIT" />
-        <artifact
-            location="/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/split-apk/debug/slices/slice_9.apk"
-            type="SPLIT" />
-        <artifact
-            location="/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/split-apk/debug/slices/slice_8.apk"
             type="SPLIT" />
         <artifact
             location="/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
             type="SPLIT" />
         <artifact
-            location="/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/split-apk/debug/dep/dependencies.apk"
+            location="/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/split-apk/debug/slices/slice_8.apk"
             type="SPLIT" />
         <artifact
-            location="/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
-            type="SPLIT" />
-        <artifact
-            location="/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/split-apk/debug/slices/slice_0.apk"
+            location="/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/split-apk/debug/slices/slice_9.apk"
             type="SPLIT" />
         <artifact
             location="/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/instant-run-apk/debug/app-debug.apk"
             type="SPLIT_MAIN" />
-    </build>
-    <build
-        build-mode="HOT_WARM"
-        timestamp="1536416254994"
-        verifier="COMPATIBLE" >
-        <artifact
-            location="/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/builds/debug/1536416254994/classes.dex"
-            type="RELOAD_DEX" />
-    </build>
-    <build
-        build-mode="HOT_WARM"
-        timestamp="1536416336748"
-        verifier="COMPATIBLE" >
-        <artifact
-            location="/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/reload-dex/debug/classes.dex"
-            type="RELOAD_DEX" />
     </build>
 
 </instant-run>

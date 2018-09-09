@@ -31,16 +31,7 @@
             android:name=".EmailConfirmActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ConfirmSuccessActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ForgotPasswordActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ResetPasswordActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ResetSuccessActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".HomeActivity"

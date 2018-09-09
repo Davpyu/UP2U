@@ -3,8 +3,12 @@ package com.surya.david.up2you;
 
 import android.support.annotation.CallSuper;
 import android.support.annotation.UiThread;
+import android.support.design.widget.TextInputEditText;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import butterknife.Unbinder;
 import butterknife.internal.DebouncingOnClickListener;
@@ -17,7 +21,7 @@ public class RegisterActivity_ViewBinding implements Unbinder {
 
   private View view2131230766;
 
-  private View view2131230976;
+  private View view2131230975;
 
   @UiThread
   public RegisterActivity_ViewBinding(RegisterActivity target) {
@@ -40,13 +44,21 @@ public class RegisterActivity_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.tl, "field 'tl' and method 'onDateClick'");
     target.tl = Utils.castView(view, R.id.tl, "field 'tl'", TextView.class);
-    view2131230976 = view;
+    view2131230975 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
         target.onDateClick();
       }
     });
+    target.profileName = Utils.findRequiredViewAsType(source, R.id.profile_name, "field 'profileName'", TextInputEditText.class);
+    target.username = Utils.findRequiredViewAsType(source, R.id.username, "field 'username'", TextInputEditText.class);
+    target.pass = Utils.findRequiredViewAsType(source, R.id.pass, "field 'pass'", TextInputEditText.class);
+    target.confirmPass = Utils.findRequiredViewAsType(source, R.id.confirm_pass, "field 'confirmPass'", EditText.class);
+    target.jkL = Utils.findRequiredViewAsType(source, R.id.jk_l, "field 'jkL'", RadioButton.class);
+    target.jkP = Utils.findRequiredViewAsType(source, R.id.jk_p, "field 'jkP'", RadioButton.class);
+    target.progressbar = Utils.findRequiredViewAsType(source, R.id.progressbar, "field 'progressbar'", RelativeLayout.class);
+    target.gen = Utils.findRequiredViewAsType(source, R.id.gen, "field 'gen'", TextView.class);
   }
 
   @Override
@@ -58,10 +70,18 @@ public class RegisterActivity_ViewBinding implements Unbinder {
 
     target.reguser = null;
     target.tl = null;
+    target.profileName = null;
+    target.username = null;
+    target.pass = null;
+    target.confirmPass = null;
+    target.jkL = null;
+    target.jkP = null;
+    target.progressbar = null;
+    target.gen = null;
 
     view2131230766.setOnClickListener(null);
     view2131230766 = null;
-    view2131230976.setOnClickListener(null);
-    view2131230976 = null;
+    view2131230975.setOnClickListener(null);
+    view2131230975 = null;
   }
 }

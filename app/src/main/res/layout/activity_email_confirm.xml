@@ -28,30 +28,22 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
-            android:text="Please check on Inbox or\nSpam in your Email\nType your confirmation code below"
+            android:text="Please check on Inbox or\nSpam in your Email\n to verify your email"
             android:textAlignment="center"
-            android:textSize="20sp" />
-
-        <EditText
-            android:id="@+id/confirm_code"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/text_confirm"
-            android:layout_centerHorizontal="true"
-            android:hint="Your Confirmation Code"
-            android:maxLength="4"
-            android:inputType="textPersonName|number|textPassword"
-            android:lines="1"
-            android:maxLines="1" />
+            android:textSize="25sp"
+            android:textStyle="bold" />
 
         <Button
-            android:id="@+id/submit_code"
+            android:id="@+id/btn_back_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_below="@id/confirm_code"
-            android:layout_marginRight="30dp"
+            android:layout_below="@id/text_confirm"
+            android:layout_marginRight="44dp"
             android:background="@null"
-            android:text="Submit" />
+            android:text="back to login page"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:textStyle="normal" />
     </RelativeLayout>
 </RelativeLayout>

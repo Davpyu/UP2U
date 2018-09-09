@@ -3,8 +3,10 @@ package com.surya.david.up2you;
 
 import android.support.annotation.CallSuper;
 import android.support.annotation.UiThread;
+import android.support.design.widget.TextInputEditText;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import butterknife.Unbinder;
 import butterknife.internal.DebouncingOnClickListener;
 import butterknife.internal.Utils;
@@ -14,7 +16,7 @@ import java.lang.Override;
 public class ForgotPasswordActivity_ViewBinding implements Unbinder {
   private ForgotPasswordActivity target;
 
-  private View view2131230950;
+  private View view2131230953;
 
   @UiThread
   public ForgotPasswordActivity_ViewBinding(ForgotPasswordActivity target) {
@@ -26,15 +28,17 @@ public class ForgotPasswordActivity_ViewBinding implements Unbinder {
     this.target = target;
 
     View view;
-    view = Utils.findRequiredView(source, R.id.submit_reset_code, "field 'submitreset' and method 'onViewClicked'");
-    target.submitreset = Utils.castView(view, R.id.submit_reset_code, "field 'submitreset'", Button.class);
-    view2131230950 = view;
+    view = Utils.findRequiredView(source, R.id.submit_email, "field 'submitemail' and method 'onViewClicked'");
+    target.submitemail = Utils.castView(view, R.id.submit_email, "field 'submitemail'", Button.class);
+    view2131230953 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
         target.onViewClicked();
       }
     });
+    target.email = Utils.findRequiredViewAsType(source, R.id.email, "field 'email'", TextInputEditText.class);
+    target.progressbar = Utils.findRequiredViewAsType(source, R.id.progressbar, "field 'progressbar'", RelativeLayout.class);
   }
 
   @Override
@@ -44,9 +48,11 @@ public class ForgotPasswordActivity_ViewBinding implements Unbinder {
     if (target == null) throw new IllegalStateException("Bindings already cleared.");
     this.target = null;
 
-    target.submitreset = null;
+    target.submitemail = null;
+    target.email = null;
+    target.progressbar = null;
 
-    view2131230950.setOnClickListener(null);
-    view2131230950 = null;
+    view2131230953.setOnClickListener(null);
+    view2131230953 = null;
   }
 }

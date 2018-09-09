@@ -39,8 +39,8 @@ public final class R {
         public static final int scrimBackground = 0x7f0301b9;
     }
     public static final class color {
-        public static final int design_default_color_primary = 0x7f050039;
-        public static final int design_default_color_primary_dark = 0x7f05003a;
-        public static final int mtrl_scrim_color = 0x7f050072;
+        public static final int design_default_color_primary = 0x7f05003a;
+        public static final int design_default_color_primary_dark = 0x7f05003b;
+        public static final int mtrl_scrim_color = 0x7f050073;
     }
 }

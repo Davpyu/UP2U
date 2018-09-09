@@ -18,9 +18,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="Register"
+            android:text="@string/register"
             android:textAlignment="center"
-            android:textColor="#000"
+            android:textColor="@color/white"
             android:textSize="30sp" />
 
         <ImageView
@@ -28,27 +28,29 @@
             android:layout_height="2dp"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
-            android:background="#2B2B2B" />
+            android:background="@color/white" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="13dp"
+            android:layout_marginStart="13dp"
             android:orientation="horizontal">
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="255dp"
                 android:layout_height="wrap_content">
 
-                <EditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/profile_name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:backgroundTint="@color/white"
+                    android:drawablePadding="10dp"
                     android:drawableStart="@drawable/ic_person_outline_black_24dp"
-                    android:hint="Profile Name"
+                    android:drawableTint="@color/white"
+                    android:hint="@string/profile_name"
                     android:inputType="textPersonName"
-                    android:maxLength="15"
-                    android:drawablePadding="10dp"/>
+                    android:maxLength="15" />
             </android.support.design.widget.TextInputLayout>
 
 
@@ -64,15 +66,17 @@
                 android:layout_width="255dp"
                 android:layout_height="wrap_content">
 
-                <EditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/username"
                     android:layout_width="255dp"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:drawablePadding="10dp"
                     android:drawableStart="@drawable/ic_email_black_24dp"
-                    android:hint="Email"
+                    android:drawableTint="@color/white"
+                    android:hint="@string/email"
                     android:inputType="textPersonName|textEmailAddress"
-                    android:maxLength="15"
-                    android:drawablePadding="10dp"/>
+                    android:maxLength="50" />
             </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
@@ -80,46 +84,52 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="13dp"
+            android:layout_marginStart="13dp"
             android:orientation="horizontal">
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="255dp"
                 android:layout_height="wrap_content"
-                app:passwordToggleEnabled="true">
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/white">
 
-                <EditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/pass"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:backgroundTint="@color/white"
+                    android:drawablePadding="10dp"
                     android:drawableStart="@drawable/ic_lock_outline_black_24dp"
-                    android:hint="Password"
+                    android:drawableTint="@color/white"
+                    android:hint="@string/password"
                     android:inputType="textPassword"
-                    android:maxLength="12"
-                    android:drawablePadding="10dp"/>
+                    android:maxLength="12" />
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="13dp"
+            android:layout_marginStart="13dp"
             android:orientation="horizontal">
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="255dp"
                 android:layout_height="wrap_content"
-                app:passwordToggleEnabled="true">
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/white">
 
                 <EditText
                     android:id="@+id/confirm_pass"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:backgroundTint="@color/white"
+                    android:drawablePadding="10dp"
                     android:drawableStart="@drawable/ic_lock_outline_black_24dp"
-                    android:hint="Confirm Password"
+                    android:drawableTint="@color/white"
+                    android:hint="@string/confirm_password"
                     android:inputType="textPassword"
-                    android:maxLength="12"
-                    android:drawablePadding="10dp"/>
+                    android:maxLength="12" />
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
@@ -127,17 +137,59 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="13dp"
-            android:paddingStart="5dp"
-            android:orientation="horizontal">
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:paddingStart="4dp">
+
             <TextView
-                android:textSize="17sp"
+                android:id="@+id/tl"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/tl"
-                android:text="Tanggal Lahir"
+                android:drawablePadding="10dp"
                 android:drawableStart="@drawable/ic_date_range_black_24dp"
-                android:drawablePadding="10dp"/>
+                android:drawableTint="@color/white"
+                android:text="@string/tanggal_lahir"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/gen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="8dp"
+                android:text="Gender"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+
+            <RadioGroup
+                android:layout_width="255dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/jk_l"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/laki_laki"
+                    android:textColor="@color/white" />
+
+                <RadioButton
+                    android:id="@+id/jk_p"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="65dp"
+                    android:text="@string/perempuan"
+                    android:textColor="@color/white" />
+            </RadioGroup>
         </LinearLayout>
 
         <RelativeLayout
@@ -148,9 +200,33 @@
                 android:id="@+id/btn_reg_user"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:background="@null"
-                android:text="Register" />
+                android:text="@string/register"
+                android:textColor="@color/white" />
         </RelativeLayout>
     </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/progressbar"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@color/white">
+
+        <ProgressBar
+            android:id="@+id/pr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pr"
+            android:layout_centerHorizontal="true"
+            android:text="Loading" />
+    </RelativeLayout>
 </RelativeLayout>

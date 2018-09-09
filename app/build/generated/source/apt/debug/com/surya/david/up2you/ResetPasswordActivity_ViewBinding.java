@@ -14,7 +14,7 @@ import java.lang.Override;
 public class ResetPasswordActivity_ViewBinding implements Unbinder {
   private ResetPasswordActivity target;
 
-  private View view2131230949;
+  private View view2131230952;
 
   @UiThread
   public ResetPasswordActivity_ViewBinding(ResetPasswordActivity target) {
@@ -28,7 +28,7 @@ public class ResetPasswordActivity_ViewBinding implements Unbinder {
     View view;
     view = Utils.findRequiredView(source, R.id.submit_new_password, "field 'newpw' and method 'onViewClick'");
     target.newpw = Utils.castView(view, R.id.submit_new_password, "field 'newpw'", Button.class);
-    view2131230949 = view;
+    view2131230952 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -46,7 +46,7 @@ public class ResetPasswordActivity_ViewBinding implements Unbinder {
 
     target.newpw = null;
 
-    view2131230949.setOnClickListener(null);
-    view2131230949 = null;
+    view2131230952.setOnClickListener(null);
+    view2131230952 = null;
   }
 }

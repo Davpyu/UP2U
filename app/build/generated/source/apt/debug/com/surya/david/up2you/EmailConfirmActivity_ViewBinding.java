@@ -14,7 +14,7 @@ import java.lang.Override;
 public class EmailConfirmActivity_ViewBinding implements Unbinder {
   private EmailConfirmActivity target;
 
-  private View view2131230948;
+  private View view2131230764;
 
   @UiThread
   public EmailConfirmActivity_ViewBinding(EmailConfirmActivity target) {
@@ -26,9 +26,9 @@ public class EmailConfirmActivity_ViewBinding implements Unbinder {
     this.target = target;
 
     View view;
-    view = Utils.findRequiredView(source, R.id.submit_code, "field 'submitcode' and method 'onViewClicked'");
-    target.submitcode = Utils.castView(view, R.id.submit_code, "field 'submitcode'", Button.class);
-    view2131230948 = view;
+    view = Utils.findRequiredView(source, R.id.btn_back_login, "field 'btnBackLogin' and method 'onViewClicked'");
+    target.btnBackLogin = Utils.castView(view, R.id.btn_back_login, "field 'btnBackLogin'", Button.class);
+    view2131230764 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -44,9 +44,9 @@ public class EmailConfirmActivity_ViewBinding implements Unbinder {
     if (target == null) throw new IllegalStateException("Bindings already cleared.");
     this.target = null;
 
-    target.submitcode = null;
+    target.btnBackLogin = null;
 
-    view2131230948.setOnClickListener(null);
-    view2131230948 = null;
+    view2131230764.setOnClickListener(null);
+    view2131230764 = null;
   }
 }
