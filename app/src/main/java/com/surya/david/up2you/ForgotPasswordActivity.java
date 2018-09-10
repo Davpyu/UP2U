@@ -14,6 +14,9 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,6 +30,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     @BindView(R.id.progressbar)
     RelativeLayout progressbar;
     private FirebaseAuth mAuth;
+    private DatabaseReference mDatabaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         progressbar.setVisibility(View.GONE);
         mAuth = FirebaseAuth.getInstance();
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference();
     }
 
     @OnClick(R.id.submit_email)
@@ -51,15 +56,21 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             return;
         }
         progressbar.setVisibility(View.VISIBLE);
-        mAuth.sendPasswordResetEmail(id)
-                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        progressbar.setVisibility(View.GONE);
-                        Toast.makeText(ForgotPasswordActivity.this, "Reset Password has been send on your email", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(ForgotPasswordActivity.this, LoginActivity.class);
-                        startActivity(intent);
-                    }
-                });
+//        if (user.isEmailVerified()){
+            mAuth.sendPasswordResetEmail(id)
+                    .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            progressbar.setVisibility(View.GONE);
+                            Toast.makeText(ForgotPasswordActivity.this, "Reset Password has been send on your email", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(ForgotPasswordActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+//        }else{
+//            progressbar.setVisibility(View.GONE);
+//            Toast.makeText(ForgotPasswordActivity.this, "Email not verified. Please verify your email first", Toast.LENGTH_SHORT).show();
+//        }
+
     }
 }

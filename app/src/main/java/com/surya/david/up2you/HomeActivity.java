@@ -20,6 +20,8 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -32,12 +34,14 @@ public class HomeActivity extends AppCompatActivity {
     @BindView(R.id.nav_view)
     NavigationView navigationView;
     ActionBarDrawerToggle actionBarDrawerToggle;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
+        mAuth = FirebaseAuth.getInstance();
         configureToolbar();
         configureNavigationDrawer();
     }
@@ -63,13 +67,19 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 //                Toast.makeText(HomeActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
-                Fragment ft = ff;
-                ft = new ProfileFragment();
-                toolbar.setTitle(getString(R.string.profile));
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame, ft);
-                transaction.commit();
-                drawerLayout.closeDrawers();
+                if (mAuth.getCurrentUser() != null){
+                    Fragment ft = ff;
+                    ft = new ProfileFragment();
+                    toolbar.setTitle(getString(R.string.profile));
+                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.frame, ft);
+                    transaction.commit();
+                    drawerLayout.closeDrawers();
+                }
+                else{
+                    Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
             }
         });
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -90,21 +100,35 @@ public class HomeActivity extends AppCompatActivity {
                     drawerLayout.closeDrawers();
                     return true;
                 } else if (itemId == R.id.frm) {
-                    toolbar.setTitle(getString(R.string.lounge));
-                    f = new ForumFragment();
-                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.frame, f);
-                    transaction.commit();
-                    drawerLayout.closeDrawers();
-                    return true;
+                    if (mAuth.getCurrentUser() != null){
+                        toolbar.setTitle(getString(R.string.lounge));
+                        f = new ForumFragment();
+                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                        transaction.replace(R.id.frame, f);
+                        transaction.commit();
+                        drawerLayout.closeDrawers();
+                        return true;
+                    }else{
+                        Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        return true;
+                    }
+
                 } else if (itemId == R.id.stt) {
-                    toolbar.setTitle(getString(R.string.setting));
-                    f = new SettingFragment();
-                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.frame, f);
-                    transaction.commit();
-                    drawerLayout.closeDrawers();
-                    return true;
+                    if (mAuth.getCurrentUser() != null){
+                        toolbar.setTitle(getString(R.string.setting));
+                        f = new SettingFragment();
+                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                        transaction.replace(R.id.frame, f);
+                        transaction.commit();
+                        drawerLayout.closeDrawers();
+                        return true;
+                    }else{
+                        Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        return true;
+                    }
+
                 }
 
                 return false;

@@ -93,21 +93,21 @@ public final class R {
         public static final int left = 0x7f080088;
         public static final int line1 = 0x7f08008a;
         public static final int line3 = 0x7f08008b;
-        public static final int none = 0x7f08009f;
-        public static final int normal = 0x7f0800a0;
-        public static final int notification_background = 0x7f0800a1;
-        public static final int notification_main_column = 0x7f0800a2;
-        public static final int notification_main_column_container = 0x7f0800a3;
-        public static final int right = 0x7f0800b7;
-        public static final int right_icon = 0x7f0800b8;
-        public static final int right_side = 0x7f0800b9;
-        public static final int start = 0x7f0800e3;
-        public static final int tag_transition_group = 0x7f0800eb;
-        public static final int text = 0x7f0800ec;
-        public static final int text2 = 0x7f0800ed;
-        public static final int time = 0x7f0800fb;
-        public static final int title = 0x7f0800fc;
-        public static final int top = 0x7f080101;
+        public static final int none = 0x7f0800a0;
+        public static final int normal = 0x7f0800a1;
+        public static final int notification_background = 0x7f0800a2;
+        public static final int notification_main_column = 0x7f0800a3;
+        public static final int notification_main_column_container = 0x7f0800a4;
+        public static final int right = 0x7f0800b8;
+        public static final int right_icon = 0x7f0800b9;
+        public static final int right_side = 0x7f0800ba;
+        public static final int start = 0x7f0800e4;
+        public static final int tag_transition_group = 0x7f0800ec;
+        public static final int text = 0x7f0800ed;
+        public static final int text2 = 0x7f0800ee;
+        public static final int time = 0x7f0800fc;
+        public static final int title = 0x7f0800fd;
+        public static final int top = 0x7f080102;
     }
     public static final class integer {
         public static final int status_bar_notification_info_maxnum = 0x7f09000d;

@@ -21,7 +21,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
         ButterKnife.bind(this);
         Animation myanim = AnimationUtils.loadAnimation(this,R.anim.splashscreen);
-        final Intent intent = new Intent(this,LoginActivity.class);
+        final Intent intent = new Intent(this,HomeActivity.class);
         logo.startAnimation(myanim);
         Thread timer = new Thread(){
             public void run(){

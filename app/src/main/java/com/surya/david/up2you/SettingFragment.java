@@ -1,11 +1,21 @@
 package com.surya.david.up2you;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
 
 
 /**
@@ -13,6 +23,11 @@ import android.view.ViewGroup;
  */
 public class SettingFragment extends Fragment {
 
+
+    @BindView(R.id.logout)
+    Button logout;
+    Unbinder unbinder;
+    private FirebaseAuth mAuth;
 
     public SettingFragment() {
         // Required empty public constructor
@@ -23,7 +38,23 @@ public class SettingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_setting, container, false);
+        View rootview = inflater.inflate(R.layout.fragment_setting, container, false);
+        unbinder = ButterKnife.bind(this, rootview);
+        mAuth = FirebaseAuth.getInstance();
+        return rootview;
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
+
+    @OnClick(R.id.logout)
+    public void onViewClicked() {
+        mAuth.signOut();
+        Toast.makeText(getContext(), "Logout successful", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getContext(), LoginActivity.class);
+        startActivity(intent);
+    }
 }
