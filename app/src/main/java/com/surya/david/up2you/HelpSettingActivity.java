@@ -11,7 +11,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class GeneralSettingActivity extends AppCompatActivity {
+public class HelpSettingActivity extends AppCompatActivity {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.back)
@@ -20,7 +20,7 @@ public class GeneralSettingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_general_setting);
+        setContentView(R.layout.activity_help_setting);
         ButterKnife.bind(this);
         configureToolbar();
     }
@@ -36,7 +36,7 @@ public class GeneralSettingActivity extends AppCompatActivity {
 
     private void configureToolbar() {
         setSupportActionBar(toolbar);
-        toolbar.setTitle("General");
+        toolbar.setTitle("Help");
     }
 
     @OnClick(R.id.back)

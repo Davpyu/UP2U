@@ -39,7 +39,8 @@
         <activity
             android:name=".AddThreadActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".GeneralSettingActivity"></activity>
+        <activity android:name=".GeneralSettingActivity" />
+        <activity android:name=".HelpSettingActivity"></activity>
     </application>
 
 </manifest>

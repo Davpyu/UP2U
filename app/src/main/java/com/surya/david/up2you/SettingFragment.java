@@ -27,6 +27,10 @@ public class SettingFragment extends Fragment {
     @BindView(R.id.logout)
     TextView logout;
     Unbinder unbinder;
+    @BindView(R.id.general)
+    TextView general;
+    @BindView(R.id.help)
+    TextView help;
     private FirebaseAuth mAuth;
 
     public SettingFragment() {
@@ -56,5 +60,17 @@ public class SettingFragment extends Fragment {
         Toast.makeText(getContext(), "Logout successful", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getContext(), LoginActivity.class);
         startActivity(intent);
+    }
+
+    @OnClick(R.id.general)
+    public void onGeneralClicked() {
+        Intent i = new Intent(getContext(), GeneralSettingActivity.class);
+        startActivity(i);
+    }
+
+    @OnClick(R.id.help)
+    public void onHelpClicked() {
+        Intent i = new Intent(getContext(), HelpSettingActivity.class);
+        startActivity(i);
     }
 }

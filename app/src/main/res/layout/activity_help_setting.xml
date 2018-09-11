@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GeneralSettingActivity">
+    tools:context=".HelpSettingActivity">
 
     <include layout="@layout/toolbar" />
 
@@ -17,35 +17,35 @@
         android:tint="@color/white" />
 
     <TextView
-        android:id="@+id/edit_profile"
+        android:id="@+id/faq"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@id/toolbar"
         android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
         android:gravity="center_vertical"
         android:paddingStart="15dp"
-        android:text="Edit Profile"
+        android:text="FAQ"
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/change_email"
+        android:id="@+id/report_bug"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_below="@id/edit_profile"
+        android:layout_below="@id/faq"
         android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
         android:gravity="center_vertical"
         android:paddingStart="15dp"
-        android:text="Change your Email"
+        android:text="Report a Bug"
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/change_pw"
+        android:id="@+id/about"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_below="@id/change_email"
+        android:layout_below="@id/report_bug"
         android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
         android:gravity="center_vertical"
         android:paddingStart="15dp"
-        android:text="Change your password"
+        android:text="About this app"
         android:textSize="20sp" />
 </RelativeLayout>

@@ -60,6 +60,7 @@
             android:name="com.surya.david.up2you.AddThreadActivity"
             android:screenOrientation="portrait" />
         <activity android:name="com.surya.david.up2you.GeneralSettingActivity" />
+        <activity android:name="com.surya.david.up2you.HelpSettingActivity" />
         <activity
             android:name="com.nguyenhoanglam.imagepicker.ui.imagepicker.ImagePickerActivity"
             android:configChanges="orientation|screenSize"

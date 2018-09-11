@@ -12,27 +12,31 @@
     <TextView
         android:id="@+id/general"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:textSize="20sp"
         android:text="General"
         android:paddingStart="15dp"
-        android:layout_marginTop="70dp"
+        android:gravity="center_vertical"
+        android:layout_marginTop="?attr/actionBarSize"
         android:drawableEnd="@drawable/ic_chevron_right_black_24dp"/>
     <TextView
         android:id="@+id/help"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:text="Help"
         android:textSize="20sp"
-        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
         android:paddingStart="15dp"
         android:drawableEnd="@drawable/ic_chevron_right_black_24dp"/>
-
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="#e4e4e4"/>
     <TextView
         android:id="@+id/logout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
         android:paddingStart="15dp"
         android:textSize="20sp"
         android:text="Logout" />
