@@ -69,6 +69,7 @@ public class RegisterActivity extends AppCompatActivity {
         String pw = pass.getText().toString().trim();
         String con_pass = confirmPass.getText().toString().trim();
         final String t_l = tl.getText().toString().trim();
+        final String userId = mAuth.getCurrentUser().getUid();
         String jen_kel = "";
         if (jkL.isChecked()) {
             jen_kel = jkL.getText().toString().trim();
@@ -130,10 +131,11 @@ public class RegisterActivity extends AppCompatActivity {
                                     finalJen_kel,
                                     t_l,
                                     "",
-                                    ""
+                                    "",
+                                    false
                             );
                             FirebaseDatabase.getInstance().getReference("Users")
-                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .child(userId)
                                     .setValue(usr).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {

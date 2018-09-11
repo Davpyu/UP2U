@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:2:1-44:12
-INJECTED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:2:1-44:12
-INJECTED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:2:1-44:12
-INJECTED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:2:1-44:12
+ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:2:1-45:12
+INJECTED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:2:1-45:12
+INJECTED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:2:1-45:12
+INJECTED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:2:1-45:12
 MERGED from [com.google.firebase:firebase-core:16.0.1] /home/david/.gradle/caches/transforms-1/files-1.1/firebase-core-16.0.1.aar/61c798f2702db6705cdae10376ba3b38/AndroidManifest.xml:2:1-9:12
 MERGED from [com.github.nguyenhoanglam:ImagePicker:1.3.0] /home/david/.gradle/caches/transforms-1/files-1.1/ImagePicker-1.3.0.aar/53d3efee2b67e27b1540d2a082306255/AndroidManifest.xml:2:1-36:12
 MERGED from [com.android.support:design:28.0.0-alpha1] /home/david/.gradle/caches/transforms-1/files-1.1/design-28.0.0-alpha1.aar/bba2e71bdadcaa7338467adecd39194b/AndroidManifest.xml:17:1-24:12
@@ -90,20 +90,20 @@ MERGED from [android.arch.lifecycle:runtime:1.1.0] /home/david/.gradle/caches/tr
 MERGED from [android.arch.lifecycle:livedata-core:1.1.0] /home/david/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.0.aar/79ad863f49033fbf817b20c4561d6e01/AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.core:runtime:1.1.0] /home/david/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/47987a17b759aae25e074872e75a53d0/AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:viewmodel:1.1.0] /home/david/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/1fb17a7a47b7b7b9dad6aa6f7669f8ed/AndroidManifest.xml:17:1-22:12
-INJECTED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:2:1-44:12
-INJECTED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:2:1-44:12
-INJECTED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:2:1-44:12
+INJECTED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:2:1-45:12
+INJECTED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:2:1-45:12
+INJECTED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:2:1-45:12
 	package
 		ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:3:5-37
 		INJECTED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml
 		INJECTED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml
 	android:versionName
 		INJECTED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml
-		ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:2:1-44:12
+		ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:2:1-45:12
 		INJECTED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml
 	android:versionCode
 		INJECTED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml
-		ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:2:1-44:12
+		ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:2:1-45:12
 		INJECTED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:2:11-69
@@ -122,7 +122,7 @@ MERGED from [com.google.firebase:firebase-database-connection:16.0.1] /home/davi
 	android:name
 		ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:5:22-64
 application
-ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:7:5-42:19
+ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:7:5-43:19
 MERGED from [com.google.firebase:firebase-core:16.0.1] /home/david/.gradle/caches/transforms-1/files-1.1/firebase-core-16.0.1.aar/61c798f2702db6705cdae10376ba3b38/AndroidManifest.xml:7:5-20
 MERGED from [com.google.firebase:firebase-core:16.0.1] /home/david/.gradle/caches/transforms-1/files-1.1/firebase-core-16.0.1.aar/61c798f2702db6705cdae10376ba3b38/AndroidManifest.xml:7:5-20
 MERGED from [com.github.nguyenhoanglam:ImagePicker:1.3.0] /home/david/.gradle/caches/transforms-1/files-1.1/ImagePicker-1.3.0.aar/53d3efee2b67e27b1540d2a082306255/AndroidManifest.xml:15:5-34:19
@@ -288,11 +288,15 @@ ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest
 	android:name
 		ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:37:13-51
 activity#com.surya.david.up2you.AddThreadActivity
-ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:40:9-41:51
+ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:39:9-41:52
 	android:screenOrientation
 		ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:41:13-49
 	android:name
-		ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:40:19-52
+		ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:40:13-46
+activity#com.surya.david.up2you.GeneralSettingActivity
+ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:42:9-69
+	android:name
+		ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:42:19-57
 uses-sdk
 INJECTED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml
@@ -532,7 +536,7 @@ ADDED from [com.github.nguyenhoanglam:ImagePicker:1.3.0] /home/david/.gradle/cac
 	android:name
 		ADDED from [com.github.nguyenhoanglam:ImagePicker:1.3.0] /home/david/.gradle/caches/transforms-1/files-1.1/ImagePicker-1.3.0.aar/53d3efee2b67e27b1540d2a082306255/AndroidManifest.xml:31:17-67
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-IMPLIED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:2:1-44:12 reason: com.nguyenhoanglam.imagepicker requested WRITE_EXTERNAL_STORAGE
+IMPLIED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:2:1-45:12 reason: com.nguyenhoanglam.imagepicker requested WRITE_EXTERNAL_STORAGE
 activity#com.google.firebase.auth.internal.FederatedSignInActivity
 ADDED from [com.google.firebase:firebase-auth:16.0.1] /home/david/.gradle/caches/transforms-1/files-1.1/firebase-auth-16.0.1.aar/d8664bd51c10c39f582e9c1488d08347/AndroidManifest.xml:23:9-29:75
 	android:excludeFromRecents

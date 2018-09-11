@@ -36,9 +36,10 @@
         <activity
             android:name=".ForgotPasswordActivity"
             android:screenOrientation="portrait" />
-
-        <activity android:name=".AddThreadActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".AddThreadActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".GeneralSettingActivity"></activity>
     </application>
 
 </manifest>

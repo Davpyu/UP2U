@@ -7,6 +7,7 @@ import android.support.design.widget.TextInputEditText;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import butterknife.Unbinder;
 import butterknife.internal.DebouncingOnClickListener;
 import butterknife.internal.Utils;
@@ -16,7 +17,7 @@ import java.lang.Override;
 public class ForgotPasswordActivity_ViewBinding implements Unbinder {
   private ForgotPasswordActivity target;
 
-  private View view2131230954;
+  private View view2131230955;
 
   @UiThread
   public ForgotPasswordActivity_ViewBinding(ForgotPasswordActivity target) {
@@ -30,7 +31,7 @@ public class ForgotPasswordActivity_ViewBinding implements Unbinder {
     View view;
     view = Utils.findRequiredView(source, R.id.submit_email, "field 'submitemail' and method 'onViewClicked'");
     target.submitemail = Utils.castView(view, R.id.submit_email, "field 'submitemail'", Button.class);
-    view2131230954 = view;
+    view2131230955 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -39,6 +40,7 @@ public class ForgotPasswordActivity_ViewBinding implements Unbinder {
     });
     target.email = Utils.findRequiredViewAsType(source, R.id.email, "field 'email'", TextInputEditText.class);
     target.progressbar = Utils.findRequiredViewAsType(source, R.id.progressbar, "field 'progressbar'", RelativeLayout.class);
+    target.text = Utils.findRequiredViewAsType(source, R.id.nama, "field 'text'", TextView.class);
   }
 
   @Override
@@ -51,8 +53,9 @@ public class ForgotPasswordActivity_ViewBinding implements Unbinder {
     target.submitemail = null;
     target.email = null;
     target.progressbar = null;
+    target.text = null;
 
-    view2131230954.setOnClickListener(null);
-    view2131230954 = null;
+    view2131230955.setOnClickListener(null);
+    view2131230955 = null;
   }
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +17,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -43,6 +50,14 @@ public class LoginActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         progressbar.setVisibility(View.GONE);
         mAuth = FirebaseAuth.getInstance();
+//        if (user != null && user.isEmailVerified()) {
+//            mDatabase.child("Users").child("status").setValue(true);
+//            user.reload();
+//        }
+//        if (user != null && !user.isEmailVerified()) {
+//            mDatabase.child("Users").child("status").setValue(false);
+//            user.reload();
+//        }
     }
 
     @OnClick(R.id.forgot_pass)
@@ -80,6 +95,8 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                             startActivity(intent);
+                        }else{
+                            Toast.makeText(LoginActivity.this, "Email or Password invalid. Please re-enter your email and password", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
