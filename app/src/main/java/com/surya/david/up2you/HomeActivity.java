@@ -95,13 +95,14 @@ public class HomeActivity extends AppCompatActivity {
 
     private void configureNavigationDrawer() {
         final Fragment ff = new NewsFragment();
-        toolbar.setTitle(getString(R.string.news));
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame, ff);
+        transaction.commit();
         View headerView = navigationView.getHeaderView(0);
         LinearLayout header = (LinearLayout)headerView.findViewById(R.id.header);
         header.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Toast.makeText(HomeActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
                 if (mAuth.getCurrentUser() != null){
                     Fragment ft = ff;
                     ft = new ProfileFragment();
@@ -117,9 +118,6 @@ public class HomeActivity extends AppCompatActivity {
                 }
             }
         });
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame, ff);
-        transaction.commit();
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
@@ -173,6 +171,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private void configureToolbar() {
         setSupportActionBar(toolbar);
+        toolbar.setTitle(getString(R.string.news));
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);

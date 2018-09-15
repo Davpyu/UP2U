@@ -7,11 +7,22 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,6 +47,11 @@ public class NewsFragment extends Fragment {
     @BindView(R.id.co_layout)
     CoordinatorLayout coLayout;
     Unbinder unbinder;
+    @BindView(R.id.list_news)
+    RecyclerView listNews;
+    FirebaseDatabase mDatabase;
+    DatabaseReference mRef;
+
     public NewsFragment() {
         // Required empty public constructor
     }
@@ -47,9 +63,46 @@ public class NewsFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootview = inflater.inflate(R.layout.fragment_news, container, false);
         unbinder = ButterKnife.bind(this, rootview);
+        listNews.setHasFixedSize(true);
+        listNews.setLayoutManager(new LinearLayoutManager(getContext()));
+        mDatabase = FirebaseDatabase.getInstance();
+        mRef = mDatabase.getReference("news");
+        Query query = mRef;
         configureBnv();
+        FirebaseRecyclerOptions<news> options =
+                new FirebaseRecyclerOptions.Builder<news>().setQuery(query, news.class).build();
+        FirebaseRecyclerAdapter<news, NewsAdapter> firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<news, NewsAdapter>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull NewsAdapter holder, int position, @NonNull news model) {
+                Picasso.get().load(model.getImage()).into(holder.mImage, new Callback() {
+                    @Override
+                    public void onSuccess() {
+
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+                holder.mTitle.setText(model.getTitle());
+                holder.mDate.setText(model.getDate());
+                holder.mCategory.setText(model.getKategori());
+                holder.mKota.setText(model.getKota());
+            }
+
+            @NonNull
+            @Override
+            public NewsAdapter onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.news_item, parent, false);
+                return new NewsAdapter(view);
+            }
+        };
+        firebaseRecyclerAdapter.startListening();
+        listNews.setAdapter(firebaseRecyclerAdapter);
         return rootview;
     }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -57,6 +110,7 @@ public class NewsFragment extends Fragment {
     }
 
     private void configureBnv() {
+        coLayout.bringToFront();
         bnv.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -70,9 +124,9 @@ public class NewsFragment extends Fragment {
                         sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
                         if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
                             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                        }else if (behavior.getState() == BottomSheetBehavior.STATE_EXPANDED){
+                        } else if (behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
                             behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                        } else if ((bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED || behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) && sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED){
+                        } else if ((bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED || behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) && sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
                             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                             behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                         }
@@ -87,9 +141,9 @@ public class NewsFragment extends Fragment {
                         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
                         if (sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
                             sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                        }else if (behavior.getState() == BottomSheetBehavior.STATE_EXPANDED){
+                        } else if (behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
                             behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                        }else if ((sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED || behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) && bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED){
+                        } else if ((sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED || behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) && bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
                             sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                             behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                         }
@@ -104,9 +158,9 @@ public class NewsFragment extends Fragment {
                         behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
                         if (sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
                             sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                        }else if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+                        } else if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
                             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                        }else if ((sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED || bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) && behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+                        } else if ((sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED || bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) && behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
                             sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                         }

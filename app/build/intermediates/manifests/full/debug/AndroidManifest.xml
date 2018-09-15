@@ -6,14 +6,11 @@
 
     <uses-sdk
         android:minSdkVersion="21"
-        android:targetSdkVersion="28" />
+        android:targetSdkVersion="27" />
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" /> <!-- Required by older versions of Google Play services to create IID tokens -->
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
@@ -30,6 +27,7 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
+        android:testOnly="true"
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.surya.david.up2you.SplashScreenActivity"
@@ -61,25 +59,8 @@
             android:screenOrientation="portrait" />
         <activity android:name="com.surya.david.up2you.GeneralSettingActivity" />
         <activity android:name="com.surya.david.up2you.HelpSettingActivity" />
-        <activity
-            android:name="com.nguyenhoanglam.imagepicker.ui.imagepicker.ImagePickerActivity"
-            android:configChanges="orientation|screenSize"
-            android:theme="@style/imagepicker_ImagePickerTheme" />
-        <activity
-            android:name="com.nguyenhoanglam.imagepicker.ui.camera.CameraActivty"
-            android:screenOrientation="portrait"
-            android:theme="@style/imagepicker_CameraTheme" />
-
-        <provider
-            android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.surya.david.up2you.fileprovider"
-            android:exported="false"
-            android:grantUriPermissions="true" >
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/imagepicker_file_paths" />
-        </provider>
-
+        <activity android:name="com.surya.david.up2you.NewsActivity" />
+        <activity android:name="com.surya.david.up2you.MainActivity" />
         <activity
             android:name="com.google.firebase.auth.internal.FederatedSignInActivity"
             android:excludeFromRecents="true"
@@ -161,6 +142,11 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
+        <provider
+            android:name="com.squareup.picasso.PicassoProvider"
+            android:authorities="com.surya.david.up2you.com.squareup.picasso"
+            android:exported="false" />
     </application>
 
 </manifest>

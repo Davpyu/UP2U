@@ -1,5 +1,6 @@
 package com.surya.david.up2you;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -21,7 +22,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.gson.Gson;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,12 +32,9 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     Button submitemail;
     @BindView(R.id.email)
     TextInputEditText email;
-    @BindView(R.id.progressbar)
-    RelativeLayout progressbar;
-    @BindView(R.id.nama)
-    TextView text;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
+    ProgressDialog progressDialog;
 
 
     @Override
@@ -45,7 +42,6 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
         ButterKnife.bind(this);
-        progressbar.setVisibility(View.GONE);
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
     }
@@ -53,6 +49,9 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     @OnClick(R.id.submit_email)
     public void onViewClicked() {
         final String id = email.getText().toString().trim();
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Please wait...");
+        progressDialog.setCancelable(false);
         if (id.isEmpty()) {
             email.setError("Email required");
             email.requestFocus();
@@ -63,14 +62,11 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             email.requestFocus();
             return;
         }
-        progressbar.setVisibility(View.VISIBLE);
-
-//        progressbar.setVisibility(View.VISIBLE);
-//        if (user.isEmailVerified()){
+        progressDialog.show();
         mDatabase.orderByChild("email").equalTo(id).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                progressbar.setVisibility(View.GONE);
+                progressDialog.hide();
                 for (DataSnapshot userSnapshot: dataSnapshot.getChildren()){
                     user ur = userSnapshot.getValue(user.class);
                     Boolean stts = ur.getStatus();
@@ -84,7 +80,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                                             Intent intent = new Intent(ForgotPasswordActivity.this, LoginActivity.class);
                                             startActivity(intent);
                                         }else{
-                                            progressbar.setVisibility(View.GONE);
+                                            progressDialog.hide();
                                             Toast.makeText(ForgotPasswordActivity.this, "Cannot reset password, please try again", Toast.LENGTH_SHORT).show();
                                         }
                                     }

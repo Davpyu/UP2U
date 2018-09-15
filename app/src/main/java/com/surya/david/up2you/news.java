@@ -1,26 +1,17 @@
 package com.surya.david.up2you;
 
-public class news {
-    public String judul, kota, author, isi;
-    public int idC_news;
+import java.io.Serializable;
+import java.util.List;
 
-    public news() {
+public class news{
+    public String title, kota, author, isi, date, kategori, image;
+
+    public String getTitle() {
+        return title;
     }
 
-    public news(String judul, String kota, String author, String isi, int idC_news) {
-        this.judul = judul;
-        this.kota = kota;
-        this.author = author;
-        this.isi = isi;
-        this.idC_news = idC_news;
-    }
-
-    public String getJudul() {
-        return judul;
-    }
-
-    public void setJudul(String judul) {
-        this.judul = judul;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getKota() {
@@ -47,11 +38,41 @@ public class news {
         this.isi = isi;
     }
 
-    public int getIdC_news() {
-        return idC_news;
+    public String getDate() {
+        return date;
     }
 
-    public void setIdC_news(int idC_news) {
-        this.idC_news = idC_news;
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getKategori() {
+        return kategori;
+    }
+
+    public void setKategori(String kategori) {
+        this.kategori = kategori;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public news() {
+
+    }
+
+    public news(String title, String kota, String author, String isi, String date, String kategori, String image) {
+        this.title = title;
+        this.kota = kota;
+        this.author = author;
+        this.isi = isi;
+        this.date = date;
+        this.kategori = kategori;
+        this.image = image;
     }
 }

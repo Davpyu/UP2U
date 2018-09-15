@@ -17,7 +17,6 @@
         android:text="General"
         android:paddingStart="15dp"
         android:gravity="center_vertical"
-        android:layout_marginTop="?attr/actionBarSize"
         android:drawableEnd="@drawable/ic_chevron_right_black_24dp"/>
     <TextView
         android:id="@+id/help"

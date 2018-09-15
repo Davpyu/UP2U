@@ -1,6 +1,7 @@
 package com.surya.david.up2you;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -50,20 +51,18 @@ public class RegisterActivity extends AppCompatActivity {
     RadioButton jkL;
     @BindView(R.id.jk_p)
     RadioButton jkP;
-    @BindView(R.id.progressbar)
-    RelativeLayout progressbar;
+    ProgressDialog progressDialog;
     @BindView(R.id.gen)
     TextView gen;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     private FirebaseAuth mAuth;
-    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallback;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
-        progressbar.setVisibility(View.GONE);
         dateDialog();
         mAuth = FirebaseAuth.getInstance();
     }
@@ -74,8 +73,10 @@ public class RegisterActivity extends AppCompatActivity {
         String pw = pass.getText().toString().trim();
         String con_pass = confirmPass.getText().toString().trim();
         final String t_l = tl.getText().toString().trim();
-        final String userId = mAuth.getCurrentUser().getUid();
         String jen_kel = "";
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Please wait...");
+        progressDialog.setCancelable(false);
         if (jkL.isChecked()) {
             jen_kel = jkL.getText().toString().trim();
         }
@@ -122,13 +123,13 @@ public class RegisterActivity extends AppCompatActivity {
             gen.requestFocus();
             return;
         }
-        progressbar.setVisibility(View.VISIBLE);
+        progressDialog.show();
         final String finalJen_kel = jen_kel;
         mAuth.createUserWithEmailAndPassword(email, pw)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        progressbar.setVisibility(View.GONE);
+                        progressDialog.hide();
                         if (task.isSuccessful()){
                             user usr = new user(
                                     name,
@@ -140,7 +141,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     false
                             );
                             FirebaseDatabase.getInstance().getReference("Users")
-                                    .child(userId)
+                                    .child(mAuth.getCurrentUser().getUid())
                                     .setValue(usr).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {

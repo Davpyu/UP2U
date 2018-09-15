@@ -8,14 +8,6 @@
 
     <include layout="@layout/toolbar" />
 
-    <ImageView
-        android:id="@+id/back"
-        android:layout_width="30dp"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_marginStart="10dp"
-        android:src="@drawable/ic_arrow_back_black_24dp"
-        android:tint="@color/white" />
-
     <TextView
         android:id="@+id/edit_profile"
         android:layout_width="match_parent"

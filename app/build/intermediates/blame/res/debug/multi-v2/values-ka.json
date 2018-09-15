@@ -4,6 +4,23 @@
             "outputFile": "/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ka/values-ka.xml",
             "map": [
                 {
+                    "source": "/home/david/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/fcb7ea05f1d106109a56e81db159992c/res/values-ka/values-ka.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "38",
+                        "startColumns": "4",
+                        "startOffsets": "4668",
+                        "endColumns": "100",
+                        "endOffsets": "4764"
+                    }
+                },
+                {
                     "source": "/home/david/.gradle/caches/transforms-1/files-1.1/play-services-basement-15.0.1.aar/35e68eac6218a7d58b0d342ff4f17f7a/res/values-ka/values.xml",
                     "from": {
                         "startLines": "4",
@@ -21,24 +38,7 @@
                     }
                 },
                 {
-                    "source": "/home/david/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0-alpha1.aar/bde071160f3480bd87bb721b7803cc03/res/values-ka/values-ka.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "38",
-                        "startColumns": "4",
-                        "startOffsets": "4668",
-                        "endColumns": "100",
-                        "endOffsets": "4764"
-                    }
-                },
-                {
-                    "source": "/home/david/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0-alpha1.aar/96e2a283c51872053c9fe1eec97ba192/res/values-ka/values-ka.xml",
+                    "source": "/home/david/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/1c7adacf386d4fe31a14c27fc61fee93/res/values-ka/values-ka.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

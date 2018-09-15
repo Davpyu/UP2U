@@ -10,7 +10,7 @@
         android:id="@+id/usr_profile"
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:background="#fff"
+        android:src="@mipmap/ic_launcher"
         android:layout_gravity="center_horizontal"/>
     <TextView
         android:id="@+id/nm_profile"
@@ -20,6 +20,6 @@
         android:textStyle="bold"
         android:layout_marginTop="5dp"
         android:layout_gravity="center_horizontal"
-        android:text="User"/>
+        android:text="Guest"/>
 
 </LinearLayout>

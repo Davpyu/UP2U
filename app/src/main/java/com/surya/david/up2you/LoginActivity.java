@@ -1,5 +1,6 @@
 package com.surya.david.up2you;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -39,8 +40,7 @@ public class LoginActivity extends AppCompatActivity {
     TextInputEditText username;
     @BindView(R.id.pass)
     TextInputEditText pass;
-    @BindView(R.id.progressbar)
-    RelativeLayout progressbar;
+    ProgressDialog progressDialog;
     private FirebaseAuth mAuth;
 
     @Override
@@ -48,7 +48,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-        progressbar.setVisibility(View.GONE);
         mAuth = FirebaseAuth.getInstance();
 //        if (user != null && user.isEmailVerified()) {
 //            mDatabase.child("Users").child("status").setValue(true);
@@ -70,6 +69,9 @@ public class LoginActivity extends AppCompatActivity {
     public void onViewClicked() {
         String email = username.getText().toString().trim();
         String pw = pass.getText().toString().trim();
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Please wait...");
+        progressDialog.setCancelable(false);
         if (email.isEmpty()){
             username.setError("Please enter your email");
             username.requestFocus();
@@ -85,12 +87,12 @@ public class LoginActivity extends AppCompatActivity {
             username.requestFocus();
             return;
         }
-        progressbar.setVisibility(View.VISIBLE);
+        progressDialog.show();
         mAuth.signInWithEmailAndPassword(email, pw)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        progressbar.setVisibility(View.GONE);
+                        progressDialog.hide();
                         if (task.isSuccessful()){
                             Toast.makeText(LoginActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);

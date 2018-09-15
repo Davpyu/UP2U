@@ -40,7 +40,9 @@
             android:name=".AddThreadActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".GeneralSettingActivity" />
-        <activity android:name=".HelpSettingActivity"></activity>
+        <activity android:name=".HelpSettingActivity" />
+        <activity android:name=".NewsActivity" />
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>

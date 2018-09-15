@@ -6,7 +6,6 @@ import android.support.annotation.UiThread;
 import android.support.design.widget.TextInputEditText;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import butterknife.Unbinder;
 import butterknife.internal.DebouncingOnClickListener;
@@ -17,11 +16,11 @@ import java.lang.Override;
 public class LoginActivity_ViewBinding implements Unbinder {
   private LoginActivity target;
 
-  private View view2131230816;
+  private View view2131230821;
 
-  private View view2131230765;
+  private View view2131230768;
 
-  private View view2131230904;
+  private View view2131230896;
 
   @UiThread
   public LoginActivity_ViewBinding(LoginActivity target) {
@@ -35,7 +34,7 @@ public class LoginActivity_ViewBinding implements Unbinder {
     View view;
     view = Utils.findRequiredView(source, R.id.forgot_pass, "field 'forgotpass' and method 'onViewClick'");
     target.forgotpass = Utils.castView(view, R.id.forgot_pass, "field 'forgotpass'", Button.class);
-    view2131230816 = view;
+    view2131230821 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -44,7 +43,7 @@ public class LoginActivity_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.btn_loginui, "field 'btnLoginui' and method 'onViewClicked'");
     target.btnLoginui = Utils.castView(view, R.id.btn_loginui, "field 'btnLoginui'", Button.class);
-    view2131230765 = view;
+    view2131230768 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -53,7 +52,7 @@ public class LoginActivity_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.register, "field 'register' and method 'onViewClicke'");
     target.register = Utils.castView(view, R.id.register, "field 'register'", TextView.class);
-    view2131230904 = view;
+    view2131230896 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -62,7 +61,6 @@ public class LoginActivity_ViewBinding implements Unbinder {
     });
     target.username = Utils.findRequiredViewAsType(source, R.id.username, "field 'username'", TextInputEditText.class);
     target.pass = Utils.findRequiredViewAsType(source, R.id.pass, "field 'pass'", TextInputEditText.class);
-    target.progressbar = Utils.findRequiredViewAsType(source, R.id.progressbar, "field 'progressbar'", RelativeLayout.class);
   }
 
   @Override
@@ -77,13 +75,12 @@ public class LoginActivity_ViewBinding implements Unbinder {
     target.register = null;
     target.username = null;
     target.pass = null;
-    target.progressbar = null;
 
-    view2131230816.setOnClickListener(null);
-    view2131230816 = null;
-    view2131230765.setOnClickListener(null);
-    view2131230765 = null;
-    view2131230904.setOnClickListener(null);
-    view2131230904 = null;
+    view2131230821.setOnClickListener(null);
+    view2131230821 = null;
+    view2131230768.setOnClickListener(null);
+    view2131230768 = null;
+    view2131230896.setOnClickListener(null);
+    view2131230896 = null;
   }
 }

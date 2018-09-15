@@ -10,6 +10,9 @@
     <style name="apptheme1" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowFullscreen">true</item>
     </style>
+    <style name="toolbar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:homeAsUpIndicator">@color/white</item>
+    </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
