@@ -100,6 +100,23 @@ public class NewsFragment extends Fragment {
         };
         firebaseRecyclerAdapter.startListening();
         listNews.setAdapter(firebaseRecyclerAdapter);
+        listNews.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                if (dy > 0 && bnv.isShown()){
+                    bnv.setVisibility(View.GONE);
+                    coLayout.setVisibility(View.GONE);
+                }else if(dy < 0){
+                    bnv.setVisibility(View.VISIBLE);
+                    coLayout.setVisibility(View.VISIBLE);
+                }
+            }
+        });
         return rootview;
     }
 

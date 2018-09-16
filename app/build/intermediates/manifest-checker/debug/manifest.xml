@@ -57,10 +57,18 @@
         <activity
             android:name="com.surya.david.up2you.AddThreadActivity"
             android:screenOrientation="portrait" />
-        <activity android:name="com.surya.david.up2you.GeneralSettingActivity" />
-        <activity android:name="com.surya.david.up2you.HelpSettingActivity" />
-        <activity android:name="com.surya.david.up2you.NewsActivity" />
-        <activity android:name="com.surya.david.up2you.MainActivity" />
+        <activity
+            android:name="com.surya.david.up2you.GeneralSettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.surya.david.up2you.HelpSettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.surya.david.up2you.NewsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.surya.david.up2you.MainActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.google.firebase.auth.internal.FederatedSignInActivity"
             android:excludeFromRecents="true"

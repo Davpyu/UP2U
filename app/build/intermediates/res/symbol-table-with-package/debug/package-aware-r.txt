@@ -1724,7 +1724,6 @@ int style Widget_Design_TabLayout 0x7f0e017c
 int style Widget_Design_TextInputLayout 0x7f0e017d
 int style Widget_Support_CoordinatorLayout 0x7f0e017e
 int style apptheme1 0x7f0e017f
-int style toolbar 0x7f0e0180
 int[] styleable ActionBar { 0x7f030031, 0x7f030032, 0x7f030033, 0x7f030076, 0x7f030077, 0x7f030078, 0x7f030079, 0x7f03007a, 0x7f03007b, 0x7f030088, 0x7f03008c, 0x7f03008d, 0x7f030098, 0x7f0300ba, 0x7f0300bb, 0x7f0300bf, 0x7f0300c0, 0x7f0300c1, 0x7f0300c8, 0x7f0300ce, 0x7f03011b, 0x7f030124, 0x7f030134, 0x7f030138, 0x7f030139, 0x7f03015e, 0x7f030161, 0x7f03018d, 0x7f030197 }
 int styleable ActionBar_background 0
 int styleable ActionBar_backgroundSplit 1

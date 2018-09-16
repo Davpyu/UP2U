@@ -50,9 +50,9 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
-        mAuth = FirebaseAuth.getInstance();
-        configureToolbar();
         configureNavigationDrawer();
+        configureToolbar();
+        mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
         user = mAuth.getCurrentUser();
     }
@@ -95,6 +95,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private void configureNavigationDrawer() {
         final Fragment ff = new NewsFragment();
+        toolbar.setTitle(getString(R.string.news));
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame, ff);
         transaction.commit();
@@ -171,7 +172,6 @@ public class HomeActivity extends AppCompatActivity {
 
     private void configureToolbar() {
         setSupportActionBar(toolbar);
-        toolbar.setTitle(getString(R.string.news));
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);

@@ -23,21 +23,21 @@ public class GeneralSettingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_general_setting);
         ButterKnife.bind(this);
+        toolbar.setTitle(getString(R.string.general));
         configureToolbar();
     }
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         Fragment ff = new SettingFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame, ff);
         transaction.commit();
+        super.onBackPressed();
     }
 
     private void configureToolbar() {
         setSupportActionBar(toolbar);
-        toolbar.setTitle(getString(R.string.general));
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
