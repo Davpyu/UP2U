@@ -1,6 +1,7 @@
 package com.surya.david.up2you;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -9,6 +10,7 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,9 +20,12 @@ import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -50,7 +55,7 @@ public class NewsFragment extends Fragment {
     @BindView(R.id.list_news)
     RecyclerView listNews;
     FirebaseDatabase mDatabase;
-    DatabaseReference mRef;
+    DatabaseReference mRef,mReference;
 
     public NewsFragment() {
         // Required empty public constructor
@@ -67,6 +72,7 @@ public class NewsFragment extends Fragment {
         listNews.setLayoutManager(new LinearLayoutManager(getContext()));
         mDatabase = FirebaseDatabase.getInstance();
         mRef = mDatabase.getReference("news");
+        mReference = mDatabase.getReference().child("news");
         Query query = mRef;
         configureBnv();
         FirebaseRecyclerOptions<news> options =
@@ -89,6 +95,28 @@ public class NewsFragment extends Fragment {
                 holder.mDate.setText(model.getDate());
                 holder.mCategory.setText(model.getKategori());
                 holder.mKota.setText(model.getKota());
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        mReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                for (DataSnapshot newsSnapshot: dataSnapshot.getChildren()){
+                                    news nws = newsSnapshot.getValue(news.class);
+                                    int id = nws.getId_berita();
+                                    Intent intent = new Intent(getContext(), NewsActivity.class);
+                                    intent.putExtra("id",id);
+                                    startActivity(intent);
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                Log.d("news", databaseError.getMessage());
+                            }
+                        });
+                    }
+                });
             }
 
             @NonNull

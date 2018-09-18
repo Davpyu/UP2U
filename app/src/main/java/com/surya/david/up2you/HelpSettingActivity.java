@@ -26,15 +26,6 @@ public class HelpSettingActivity extends AppCompatActivity {
         configureToolbar();
     }
 
-    @Override
-    public void onBackPressed() {
-        Fragment ff = new SettingFragment();
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame, ff);
-        transaction.commit();
-        super.onBackPressed();
-    }
-
     private void configureToolbar() {
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -43,10 +34,7 @@ public class HelpSettingActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment ff = new SettingFragment();
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame, ff);
-                transaction.commit();
+                finish();
             }
         });
     }

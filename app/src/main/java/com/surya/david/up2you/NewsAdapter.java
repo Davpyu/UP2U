@@ -10,11 +10,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.common.internal.Constants;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class NewsAdapter extends RecyclerView.ViewHolder {
+public class NewsAdapter extends RecyclerView.ViewHolder{
     public TextView mTitle;
     public ImageView mImage;
     public TextView mKota;

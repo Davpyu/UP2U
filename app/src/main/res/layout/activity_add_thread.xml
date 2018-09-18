@@ -6,20 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".AddThreadActivity">
     <include layout="@layout/toolbar"/>
-    <TextView
-        android:id="@+id/judul_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Buat Thread"
-        android:textSize="40sp"
-        android:layout_below="@id/toolbar"
-        android:layout_centerHorizontal="true"/>
     <EditText
         android:id="@+id/add_judul"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:hint="Judul Thread"
-        android:layout_below="@id/judul_add"
+        android:layout_below="@id/toolbar"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"/>
     <EditText
@@ -28,6 +20,7 @@
         android:layout_height="200dp"
         android:layout_below="@id/add_judul"
         android:inputType="textMultiLine"
+        android:gravity="top"
         android:hint="Ketikkan isi"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"/>

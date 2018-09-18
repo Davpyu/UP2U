@@ -1,5 +1,6 @@
 package com.surya.david.up2you;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,12 +14,14 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -43,32 +46,56 @@ public class HomeActivity extends AppCompatActivity {
     ActionBarDrawerToggle actionBarDrawerToggle;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
-    private FirebaseUser user;
+    private FirebaseUser ur;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
-        configureNavigationDrawer();
-        configureToolbar();
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        user = mAuth.getCurrentUser();
+        ur = mAuth.getCurrentUser();
+        configureNavigationDrawer();
+        configureToolbar();
+        configureUser();
     }
+
+    private void configureUser() {
+        View header = navigationView.getHeaderView(0);
+        final TextView usrnm = (TextView)header.findViewById(R.id.nm_profile);
+        if (ur != null){
+            mDatabase.child("Users").child(ur.getUid()).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    user usr = dataSnapshot.getValue(user.class);
+                    usrnm.setText(usr.getName());
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Log.d("User", databaseError.getMessage());
+                }
+            });
+        }else {
+            usrnm.setText(R.string.guest);
+        }
+
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
-        if (user != null) {
-            mDatabase.child("Users").child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+        if (ur != null) {
+            mDatabase.child("Users").child(ur.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (user.isEmailVerified()){
+                    if (ur.isEmailVerified()){
                         dataSnapshot.getRef().child("status").setValue(true);
-                        user.reload();
+                        ur.reload();
                     }else{
                         dataSnapshot.getRef().child("status").setValue(false);
-                        user.reload();
+                        ur.reload();
                     }
                 }
 
@@ -86,10 +113,21 @@ public class HomeActivity extends AppCompatActivity {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawers();
         } else {
-            Intent intent = new Intent(Intent.ACTION_MAIN);
-            intent.addCategory(Intent.CATEGORY_HOME);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Are you sure you want to exit?")
+                    .setCancelable(false)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            HomeActivity.this.finish();
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alert = builder.create();
+            alert.show();
         }
     }
 

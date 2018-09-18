@@ -5,6 +5,15 @@ import java.util.List;
 
 public class news{
     public String title, kota, author, isi, date, kategori, image;
+    public int id_berita;
+
+    public int getId_berita() {
+        return id_berita;
+    }
+
+    public void setId_berita(int id_berita) {
+        this.id_berita = id_berita;
+    }
 
     public String getTitle() {
         return title;
@@ -66,7 +75,7 @@ public class news{
 
     }
 
-    public news(String title, String kota, String author, String isi, String date, String kategori, String image) {
+    public news(String title, String kota, String author, String isi, String date, String kategori, String image, int id_berita) {
         this.title = title;
         this.kota = kota;
         this.author = author;
@@ -74,5 +83,6 @@ public class news{
         this.date = date;
         this.kategori = kategori;
         this.image = image;
+        this.id_berita = id_berita;
     }
 }
