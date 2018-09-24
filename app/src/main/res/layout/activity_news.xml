@@ -8,6 +8,11 @@
     tools:context=".NewsActivity">
     <include layout="@layout/toolbar"/>
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/coba"
+        android:text="id"/>
+    <TextView
         android:id="@+id/title_news"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

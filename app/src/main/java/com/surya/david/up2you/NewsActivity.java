@@ -41,6 +41,8 @@ public class NewsActivity extends AppCompatActivity {
     int id;
     @BindView(R.id.img_news)
     ImageView imgNews;
+    @BindView(R.id.coba)
+    TextView coba;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +52,8 @@ public class NewsActivity extends AppCompatActivity {
         toolbar.setTitle("");
         mDatabase = FirebaseDatabase.getInstance();
         mReference = mDatabase.getReference().child("news");
-        id = getIntent().getIntExtra("id", 0);
+        id = getIntent().getIntExtra(NewsFragment.EXTRA_DATA, 0);
+        coba.setText(String.valueOf(id));
         configureNews();
 //        coba.setText(getIntent().getStringExtra("id"));
         configureToolbar();
@@ -60,7 +63,7 @@ public class NewsActivity extends AppCompatActivity {
         mReference.orderByChild("id_berita").equalTo(id).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot newsSnapshot: dataSnapshot.getChildren()){
+                for (DataSnapshot newsSnapshot : dataSnapshot.getChildren()) {
                     news nws = newsSnapshot.getValue(news.class);
                     titleNews.setText(nws.getTitle());
                     kota.setText(nws.getKota());

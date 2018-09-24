@@ -16,11 +16,11 @@ import java.lang.Override;
 public class LoginActivity_ViewBinding implements Unbinder {
   private LoginActivity target;
 
-  private View view2131230824;
+  private View view2131230825;
 
   private View view2131230769;
 
-  private View view2131230901;
+  private View view2131230904;
 
   @UiThread
   public LoginActivity_ViewBinding(LoginActivity target) {
@@ -34,7 +34,7 @@ public class LoginActivity_ViewBinding implements Unbinder {
     View view;
     view = Utils.findRequiredView(source, R.id.forgot_pass, "field 'forgotpass' and method 'onViewClick'");
     target.forgotpass = Utils.castView(view, R.id.forgot_pass, "field 'forgotpass'", Button.class);
-    view2131230824 = view;
+    view2131230825 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -52,7 +52,7 @@ public class LoginActivity_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.register, "field 'register' and method 'onViewClicke'");
     target.register = Utils.castView(view, R.id.register, "field 'register'", TextView.class);
-    view2131230901 = view;
+    view2131230904 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -76,11 +76,11 @@ public class LoginActivity_ViewBinding implements Unbinder {
     target.username = null;
     target.pass = null;
 
-    view2131230824.setOnClickListener(null);
-    view2131230824 = null;
+    view2131230825.setOnClickListener(null);
+    view2131230825 = null;
     view2131230769.setOnClickListener(null);
     view2131230769 = null;
-    view2131230901.setOnClickListener(null);
-    view2131230901 = null;
+    view2131230904.setOnClickListener(null);
+    view2131230904 = null;
   }
 }

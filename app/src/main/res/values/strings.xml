@@ -31,4 +31,7 @@
     <string name="search">Search</string>
     <string name="sort_by">Sort by</string>
     <string name="guest">Guest</string>
+    <string name="judul_thread">Judul Thread</string>
+    <string name="ketikkan_isi">Ketikkan isi</string>
+    <string name="gambar_video">Gambar / Video</string>
 </resources>

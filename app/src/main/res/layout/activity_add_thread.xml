@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".AddThreadActivity">
     <include layout="@layout/toolbar"/>
     <EditText
         android:id="@+id/add_judul"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:hint="Judul Thread"
+        android:hint="@string/judul_thread"
         android:layout_below="@id/toolbar"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"/>
@@ -21,7 +22,7 @@
         android:layout_below="@id/add_judul"
         android:inputType="textMultiLine"
         android:gravity="top"
-        android:hint="Ketikkan isi"
+        android:hint="@string/ketikkan_isi"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"/>
     <TextView
@@ -29,10 +30,16 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="Gambar / Video"
+        android:text="@string/gambar_video"
         android:layout_below="@id/isithread"
         android:layout_marginTop="5dp"
         android:drawableStart="@drawable/ic_menu_camera"/>
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_below="@id/gambar_video"
+        android:layout_centerHorizontal="true"/>
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/send_btn"
         android:layout_width="wrap_content"

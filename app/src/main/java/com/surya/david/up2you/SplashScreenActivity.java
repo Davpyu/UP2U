@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static java.lang.Thread.sleep;
+
 public class SplashScreenActivity extends AppCompatActivity {
 
     @BindView(R.id.logo)
@@ -23,7 +25,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         Animation myanim = AnimationUtils.loadAnimation(this,R.anim.splashscreen);
         final Intent intent = new Intent(this,HomeActivity.class);
         logo.startAnimation(myanim);
-        Thread timer = new Thread(){
+        java.lang.Thread timer = new java.lang.Thread(){
             public void run(){
                 try {
                     sleep(5000);

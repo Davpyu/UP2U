@@ -9,11 +9,22 @@ import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,7 +37,7 @@ import butterknife.Unbinder;
  */
 public class ForumFragment extends Fragment {
 
-
+    public static final String DATA = "DATA";
     @BindView(R.id.add_thread)
     FloatingActionButton addThread;
     @BindView(R.id.bnv)
@@ -43,6 +54,12 @@ public class ForumFragment extends Fragment {
     @BindView(R.id.co_layout)
     CoordinatorLayout coLayout;
     Unbinder unbinder;
+    @BindView(R.id.list_thread)
+    RecyclerView listThread;
+    FirebaseDatabase mDatabase;
+    DatabaseReference mRef;
+    FirebaseRecyclerAdapter<Thread, ForumViewHolder> firebaseRecyclerAdapter;
+    FirebaseRecyclerOptions<Thread> options;
 
     public ForumFragment() {
         // Required empty public constructor
@@ -56,6 +73,52 @@ public class ForumFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_forum, container, false);
         unbinder = ButterKnife.bind(this, view);
         configureBnv();
+        listThread.setHasFixedSize(true);
+        listThread.setLayoutManager(new LinearLayoutManager(getContext()));
+        mDatabase = FirebaseDatabase.getInstance();
+        mRef = mDatabase.getReference("threads");
+        Query query = mRef;
+//        options = new FirebaseRecyclerOptions.Builder<Thread>().setQuery(query, Thread.class).build();
+        options = new FirebaseRecyclerOptions.Builder<Thread>().setQuery(query, Thread.class).build();
+        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Thread, ForumViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull ForumViewHolder holder, int position, @NonNull Thread model) {
+                holder.jdl.setText(model.getJudul());
+                Picasso.get().load(model.getImageUrl()).into(holder.img, new Callback() {
+                    @Override
+                    public void onSuccess() {
+
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        Log.e("Image", e.getMessage());
+                    }
+                });
+            }
+
+            @NonNull
+            @Override
+            public ForumViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.lounge_item, parent, false);
+                return new ForumViewHolder(view);
+            }
+        };
+        firebaseRecyclerAdapter.startListening();
+        listThread.setAdapter(firebaseRecyclerAdapter);
+        listThread.setOnScrollListener(new RecyclerView.OnScrollListener() {
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                if (dy > 0 && bnv.isShown()) {
+                    bnv.setVisibility(View.GONE);
+                    coLayout.setVisibility(View.GONE);
+                } else if (dy < 0) {
+                    bnv.setVisibility(View.VISIBLE);
+                    coLayout.setVisibility(View.VISIBLE);
+                }
+            }
+        });
         return view;
     }
 
@@ -73,9 +136,9 @@ public class ForumFragment extends Fragment {
                         sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
                         if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
                             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                        }else if (behavior.getState() == BottomSheetBehavior.STATE_EXPANDED){
+                        } else if (behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
                             behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                        } else if ((bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED || behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) && sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED){
+                        } else if ((bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED || behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) && sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
                             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                             behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                         }
@@ -90,9 +153,9 @@ public class ForumFragment extends Fragment {
                         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
                         if (sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
                             sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                        }else if (behavior.getState() == BottomSheetBehavior.STATE_EXPANDED){
+                        } else if (behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
                             behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                        }else if ((sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED || behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) && bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED){
+                        } else if ((sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED || behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) && bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
                             sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                             behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                         }
@@ -107,9 +170,9 @@ public class ForumFragment extends Fragment {
                         behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
                         if (sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
                             sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                        }else if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+                        } else if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
                             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                        }else if ((sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED || bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) && behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+                        } else if ((sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED || bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) && behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
                             sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                         }

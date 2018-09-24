@@ -32,6 +32,7 @@ MERGED from [com.google.android.gms:play-services-basement:15.0.1] /home/david/.
 MERGED from [com.android.support:support-v4:27.1.1] /home/david/.gradle/caches/transforms-1/files-1.1/support-v4-27.1.1.aar/d3933c66e3cf49f9e3508ae8699cd70d/AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:recyclerview-v7:27.1.1] /home/david/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-27.1.1.aar/ad89e36badc05ba116d9ae3fd9cca67d/AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:cardview-v7:27.1.1] /home/david/.gradle/caches/transforms-1/files-1.1/cardview-v7-27.1.1.aar/db5a93a227dc9f21d29fdf31fa82795d/AndroidManifest.xml:17:1-22:12
+MERGED from [de.hdodenhof:circleimageview:2.2.0] /home/david/.gradle/caches/transforms-1/files-1.1/circleimageview-2.2.0.aar/035111523f7d8b42370d7b872c076565/AndroidManifest.xml:2:1-11:12
 MERGED from [com.squareup.picasso:picasso:2.71828] /home/david/.gradle/caches/transforms-1/files-1.1/picasso-2.71828.aar/a6286398ac90dd8598abd60a6a6e1e4e/AndroidManifest.xml:2:1-14:12
 MERGED from [com.jakewharton:butterknife:8.8.1] /home/david/.gradle/caches/transforms-1/files-1.1/butterknife-8.8.1.aar/8faa97e21b28ee8e18edbe826bfdaed1/AndroidManifest.xml:2:1-7:12
 MERGED from [com.android.support:support-fragment:27.1.1] /home/david/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.1.aar/caab290debbf94c8cefef98edeb0bf0f/AndroidManifest.xml:17:1-22:12
@@ -46,7 +47,6 @@ MERGED from [com.android.support:transition:27.1.1] /home/david/.gradle/caches/t
 MERGED from [com.android.support:support-media-compat:27.1.1] /home/david/.gradle/caches/transforms-1/files-1.1/support-media-compat-27.1.1.aar/7aff80670e2f0f829937cd64f636292c/AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-compat:27.1.1] /home/david/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/fcb7ea05f1d106109a56e81db159992c/AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:runtime:1.1.1] /home/david/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/7692c102b50ab3d354dd7cac6ab26517/AndroidManifest.xml:17:1-22:12
-MERGED from [de.hdodenhof:circleimageview:2.2.0] /home/david/.gradle/caches/transforms-1/files-1.1/circleimageview-2.2.0.aar/035111523f7d8b42370d7b872c076565/AndroidManifest.xml:2:1-11:12
 MERGED from [com.android.support:exifinterface:27.1.0] /home/david/.gradle/caches/transforms-1/files-1.1/exifinterface-27.1.0.aar/551a175f4403234469d0f712409d4268/AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /home/david/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.1.aar/3c67472ec90743a100dae06f85630112/AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.android.gms:play-services-measurement-base:15.0.4] /home/david/.gradle/caches/transforms-1/files-1.1/play-services-measurement-base-15.0.4.aar/6943325ea5042ac26866223c3c83b201/AndroidManifest.xml:17:1-24:12
@@ -119,10 +119,10 @@ MERGED from [com.google.android.gms:play-services-ads-identifier:15.0.1] /home/d
 MERGED from [com.google.android.gms:play-services-ads-identifier:15.0.1] /home/david/.gradle/caches/transforms-1/files-1.1/play-services-ads-identifier-15.0.1.aar/5e3f30da344914771daaab7bba2eaecc/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.gms:play-services-basement:15.0.1] /home/david/.gradle/caches/transforms-1/files-1.1/play-services-basement-15.0.1.aar/35e68eac6218a7d58b0d342ff4f17f7a/AndroidManifest.xml:22:5-26:19
 MERGED from [com.google.android.gms:play-services-basement:15.0.1] /home/david/.gradle/caches/transforms-1/files-1.1/play-services-basement-15.0.1.aar/35e68eac6218a7d58b0d342ff4f17f7a/AndroidManifest.xml:22:5-26:19
-MERGED from [com.squareup.picasso:picasso:2.71828] /home/david/.gradle/caches/transforms-1/files-1.1/picasso-2.71828.aar/a6286398ac90dd8598abd60a6a6e1e4e/AndroidManifest.xml:7:5-12:19
-MERGED from [com.squareup.picasso:picasso:2.71828] /home/david/.gradle/caches/transforms-1/files-1.1/picasso-2.71828.aar/a6286398ac90dd8598abd60a6a6e1e4e/AndroidManifest.xml:7:5-12:19
 MERGED from [de.hdodenhof:circleimageview:2.2.0] /home/david/.gradle/caches/transforms-1/files-1.1/circleimageview-2.2.0.aar/035111523f7d8b42370d7b872c076565/AndroidManifest.xml:9:5-20
 MERGED from [de.hdodenhof:circleimageview:2.2.0] /home/david/.gradle/caches/transforms-1/files-1.1/circleimageview-2.2.0.aar/035111523f7d8b42370d7b872c076565/AndroidManifest.xml:9:5-20
+MERGED from [com.squareup.picasso:picasso:2.71828] /home/david/.gradle/caches/transforms-1/files-1.1/picasso-2.71828.aar/a6286398ac90dd8598abd60a6a6e1e4e/AndroidManifest.xml:7:5-12:19
+MERGED from [com.squareup.picasso:picasso:2.71828] /home/david/.gradle/caches/transforms-1/files-1.1/picasso-2.71828.aar/a6286398ac90dd8598abd60a6a6e1e4e/AndroidManifest.xml:7:5-12:19
 MERGED from [com.google.android.gms:play-services-measurement-base:15.0.4] /home/david/.gradle/caches/transforms-1/files-1.1/play-services-measurement-base-15.0.4.aar/6943325ea5042ac26866223c3c83b201/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.gms:play-services-measurement-base:15.0.4] /home/david/.gradle/caches/transforms-1/files-1.1/play-services-measurement-base-15.0.4.aar/6943325ea5042ac26866223c3c83b201/AndroidManifest.xml:22:5-20
 	android:supportsRtl
@@ -275,6 +275,8 @@ MERGED from [com.android.support:recyclerview-v7:27.1.1] /home/david/.gradle/cac
 MERGED from [com.android.support:recyclerview-v7:27.1.1] /home/david/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-27.1.1.aar/ad89e36badc05ba116d9ae3fd9cca67d/AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:cardview-v7:27.1.1] /home/david/.gradle/caches/transforms-1/files-1.1/cardview-v7-27.1.1.aar/db5a93a227dc9f21d29fdf31fa82795d/AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:cardview-v7:27.1.1] /home/david/.gradle/caches/transforms-1/files-1.1/cardview-v7-27.1.1.aar/db5a93a227dc9f21d29fdf31fa82795d/AndroidManifest.xml:20:5-44
+MERGED from [de.hdodenhof:circleimageview:2.2.0] /home/david/.gradle/caches/transforms-1/files-1.1/circleimageview-2.2.0.aar/035111523f7d8b42370d7b872c076565/AndroidManifest.xml:5:5-7:41
+MERGED from [de.hdodenhof:circleimageview:2.2.0] /home/david/.gradle/caches/transforms-1/files-1.1/circleimageview-2.2.0.aar/035111523f7d8b42370d7b872c076565/AndroidManifest.xml:5:5-7:41
 MERGED from [com.squareup.picasso:picasso:2.71828] /home/david/.gradle/caches/transforms-1/files-1.1/picasso-2.71828.aar/a6286398ac90dd8598abd60a6a6e1e4e/AndroidManifest.xml:5:5-44
 MERGED from [com.squareup.picasso:picasso:2.71828] /home/david/.gradle/caches/transforms-1/files-1.1/picasso-2.71828.aar/a6286398ac90dd8598abd60a6a6e1e4e/AndroidManifest.xml:5:5-44
 MERGED from [com.jakewharton:butterknife:8.8.1] /home/david/.gradle/caches/transforms-1/files-1.1/butterknife-8.8.1.aar/8faa97e21b28ee8e18edbe826bfdaed1/AndroidManifest.xml:5:5-43
@@ -303,8 +305,6 @@ MERGED from [com.android.support:support-compat:27.1.1] /home/david/.gradle/cach
 MERGED from [com.android.support:support-compat:27.1.1] /home/david/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/fcb7ea05f1d106109a56e81db159992c/AndroidManifest.xml:20:5-44
 MERGED from [android.arch.lifecycle:runtime:1.1.1] /home/david/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/7692c102b50ab3d354dd7cac6ab26517/AndroidManifest.xml:20:5-44
 MERGED from [android.arch.lifecycle:runtime:1.1.1] /home/david/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/7692c102b50ab3d354dd7cac6ab26517/AndroidManifest.xml:20:5-44
-MERGED from [de.hdodenhof:circleimageview:2.2.0] /home/david/.gradle/caches/transforms-1/files-1.1/circleimageview-2.2.0.aar/035111523f7d8b42370d7b872c076565/AndroidManifest.xml:5:5-7:41
-MERGED from [de.hdodenhof:circleimageview:2.2.0] /home/david/.gradle/caches/transforms-1/files-1.1/circleimageview-2.2.0.aar/035111523f7d8b42370d7b872c076565/AndroidManifest.xml:5:5-7:41
 MERGED from [com.android.support:exifinterface:27.1.0] /home/david/.gradle/caches/transforms-1/files-1.1/exifinterface-27.1.0.aar/551a175f4403234469d0f712409d4268/AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:exifinterface:27.1.0] /home/david/.gradle/caches/transforms-1/files-1.1/exifinterface-27.1.0.aar/551a175f4403234469d0f712409d4268/AndroidManifest.xml:20:5-44
 MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /home/david/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.1.aar/3c67472ec90743a100dae06f85630112/AndroidManifest.xml:20:5-44
