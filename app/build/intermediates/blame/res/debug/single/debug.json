@@ -1560,10 +1560,6 @@
         "source": "/home/david/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/1c7adacf386d4fe31a14c27fc61fee93/res/drawable-mdpi-v4/abc_list_pressed_holo_light.9.png"
     },
     {
-        "merged": "/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/res/merged/debug/layout_activity_main.xml.flat",
-        "source": "/home/david/AndroidStudioProjects/UP2YOU/app/src/main/res/layout/activity_main.xml"
-    },
-    {
         "merged": "/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/res/merged/debug/layout_abc_screen_simple.xml.flat",
         "source": "/home/david/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/1c7adacf386d4fe31a14c27fc61fee93/res/layout/abc_screen_simple.xml"
     },
@@ -1798,6 +1794,10 @@
     {
         "merged": "/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_spinner_mtrl_am_alpha.9.png.flat",
         "source": "/home/david/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/1c7adacf386d4fe31a14c27fc61fee93/res/drawable-xhdpi-v4/abc_spinner_mtrl_am_alpha.9.png"
+    },
+    {
+        "merged": "/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/res/merged/debug/layout_activity_forum.xml.flat",
+        "source": "/home/david/AndroidStudioProjects/UP2YOU/app/src/main/res/layout/activity_forum.xml"
     },
     {
         "merged": "/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/res/merged/debug/layout_notification_template_big_media_narrow_custom.xml.flat",

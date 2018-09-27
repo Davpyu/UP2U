@@ -39,13 +39,16 @@
         <activity
             android:name=".AddThreadActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".GeneralSettingActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".HelpSettingActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".NewsActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".GeneralSettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".HelpSettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NewsActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ForumActivity"
             android:screenOrientation="portrait"/>
     </application>
 

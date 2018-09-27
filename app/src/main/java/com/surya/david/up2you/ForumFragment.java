@@ -17,14 +17,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
+
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -78,11 +84,10 @@ public class ForumFragment extends Fragment {
         mDatabase = FirebaseDatabase.getInstance();
         mRef = mDatabase.getReference("threads");
         Query query = mRef;
-//        options = new FirebaseRecyclerOptions.Builder<Thread>().setQuery(query, Thread.class).build();
         options = new FirebaseRecyclerOptions.Builder<Thread>().setQuery(query, Thread.class).build();
         firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Thread, ForumViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull ForumViewHolder holder, int position, @NonNull Thread model) {
+            protected void onBindViewHolder(@NonNull final ForumViewHolder holder, final int position, @NonNull Thread model) {
                 holder.jdl.setText(model.getJudul());
                 Picasso.get().load(model.getImageUrl()).into(holder.img, new Callback() {
                     @Override
@@ -93,6 +98,30 @@ public class ForumFragment extends Fragment {
                     @Override
                     public void onError(Exception e) {
                         Log.e("Image", e.getMessage());
+                    }
+                });
+                mDatabase.getReference("Users").orderByKey().equalTo(model.getUserId()).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot username: dataSnapshot.getChildren()) {
+                            user ur = username.getValue(user.class);
+                            holder.nm.setText(ur.getName());
+//                            Log.d("Forum", ur.getName());
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        Log.d("Forum", databaseError.getMessage());
+                    }
+                });
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String key = firebaseRecyclerAdapter.getItem(position).getKey();
+                        Intent intent = new Intent(getContext(), ForumActivity.class);
+                        intent.putExtra(DATA, key);
+                        startActivity(intent);
                     }
                 });
             }
@@ -123,6 +152,7 @@ public class ForumFragment extends Fragment {
     }
 
     private void configureBnv() {
+        coLayout.bringToFront();
         bnv.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

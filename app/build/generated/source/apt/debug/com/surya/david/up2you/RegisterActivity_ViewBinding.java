@@ -18,9 +18,9 @@ import java.lang.Override;
 public class RegisterActivity_ViewBinding implements Unbinder {
   private RegisterActivity target;
 
-  private View view2131230770;
+  private View view2131230771;
 
-  private View view2131230970;
+  private View view2131230978;
 
   @UiThread
   public RegisterActivity_ViewBinding(RegisterActivity target) {
@@ -34,7 +34,7 @@ public class RegisterActivity_ViewBinding implements Unbinder {
     View view;
     view = Utils.findRequiredView(source, R.id.btn_reg_user, "field 'reguser' and method 'onViewClicked'");
     target.reguser = Utils.castView(view, R.id.btn_reg_user, "field 'reguser'", Button.class);
-    view2131230770 = view;
+    view2131230771 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -43,7 +43,7 @@ public class RegisterActivity_ViewBinding implements Unbinder {
     });
     view = Utils.findRequiredView(source, R.id.tl, "field 'tl' and method 'onDateClick'");
     target.tl = Utils.castView(view, R.id.tl, "field 'tl'", TextView.class);
-    view2131230970 = view;
+    view2131230978 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -76,9 +76,9 @@ public class RegisterActivity_ViewBinding implements Unbinder {
     target.jkP = null;
     target.gen = null;
 
-    view2131230770.setOnClickListener(null);
-    view2131230770 = null;
-    view2131230970.setOnClickListener(null);
-    view2131230970 = null;
+    view2131230771.setOnClickListener(null);
+    view2131230771 = null;
+    view2131230978.setOnClickListener(null);
+    view2131230978 = null;
   }
 }

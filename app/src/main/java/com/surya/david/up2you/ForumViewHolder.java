@@ -6,11 +6,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ForumViewHolder extends RecyclerView.ViewHolder {
-    public TextView jdl;
+    public TextView jdl, nm;
     public ImageView img;
     public ForumViewHolder(View itemView) {
         super(itemView);
-        jdl = itemView.findViewById(R.id.jdl_berita);
-        img = itemView.findViewById(R.id.img_berita);
+        jdl = itemView.findViewById(R.id.jdl_thread);
+        img = itemView.findViewById(R.id.img_thread);
+        nm = itemView.findViewById(R.id.nm_thread);
     }
 }

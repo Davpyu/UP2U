@@ -6,32 +6,32 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".NewsActivity">
-    <include layout="@layout/toolbar"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/coba"
-        android:text="id"/>
+
+    <include layout="@layout/toolbar" />
+
     <TextView
         android:id="@+id/title_news"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:paddingStart="10dp"
         android:paddingEnd="10dp"
-        android:text="@string/lorem_title"/>
+        android:paddingStart="10dp"
+        android:text="@string/lorem_title"
+        android:textSize="30sp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <TextView
+            android:id="@+id/kota"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="kota"
-            android:id="@+id/kota"
             android:paddingStart="10dp"
-            android:textSize="15sp"/>
+            android:text="kota"
+            android:textSize="15sp" />
+
         <TextView
             android:id="@+id/date"
             android:layout_width="0dp"
@@ -39,53 +39,60 @@
             android:layout_weight="1"
             android:gravity="end"
             android:paddingEnd="10dp"
-            android:textSize="15sp"
-            android:text="date"/>
+            android:text="date"
+            android:textSize="15sp" />
     </LinearLayout>
+
     <ImageView
+        android:id="@+id/img_news"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:src="@mipmap/ic_launcher"
         android:scaleType="centerCrop"
-        android:id="@+id/img_news"/>
+        android:src="@mipmap/ic_launcher" />
+
     <TextView
         android:id="@+id/desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/lorem_desc"
-        android:paddingStart="10dp"
         android:paddingEnd="10dp"
-        android:textSize="20sp"/>
+        android:paddingStart="10dp"
+        android:text="@string/lorem_desc"
+        android:textSize="20sp" />
+
     <TextView
         android:id="@+id/k_news"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/kategori"
-        android:paddingStart="10dp"
         android:layout_marginTop="5dp"
-        android:textSize="17dp"/>
+        android:paddingStart="10dp"
+        android:text="@string/kategori"
+        android:textSize="17dp" />
+
     <TextView
         android:id="@+id/author"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="end"
-        android:text="author"
         android:paddingEnd="10dp"
-        android:textStyle="italic"/>
+        android:text="author"
+        android:textStyle="italic" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <RatingBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:stepSize="1.0"/>
+            android:stepSize="1.0" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="rating"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:text="rating" />
     </LinearLayout>
 </LinearLayout>

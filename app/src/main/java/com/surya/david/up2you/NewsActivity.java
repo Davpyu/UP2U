@@ -41,8 +41,6 @@ public class NewsActivity extends AppCompatActivity {
     int id;
     @BindView(R.id.img_news)
     ImageView imgNews;
-    @BindView(R.id.coba)
-    TextView coba;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +51,6 @@ public class NewsActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance();
         mReference = mDatabase.getReference().child("news");
         id = getIntent().getIntExtra(NewsFragment.EXTRA_DATA, 0);
-        coba.setText(String.valueOf(id));
         configureNews();
 //        coba.setText(getIntent().getStringExtra("id"));
         configureToolbar();

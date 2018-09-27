@@ -1,27 +1,28 @@
 package com.surya.david.up2you;
 
-import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -50,6 +51,14 @@ public class AddThreadActivity extends AppCompatActivity {
     FirebaseUser mUser;
     @BindView(R.id.send_btn)
     FloatingActionButton sendBtn;
+    @BindView(R.id.tag)
+    Spinner tag;
+    @BindView(R.id.kategori)
+    Spinner kategori;
+    @BindView(R.id.progress)
+    ProgressBar progress;
+    @BindView(R.id.add_layout)
+    DrawerLayout addLayout;
     private Uri imgUri;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -61,13 +70,19 @@ public class AddThreadActivity extends AppCompatActivity {
     ImageView img;
     @BindView(R.id.gambar_video)
     TextView gambarVideo;
-//    ProgressDialog dialog;
+    ProgressBar dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_thread);
         ButterKnife.bind(this);
+        String[] tg = {"#fyi", "#ask"};
+        String[] ktgr = {"Hiburan", "Olahraga", "Teknologi", "Fashion"};
+        ArrayAdapter<String> t4g = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, tg);
+        ArrayAdapter<String> ktgri = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, ktgr);
+        tag.setAdapter(t4g);
+        kategori.setAdapter(ktgri);
         mDatabase = FirebaseDatabase.getInstance();
         mRef = mDatabase.getReference("threads");
         mStorage = FirebaseStorage.getInstance();
@@ -75,6 +90,8 @@ public class AddThreadActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         toolbar.setTitle("Post Thread");
+        dialog = findViewById(R.id.progress);
+        dialog.setVisibility(View.GONE);
         configureToolbar();
     }
 
@@ -87,6 +104,7 @@ public class AddThreadActivity extends AppCompatActivity {
                 finish();
             }
         });
+        addLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.colorAccent));
     }
 
     @OnClick(R.id.gambar_video)
@@ -108,37 +126,41 @@ public class AddThreadActivity extends AppCompatActivity {
 
     @OnClick(R.id.send_btn)
     public void onViewClick() {
-//        dialog = new ProgressDialog(getApplicationContext());
-//        dialog.setCancelable(false);
-//        dialog.setMessage("Uploading your post");
         final String judul = addJudul.getText().toString().trim();
         final String isi = isithread.getText().toString().trim();
+        final String tg = tag.getSelectedItem().toString().trim();
+        final String ktgr = kategori.getSelectedItem().toString().trim();
         final String uid = mUser.getUid();
         final StorageReference th = mSRef.child(System.currentTimeMillis() + "." + getFileExtension(imgUri));
-        if (judul.isEmpty()){
+        if (judul.isEmpty()) {
             addJudul.setError("Please add title of this thread");
             addJudul.requestFocus();
             return;
         }
-        if (isi.isEmpty()){
+        if (isi.isEmpty()) {
             isithread.setError("Please add content of this thread");
             isithread.requestFocus();
             return;
         }
-        if (imgUri != null){
+        if (imgUri != null) {
             th.putFile(imgUri)
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                            dialog.setVisibility(View.VISIBLE);
+                        }
+                    })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-//                            dialog.setProgress(0);
-//                            dialog.hide();
+                            dialog.setVisibility(View.GONE);
                             Log.e("Post Thread", e.getMessage());
                         }
                     })
                     .continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                         @Override
                         public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                            if (!task.isSuccessful()){
+                            if (!task.isSuccessful()) {
                                 throw Objects.requireNonNull(task.getException());
                             }
                             return th.getDownloadUrl();
@@ -147,21 +169,25 @@ public class AddThreadActivity extends AppCompatActivity {
                     .addOnCompleteListener(new OnCompleteListener<Uri>() {
                         @Override
                         public void onComplete(@NonNull Task<Uri> task) {
+                            dialog.setVisibility(View.GONE);
                             Uri uri = task.getResult();
                             String downloadUrl = uri.toString();
                             Thread tr = new Thread(
                                     judul,
                                     isi,
                                     downloadUrl,
-                                    uid
+                                    uid,
+                                    tg,
+                                    ktgr,
+                                    mRef.push().getKey()
                             );
                             mRef.child(Objects.requireNonNull(mRef.push().getKey())).setValue(tr).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()){
+                                    if (task.isSuccessful()) {
                                         Toast.makeText(getApplicationContext(), "Postingan berhasil", Toast.LENGTH_SHORT).show();
                                         finish();
-                                    }else{
+                                    } else {
                                         Toast.makeText(getApplicationContext(), "Postingan gagal", Toast.LENGTH_SHORT).show();
                                     }
                                 }
@@ -170,6 +196,7 @@ public class AddThreadActivity extends AppCompatActivity {
                     });
         }
     }
+
     private String getFileExtension(Uri uri) {
         ContentResolver cr = getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();

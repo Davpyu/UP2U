@@ -215,6 +215,7 @@ public class HomeActivity extends AppCompatActivity {
         actionBar.setDisplayShowHomeEnabled(true);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        drawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.colorAccent));
         actionBarDrawerToggle.syncState();
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
     }

@@ -67,7 +67,7 @@
             android:name="com.surya.david.up2you.NewsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.surya.david.up2you.MainActivity"
+            android:name="com.surya.david.up2you.ForumActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.google.firebase.auth.internal.FederatedSignInActivity"
