@@ -28,6 +28,7 @@ import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
@@ -113,7 +114,7 @@ public class RegisterActivity extends AppCompatActivity {
             confirmPass.requestFocus();
             return;
         }
-        if (t_l.isEmpty()) {
+        if (t_l.isEmpty() || t_l.equals("Tanggal Lahir")) {
             tl.setError("Please enter your birthday");
             tl.requestFocus();
             return;
@@ -141,7 +142,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     false
                             );
                             FirebaseDatabase.getInstance().getReference("Users")
-                                    .child(mAuth.getCurrentUser().getUid())
+                                    .child(Objects.requireNonNull(mAuth.getCurrentUser()).getUid())
                                     .setValue(usr).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
@@ -162,7 +163,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 }
                             });
                         }else{
-                            Toast.makeText(RegisterActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

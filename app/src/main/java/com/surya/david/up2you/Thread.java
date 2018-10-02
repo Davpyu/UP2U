@@ -1,18 +1,19 @@
 package com.surya.david.up2you;
 
 public class Thread {
-    public String judul, isi, imageUrl,userId, tag, kategori, key;
+    public String judul, isi, imageUrl,userId, tag, kategori, date, key;
 
     public Thread() {
     }
 
-    public Thread(String judul, String isi, String imageUrl, String userId, String tag, String kategori, String key) {
+    public Thread(String judul, String isi, String imageUrl, String userId, String tag, String kategori, String date,String key) {
         this.judul = judul;
         this.isi = isi;
         this.imageUrl = imageUrl;
         this.userId = userId;
         this.tag = tag;
         this.kategori = kategori;
+        this.date = date;
         this.key = key;
     }
 
@@ -22,6 +23,14 @@ public class Thread {
 
     public void setKey(String key) {
         this.key = key;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getTag() {

@@ -1,6 +1,9 @@
 package com.surya.david.up2you;
 
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -21,6 +24,7 @@ import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -76,7 +80,7 @@ public class ForumFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_forum, container, false);
+        final View view = inflater.inflate(R.layout.fragment_forum, container, false);
         unbinder = ButterKnife.bind(this, view);
         configureBnv();
         listThread.setHasFixedSize(true);
@@ -89,24 +93,27 @@ public class ForumFragment extends Fragment {
             @Override
             protected void onBindViewHolder(@NonNull final ForumViewHolder holder, final int position, @NonNull Thread model) {
                 holder.jdl.setText(model.getJudul());
-                Picasso.get().load(model.getImageUrl()).into(holder.img, new Callback() {
-                    @Override
-                    public void onSuccess() {
+                holder.tag.setText(model.getTag());
+                holder.kategori.setText(model.getKategori());
+//                if (model.getImageUrl() != null) {
+                    Picasso.get().load(model.getImageUrl()).into(holder.img, new Callback() {
+                        @Override
+                        public void onSuccess() {
 
-                    }
+                        }
 
-                    @Override
-                    public void onError(Exception e) {
-                        Log.e("Image", e.getMessage());
-                    }
-                });
+                        @Override
+                        public void onError(Exception e) {
+                            Log.e("Image", e.getMessage());
+                        }
+                    });
+//                }
                 mDatabase.getReference("Users").orderByKey().equalTo(model.getUserId()).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for (DataSnapshot username: dataSnapshot.getChildren()) {
                             user ur = username.getValue(user.class);
-                            holder.nm.setText(ur.getName());
-//                            Log.d("Forum", ur.getName());
+                            holder.nm.setText(Objects.requireNonNull(ur).getName());
                         }
                     }
 
@@ -124,13 +131,60 @@ public class ForumFragment extends Fragment {
                         startActivity(intent);
                     }
                 });
+                holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View view) {
+                        String uid = firebaseRecyclerAdapter.getItem(position).getUserId();
+                        if (Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid().equals(uid)){
+                            final String[] listItem = getResources().getStringArray(R.array.menu);
+                            AlertDialog.Builder mBuilder = new AlertDialog.Builder(getContext());
+                            mBuilder.setTitle("What do you want to do?");
+                            mBuilder.setItems(listItem, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    if (i == 0){
+                                        String key = firebaseRecyclerAdapter.getItem(position).getKey();
+                                        Intent intent = new Intent(getContext(), UpdateThreadActivity.class);
+                                        intent.putExtra(DATA, key);
+                                        startActivity(intent);
+//                                        Toast.makeText(getContext(), key, Toast.LENGTH_SHORT).show();
+                                    }if (i == 1){
+                                        android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(Objects.requireNonNull(getContext()));
+                                        builder.setMessage("Are you sure you want to delete?")
+                                                .setCancelable(false)
+                                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                                    public void onClick(DialogInterface dialog, int id) {
+                                                        firebaseRecyclerAdapter.getRef(position).removeValue();
+                                                    }
+                                                })
+                                                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                                    public void onClick(DialogInterface dialog, int id) {
+                                                        dialog.cancel();
+                                                    }
+                                                });
+                                        android.support.v7.app.AlertDialog alert = builder.create();
+                                        alert.show();
+//                                        firebaseRecyclerAdapter.getRef(position).removeValue();
+                                    }
+                                }
+                            }).show();
+                        }
+                        return true;
+                    }
+                });
             }
 
             @NonNull
             @Override
             public ForumViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.lounge_item, parent, false);
-                return new ForumViewHolder(view);
+                Thread model = new Thread();
+//                if (model.getImageUrl() != null) {
+                    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.lounge_item, parent, false);
+                    return new ForumViewHolder(view);
+//                }else {
+//                    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.lounge_item_noimg, parent, false);
+//                    return new ForumViewHolder(view);
+//                }
             }
         };
         firebaseRecyclerAdapter.startListening();

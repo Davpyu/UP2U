@@ -37,6 +37,7 @@ import butterknife.ButterKnife;
 
 public class HomeActivity extends AppCompatActivity {
 
+
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
     @BindView(R.id.toolbar)
@@ -118,7 +119,7 @@ public class HomeActivity extends AppCompatActivity {
                     .setCancelable(false)
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            HomeActivity.this.finish();
+                            moveTaskToBack(true);
                         }
                     })
                     .setNegativeButton("No", new DialogInterface.OnClickListener() {

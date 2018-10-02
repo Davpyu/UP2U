@@ -15,6 +15,10 @@
     <string name="help">Help</string>
     <string name="lorem_title">Lorem ipsum dolor sit amet</string>
     <string name="lorem_desc">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string-array name="menu">
+        <item>Update</item>
+        <item>Delete</item>
+    </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -34,4 +38,6 @@
     <string name="judul_thread">Judul Thread</string>
     <string name="ketikkan_isi">Ketikkan isi</string>
     <string name="gambar_video">Gambar / Video</string>
+    <string name="no_connection_detected">No Connection Detected....</string>
+    <string name="tag">tag</string>
 </resources>

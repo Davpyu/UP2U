@@ -34,6 +34,10 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -71,6 +75,9 @@ public class AddThreadActivity extends AppCompatActivity {
     @BindView(R.id.gambar_video)
     TextView gambarVideo;
     ProgressBar dialog;
+    Calendar calendar;
+    SimpleDateFormat dtf;
+    SimpleDateFormat dt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +90,9 @@ public class AddThreadActivity extends AppCompatActivity {
         ArrayAdapter<String> ktgri = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, ktgr);
         tag.setAdapter(t4g);
         kategori.setAdapter(ktgri);
+        dtf = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
+        dt = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+        calendar = Calendar.getInstance();
         mDatabase = FirebaseDatabase.getInstance();
         mRef = mDatabase.getReference("threads");
         mStorage = FirebaseStorage.getInstance();
@@ -131,7 +141,10 @@ public class AddThreadActivity extends AppCompatActivity {
         final String tg = tag.getSelectedItem().toString().trim();
         final String ktgr = kategori.getSelectedItem().toString().trim();
         final String uid = mUser.getUid();
-        final StorageReference th = mSRef.child(System.currentTimeMillis() + "." + getFileExtension(imgUri));
+        final String key = mRef.push().getKey();
+        final String currentDate = dtf.format(calendar.getTime());
+        final String current = dt.format(calendar.getTime());
+        final StorageReference th = mSRef.child(current).child(System.currentTimeMillis() + "." + getFileExtension(imgUri));
         if (judul.isEmpty()) {
             addJudul.setError("Please add title of this thread");
             addJudul.requestFocus();
@@ -179,9 +192,10 @@ public class AddThreadActivity extends AppCompatActivity {
                                     uid,
                                     tg,
                                     ktgr,
-                                    mRef.push().getKey()
+                                    currentDate,
+                                    key
                             );
-                            mRef.child(Objects.requireNonNull(mRef.push().getKey())).setValue(tr).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            mRef.child(key).setValue(tr).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
@@ -194,6 +208,31 @@ public class AddThreadActivity extends AppCompatActivity {
                             });
                         }
                     });
+        }if(imgUri == null){
+            dialog.setVisibility(View.VISIBLE);
+            Thread tr = new Thread(
+                    judul,
+                    isi,
+                    null,
+                    uid,
+                    tg,
+                    ktgr,
+                    currentDate,
+                    key
+            );
+            mRef.child(key).setValue(tr).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        dialog.setVisibility(View.GONE);
+                        Toast.makeText(getApplicationContext(), "Postingan berhasil", Toast.LENGTH_SHORT).show();
+                        finish();
+                    } else {
+                        dialog.setVisibility(View.GONE);
+                        Toast.makeText(getApplicationContext(), "Postingan gagal", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
         }
     }
 

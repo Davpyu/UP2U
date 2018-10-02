@@ -70,6 +70,12 @@
             android:name="com.surya.david.up2you.ForumActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name="com.surya.david.up2you.NoConnectionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.surya.david.up2you.UpdateThreadActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name="com.google.firebase.auth.internal.FederatedSignInActivity"
             android:excludeFromRecents="true"
             android:exported="true"
@@ -113,6 +119,17 @@
             android:enabled="true"
             android:exported="false"
             android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <activity
+            android:name="com.google.android.gms.appinvite.PreviewActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppInvite.Preview" >
+            <intent-filter>
+                <action android:name="com.google.android.gms.appinvite.ACTION_PREVIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 
         <receiver
             android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"

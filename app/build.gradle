@@ -30,6 +30,8 @@ dependencies {
     implementation 'com.android.support:cardview-v7:27.1.1'
     //for firebase
     implementation 'com.google.firebase:firebase-core:16.0.0'
+    //for firebase dynamic links
+    implementation 'com.google.firebase:firebase-invites:16.0.0'
     //for firebase authentication
     implementation 'com.google.firebase:firebase-auth:16.0.1'
     //for firebase database
