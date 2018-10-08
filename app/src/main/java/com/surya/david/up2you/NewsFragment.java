@@ -116,6 +116,7 @@ public class NewsFragment extends Fragment {
         };
         progress.setVisibility(View.INVISIBLE);
         firebaseRecyclerAdapter.startListening();
+        
         listNews.setAdapter(firebaseRecyclerAdapter);
         listNews.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
