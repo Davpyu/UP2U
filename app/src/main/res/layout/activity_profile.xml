@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:id="@+id/profile"
+    tools:context=".ProfileActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include layout="@layout/toolbar"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_below="@id/toolbar"
+            android:background="@color/colorAccent"/>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_profile"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="150dp" />
+        <TextView
+            android:id="@+id/usr_nm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="User"
+            android:textSize="25sp"
+            android:layout_below="@id/img_profile"
+            android:layout_centerHorizontal="true"/>
+        <TextView
+            android:id="@+id/em"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email = "
+            android:textSize="20sp"
+            android:layout_below="@id/usr_nm"
+            android:layout_marginStart="10dp"/>
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="email"
+            android:layout_toRightOf="@id/em"
+            android:layout_below="@id/usr_nm"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Birth Date = "
+            android:id="@+id/bd"
+            android:layout_below="@id/em"
+            android:textSize="20sp"
+            android:layout_marginStart="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="bd"
+            android:id="@+id/birth"
+            android:layout_below="@id/em"
+            android:layout_toRightOf="@id/bd"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gender = "
+            android:id="@+id/gd"
+            android:textSize="20sp"
+            android:layout_below="@id/bd"
+            android:layout_marginStart="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="gd"
+            android:id="@+id/gender"
+            android:layout_below="@id/bd"
+            android:layout_toRightOf="@id/gd"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thread"
+            android:layout_below="@id/gd"
+            android:layout_marginTop="50dp"
+            android:layout_marginStart="10dp"/>
+    </RelativeLayout>
+</android.support.v4.widget.DrawerLayout>

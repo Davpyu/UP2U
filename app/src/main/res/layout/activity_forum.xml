@@ -10,15 +10,89 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <ScrollView
+        <RelativeLayout
+            android:id="@+id/komentar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorAccent">
+            <ImageView
+                android:id="@+id/img_profile"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:paddingStart="10dp"/>
+            <android.support.v7.widget.CardView
+                android:id="@+id/komenan"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_toRightOf="@id/img_profile"
+                android:background="@color/white">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Ketikkan Komentar..."
+                    android:textSize="16sp"
+                    android:gravity="center_vertical"
+                    android:paddingStart="20dp"/>
+            </android.support.v7.widget.CardView>
+        </RelativeLayout>
+        <android.support.design.widget.CoordinatorLayout
+            android:id="@+id/coLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white"
+            android:visibility="gone">
+            <EditText
+                android:id="@+id/komen"
+                android:layout_width="270dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="30dp"
+                android:background="@android:color/transparent"
+                android:hint="Ketikkan Komentar"/>
+            <ImageView
+                android:id="@+id/send"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_send_black_24dp"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="20dp"/>
+        </android.support.design.widget.CoordinatorLayout>
+        <android.support.design.widget.CoordinatorLayout
+            android:id="@+id/coLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white"
+            android:visibility="gone">
+            <EditText
+                android:id="@+id/komen1"
+                android:layout_width="270dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="30dp"
+                android:background="@android:color/transparent"
+                android:hint="Ketikkan Komentar"/>
+            <ImageView
+                android:id="@+id/update"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_send_black_24dp"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="20dp"/>
+        </android.support.design.widget.CoordinatorLayout>
+    <android.support.v4.widget.NestedScrollView
         android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/temp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
 
             <include layout="@layout/toolbar" />
 
@@ -46,6 +120,7 @@
                     android:textSize="15sp" />
 
                 <TextView
+                    android:id="@+id/usr"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -93,62 +168,23 @@
                 android:paddingStart="10dp"
                 android:text="@string/lorem_desc"
                 android:textSize="18sp" />
-        </LinearLayout>
-    </ScrollView>
-        <RelativeLayout
-            android:id="@+id/komentar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:background="@color/colorAccent">
             <ImageView
-                android:id="@+id/img_profile"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:paddingStart="10dp"/>
-            <android.support.v7.widget.CardView
-                android:id="@+id/komenan"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginStart="10dp"
-                android:layout_toRightOf="@id/img_profile"
-                android:background="@color/white">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Ketikkan Komentar..."
-                    android:textSize="16sp"
-                    android:gravity="center_vertical"
-                    android:paddingStart="20dp"/>
-            </android.support.v7.widget.CardView>
-        </RelativeLayout>
-        <android.support.design.widget.CoordinatorLayout
-            android:id="@+id/coLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:background="@color/white"
-            android:visibility="gone">
-            <EditText
-                android:id="@+id/komen"
-                android:layout_width="270dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="30dp"
-                android:background="@android:color/transparent"
-                android:hint="Ketikkan Komentar"/>
-            <ImageView
-                android:id="@+id/send"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_send_black_24dp"
-                android:layout_gravity="end|center_vertical"
-                android:layout_marginEnd="20dp"/>
-        </android.support.design.widget.CoordinatorLayout>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/list_comment"
-            android:layout_below="@id/scroll"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+                android:layout_height="3dp"
+                android:background="#f0f0f0"
+                android:layout_marginTop="5dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Komentar"
+                android:paddingStart="10dp"
+                android:textSize="25dp"/>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/list_comment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:nestedScrollingEnabled="false"/>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
     </RelativeLayout>
 </android.support.v4.widget.DrawerLayout>

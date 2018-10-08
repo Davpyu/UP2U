@@ -76,10 +76,6 @@
         "source": "/home/david/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/1c7adacf386d4fe31a14c27fc61fee93/res/drawable-xxxhdpi-v4/abc_ic_menu_cut_mtrl_alpha.png"
     },
     {
-        "merged": "/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/res/merged/debug/layout_fragment_profile.xml.flat",
-        "source": "/home/david/AndroidStudioProjects/UP2YOU/app/src/main/res/layout/fragment_profile.xml"
-    },
-    {
         "merged": "/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_abc_list_selector_disabled_holo_light.9.png.flat",
         "source": "/home/david/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/1c7adacf386d4fe31a14c27fc61fee93/res/drawable-mdpi-v4/abc_list_selector_disabled_holo_light.9.png"
     },
@@ -238,6 +234,10 @@
     {
         "merged": "/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_abc_scrubber_track_mtrl_alpha.9.png.flat",
         "source": "/home/david/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/1c7adacf386d4fe31a14c27fc61fee93/res/drawable-mdpi-v4/abc_scrubber_track_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/res/merged/debug/layout_comment_item.xml.flat",
+        "source": "/home/david/AndroidStudioProjects/UP2YOU/app/src/main/res/layout/comment_item.xml"
     },
     {
         "merged": "/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_abc_text_select_handle_middle_mtrl_light.png.flat",
@@ -1714,6 +1714,10 @@
     {
         "merged": "/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_design_ic_visibility_off.png.flat",
         "source": "/home/david/.gradle/caches/transforms-1/files-1.1/design-27.1.1.aar/91a5665b46929198acb9aaaef5d2ee8f/res/drawable-xhdpi-v4/design_ic_visibility_off.png"
+    },
+    {
+        "merged": "/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/res/merged/debug/layout_activity_profile.xml.flat",
+        "source": "/home/david/AndroidStudioProjects/UP2YOU/app/src/main/res/layout/activity_profile.xml"
     },
     {
         "merged": "/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/res/merged/debug/layout_select_dialog_multichoice_material.xml.flat",

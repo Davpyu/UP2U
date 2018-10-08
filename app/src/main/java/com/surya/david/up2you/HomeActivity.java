@@ -144,13 +144,9 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (mAuth.getCurrentUser() != null){
-                    Fragment ft = ff;
-                    ft = new ProfileFragment();
-                    toolbar.setTitle(getString(R.string.profile));
-                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.frame, ft);
-                    transaction.commit();
                     drawerLayout.closeDrawers();
+                    Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+                    startActivity(intent);
                 }
                 else{
                     Intent intent = new Intent(HomeActivity.this, LoginActivity.class);

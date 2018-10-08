@@ -52,10 +52,13 @@
         <activity
             android:name=".ForumActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".NoConnectionActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".UpdateThreadActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".NoConnectionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".UpdateThreadActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ProfileActivity"></activity>
     </application>
 
 </manifest>

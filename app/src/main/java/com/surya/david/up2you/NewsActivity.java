@@ -2,6 +2,7 @@ package com.surya.david.up2you;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -41,6 +42,8 @@ public class NewsActivity extends AppCompatActivity {
     int id;
     @BindView(R.id.img_news)
     ImageView imgNews;
+    @BindView(R.id.drawer_layout)
+    DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +96,7 @@ public class NewsActivity extends AppCompatActivity {
     private void configureToolbar() {
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_close_black_24dp);
+        drawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.colorAccent));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

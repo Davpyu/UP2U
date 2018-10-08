@@ -96,17 +96,17 @@ public class ForumFragment extends Fragment {
                 holder.tag.setText(model.getTag());
                 holder.kategori.setText(model.getKategori());
 //                if (model.getImageUrl() != null) {
-                    Picasso.get().load(model.getImageUrl()).into(holder.img, new Callback() {
-                        @Override
-                        public void onSuccess() {
+                Picasso.get().load(model.getImageUrl()).into(holder.img, new Callback() {
+                    @Override
+                    public void onSuccess() {
 
-                        }
+                    }
 
-                        @Override
-                        public void onError(Exception e) {
-                            Log.e("Image", e.getMessage());
-                        }
-                    });
+                    @Override
+                    public void onError(Exception e) {
+                        Log.e("Image", e.getMessage());
+                    }
+                });
 //                }
                 mDatabase.getReference("Users").orderByKey().equalTo(model.getUserId()).addValueEventListener(new ValueEventListener() {
                     @Override
@@ -179,8 +179,8 @@ public class ForumFragment extends Fragment {
             public ForumViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 Thread model = new Thread();
 //                if (model.getImageUrl() != null) {
-                    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.lounge_item, parent, false);
-                    return new ForumViewHolder(view);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.lounge_item, parent, false);
+                return new ForumViewHolder(view);
 //                }else {
 //                    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.lounge_item_noimg, parent, false);
 //                    return new ForumViewHolder(view);

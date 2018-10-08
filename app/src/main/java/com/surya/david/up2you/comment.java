@@ -1,15 +1,24 @@
 package com.surya.david.up2you;
 
 public class comment {
-    public String userId, keyThreads, isi;
+    public String userId, keyThreads, isi, key;
 
     public comment() {
     }
 
-    public comment(String userId, String keyThreads, String isi) {
+    public comment(String userId, String keyThreads, String isi, String key) {
         this.userId = userId;
         this.keyThreads = keyThreads;
         this.isi = isi;
+        this.key = key;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public String getUserId() {

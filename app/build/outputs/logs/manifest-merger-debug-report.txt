@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:2:1-61:12
-INJECTED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:2:1-61:12
-INJECTED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:2:1-61:12
-INJECTED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:2:1-61:12
+ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:2:1-64:12
+INJECTED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:2:1-64:12
+INJECTED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:2:1-64:12
+INJECTED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:2:1-64:12
 MERGED from [com.android.support:design:27.1.1] /home/david/.gradle/caches/transforms-1/files-1.1/design-27.1.1.aar/91a5665b46929198acb9aaaef5d2ee8f/AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:appcompat-v7:27.1.1] /home/david/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/1c7adacf386d4fe31a14c27fc61fee93/AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support.constraint:constraint-layout:1.1.0] /home/david/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.0.aar/1026a04508dd95f843a1ea4c5c40602f/AndroidManifest.xml:2:1-11:12
@@ -53,20 +53,20 @@ MERGED from [android.arch.lifecycle:runtime:1.1.1] /home/david/.gradle/caches/tr
 MERGED from [com.android.support:exifinterface:27.1.0] /home/david/.gradle/caches/transforms-1/files-1.1/exifinterface-27.1.0.aar/551a175f4403234469d0f712409d4268/AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /home/david/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.1.aar/3c67472ec90743a100dae06f85630112/AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.android.gms:play-services-measurement-base:15.0.4] /home/david/.gradle/caches/transforms-1/files-1.1/play-services-measurement-base-15.0.4.aar/6943325ea5042ac26866223c3c83b201/AndroidManifest.xml:17:1-24:12
-INJECTED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:2:1-61:12
-INJECTED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:2:1-61:12
-INJECTED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:2:1-61:12
+INJECTED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:2:1-64:12
+INJECTED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:2:1-64:12
+INJECTED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:2:1-64:12
 	package
 		ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:3:5-37
 		INJECTED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml
 		INJECTED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml
 	android:versionName
 		INJECTED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml
-		ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:2:1-61:12
+		ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:2:1-64:12
 		INJECTED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml
 	android:versionCode
 		INJECTED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml
-		ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:2:1-61:12
+		ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:2:1-64:12
 		INJECTED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:2:11-69
@@ -105,7 +105,7 @@ MERGED from [com.google.firebase:firebase-storage-common:16.0.1] /home/david/.gr
 	android:name
 		ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:6:22-76
 application
-ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:8:5-59:19
+ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:8:5-62:19
 MERGED from [com.android.support.constraint:constraint-layout:1.1.0] /home/david/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.0.aar/1026a04508dd95f843a1ea4c5c40602f/AndroidManifest.xml:9:5-20
 MERGED from [com.android.support.constraint:constraint-layout:1.1.0] /home/david/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.0.aar/1026a04508dd95f843a1ea4c5c40602f/AndroidManifest.xml:9:5-20
 MERGED from [com.google.firebase:firebase-auth:16.0.1] /home/david/.gradle/caches/transforms-1/files-1.1/firebase-auth-16.0.1.aar/d8664bd51c10c39f582e9c1488d08347/AndroidManifest.xml:22:5-36:19
@@ -241,17 +241,21 @@ ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest
 	android:name
 		ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:53:13-42
 activity#com.surya.david.up2you.NoConnectionActivity
-ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:55:9-56:51
+ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:55:9-57:52
 	android:screenOrientation
+		ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:57:13-49
+	android:name
 		ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:56:13-49
-	android:name
-		ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:55:19-55
 activity#com.surya.david.up2you.UpdateThreadActivity
-ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:57:9-58:51
+ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:58:9-60:52
 	android:screenOrientation
-		ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:58:13-49
+		ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:60:13-49
 	android:name
-		ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:57:19-55
+		ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:59:13-49
+activity#com.surya.david.up2you.ProfileActivity
+ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:61:9-62
+	android:name
+		ADDED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml:61:19-50
 uses-sdk
 INJECTED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /home/david/AndroidStudioProjects/UP2YOU/app/src/main/AndroidManifest.xml

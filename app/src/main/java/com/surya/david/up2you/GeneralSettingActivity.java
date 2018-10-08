@@ -1,22 +1,20 @@
 package com.surya.david.up2you;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.ImageView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class GeneralSettingActivity extends AppCompatActivity {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+    @BindView(R.id.drawer_layout)
+    DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,5 +36,6 @@ public class GeneralSettingActivity extends AppCompatActivity {
                 finish();
             }
         });
+        drawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.colorAccent));
     }
 }
