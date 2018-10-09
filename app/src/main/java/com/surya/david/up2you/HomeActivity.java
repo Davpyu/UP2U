@@ -81,7 +81,6 @@ public class HomeActivity extends AppCompatActivity {
         }else {
             usrnm.setText(R.string.guest);
         }
-
     }
 
     @Override
@@ -212,7 +211,7 @@ public class HomeActivity extends AppCompatActivity {
         actionBar.setDisplayShowHomeEnabled(true);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        drawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.colorAccent));
+        drawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.statusbar));
         actionBarDrawerToggle.syncState();
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
     }

@@ -114,7 +114,7 @@ public class AddThreadActivity extends AppCompatActivity {
                 finish();
             }
         });
-        addLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.colorAccent));
+        addLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.statusbar));
     }
 
     @OnClick(R.id.gambar_video)
@@ -152,6 +152,11 @@ public class AddThreadActivity extends AppCompatActivity {
         }
         if (isi.isEmpty()) {
             isithread.setError("Please add content of this thread");
+            isithread.requestFocus();
+            return;
+        }
+        if (isi.length() < 500){
+            isithread.setError("Please fill content more than 500");
             isithread.requestFocus();
             return;
         }

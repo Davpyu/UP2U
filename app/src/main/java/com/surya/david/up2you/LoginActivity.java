@@ -49,19 +49,10 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         mAuth = FirebaseAuth.getInstance();
-//        if (user != null && user.isEmailVerified()) {
-//            mDatabase.child("Users").child("status").setValue(true);
-//            user.reload();
-//        }
-//        if (user != null && !user.isEmailVerified()) {
-//            mDatabase.child("Users").child("status").setValue(false);
-//            user.reload();
-//        }
     }
 
     @Override
     public void onBackPressed() {
-//        super.onBackPressed();
         Intent intent = new Intent(Intent.ACTION_MAIN);
         intent.addCategory(Intent.CATEGORY_HOME);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

@@ -1,4 +1,4 @@
-#Mon Oct 08 14:05:48 WIB 2018
-base.0=/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/transforms/dexMerger/debug/979
+#Tue Oct 09 19:26:17 WIB 2018
+base.0=/home/david/AndroidStudioProjects/UP2YOU/app/build/intermediates/transforms/dexMerger/debug/1171
 path.0=classes.dex
 renamed.0=classes.dex

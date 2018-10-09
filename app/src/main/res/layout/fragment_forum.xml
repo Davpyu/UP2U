@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/colorAccent"
+        android:background="#1B1928"
         app:itemIconTint="#fff"
         app:itemTextColor="#fff"
         app:menu="@menu/bnv" />
@@ -35,13 +35,14 @@
         android:layout_height="match_parent">
 
     </android.support.v7.widget.RecyclerView>
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/add_thread"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_add_white_24dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
+        android:layout_marginBottom="70dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="70dp"/>
+        android:src="@drawable/ic_add_white_24dp" />
 </RelativeLayout>

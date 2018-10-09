@@ -196,9 +196,11 @@ public class ForumFragment extends Fragment {
                 if (dy > 0 && bnv.isShown()) {
                     bnv.setVisibility(View.GONE);
                     coLayout.setVisibility(View.GONE);
+                    addThread.setVisibility(View.GONE);
                 } else if (dy < 0) {
                     bnv.setVisibility(View.VISIBLE);
                     coLayout.setVisibility(View.VISIBLE);
+                    addThread.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -265,6 +267,11 @@ public class ForumFragment extends Fragment {
                     }
 
                     return true;
+                }
+                if (sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED || behavior.getState() == BottomSheetBehavior.STATE_EXPANDED || bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED){
+                    addThread.setVisibility(View.GONE);
+                }else if(sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED && behavior.getState() != BottomSheetBehavior.STATE_EXPANDED && bottomSheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED){
+                    addThread.setVisibility(View.VISIBLE);
                 }
                 return false;
             }

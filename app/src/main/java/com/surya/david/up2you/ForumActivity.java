@@ -48,6 +48,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ForumActivity extends AppCompatActivity {
+
     String key;
     FirebaseDatabase mDatabase;
     DatabaseReference mRef, mSref, mKref;
@@ -97,7 +98,6 @@ public class ForumActivity extends AppCompatActivity {
     ImageView update;
     @BindView(R.id.coLayout1)
     CoordinatorLayout coLayout1;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -295,12 +295,11 @@ public class ForumActivity extends AppCompatActivity {
         };
         firebaseRecyclerAdapter.startListening();
         listComment.setAdapter(firebaseRecyclerAdapter);
-
     }
 
     @Override
     public void onBackPressed() {
-        if (coLayout.getVisibility() == View.VISIBLE || coLayout1.getVisibility() == View.VISIBLE) {
+                if (coLayout.getVisibility() == View.VISIBLE || coLayout1.getVisibility() == View.VISIBLE) {
             komen.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
                 public void onFocusChange(View view, boolean b) {
@@ -401,12 +400,11 @@ public class ForumActivity extends AppCompatActivity {
                 finish();
             }
         });
-        drawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.colorAccent));
+        drawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.statusbar));
     }
 
     @OnClick(R.id.komenan)
     public void onViewClick() {
-//        Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show();
         coLayout.bringToFront();
         komentar.setVisibility(View.GONE);
         coLayout.setVisibility(View.VISIBLE);

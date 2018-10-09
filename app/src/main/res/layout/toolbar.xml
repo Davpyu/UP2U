@@ -5,5 +5,5 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:minHeight="?attr/actionBarSize"
-    android:background="@color/colorAccent"
+    android:background="#1B1928"
     app:titleTextColor="#ffffff" />

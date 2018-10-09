@@ -37,6 +37,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class UpdateThreadActivity extends AppCompatActivity {
+
     String id;
     private final int PICK_IMAGE_REQUEST = 1;
     @BindView(R.id.toolbar)
@@ -49,8 +50,6 @@ public class UpdateThreadActivity extends AppCompatActivity {
     Spinner tag;
     @BindView(R.id.kategori)
     Spinner kategori;
-//    @BindView(R.id.gambar_video)
-//    TextView gambarVideo;
     @BindView(R.id.img)
     ImageView img;
     @BindView(R.id.progress)
@@ -124,7 +123,7 @@ public class UpdateThreadActivity extends AppCompatActivity {
                 finish();
             }
         });
-        addLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.colorAccent));
+        addLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.statusbar));
     }
 
     @OnClick(R.id.send_btn)

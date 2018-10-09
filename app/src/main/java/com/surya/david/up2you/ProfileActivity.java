@@ -2,6 +2,7 @@ package com.surya.david.up2you;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -21,6 +22,7 @@ import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -31,16 +33,10 @@ public class ProfileActivity extends AppCompatActivity {
     CircleImageView imgProfile;
     @BindView(R.id.usr_nm)
     TextView usrNm;
-    @BindView(R.id.em)
-    TextView em;
     @BindView(R.id.email)
     TextView email;
-    @BindView(R.id.bd)
-    TextView bd;
     @BindView(R.id.birth)
     TextView birth;
-    @BindView(R.id.gd)
-    TextView gd;
     @BindView(R.id.gender)
     TextView gender;
     FirebaseDatabase mDatabase;
@@ -49,6 +45,12 @@ public class ProfileActivity extends AppCompatActivity {
     FirebaseUser mUser;
     @BindView(R.id.profile)
     DrawerLayout profile;
+    @BindView(R.id.bio)
+    TextView bio;
+    @BindView(R.id.status)
+    TextView status;
+    @BindView(R.id.edit_profile)
+    FloatingActionButton editProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +74,7 @@ public class ProfileActivity extends AppCompatActivity {
                 finish();
             }
         });
-        profile.setStatusBarBackgroundColor(getResources().getColor(R.color.colorAccent));
+        profile.setStatusBarBackgroundColor(getResources().getColor(R.color.statusbar));
     }
 
     private void configureUser() {
@@ -81,10 +83,17 @@ public class ProfileActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 user ur = dataSnapshot.getValue(user.class);
                 usrNm.setText(Objects.requireNonNull(ur).getName());
+                String bo = ur.getBio();
+                if (bo != null && !bo.equals("")) {
+                    bio.setText(bo);
+                }else if (bo == null || bo.equals("")){
+                    bio.setText("No description about me...");
+                }
                 email.setText(ur.getEmail());
                 birth.setText(ur.getTl());
                 gender.setText(ur.getJen_kel());
                 toolbar.setTitle(ur.getName());
+                status.setText(ur.getStatus().toString());
             }
 
             @Override
@@ -92,5 +101,9 @@ public class ProfileActivity extends AppCompatActivity {
                 Log.d("Profile", databaseError.getCode() + "" + databaseError.getMessage());
             }
         });
+    }
+
+    @OnClick(R.id.edit_profile)
+    public void onViewClicked() {
     }
 }

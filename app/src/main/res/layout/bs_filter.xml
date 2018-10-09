@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="200dp"
-    android:background="@color/colorAccent"
+    android:background="#1B1928"
     app:behavior_hideable="true"
     app:behavior_peekHeight="30dp"
     app:layout_behavior="android.support.design.widget.BottomSheetBehavior">

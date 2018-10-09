@@ -4,8 +4,7 @@
     android:layout_height="160dp"
     android:orientation="vertical"
     android:id="@+id/header"
-    android:paddingTop="45dp"
-    android:background="@color/colorAccent">
+    android:paddingTop="45dp">
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/usr_profile"
         android:layout_width="75dp"
@@ -16,7 +15,6 @@
         android:id="@+id/nm_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#fff"
         android:textStyle="bold"
         android:layout_marginTop="5dp"
         android:layout_gravity="center_horizontal"

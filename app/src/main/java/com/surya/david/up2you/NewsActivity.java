@@ -55,7 +55,6 @@ public class NewsActivity extends AppCompatActivity {
         mReference = mDatabase.getReference().child("news");
         id = getIntent().getIntExtra(NewsFragment.EXTRA_DATA, 0);
         configureNews();
-//        coba.setText(getIntent().getStringExtra("id"));
         configureToolbar();
     }
 
@@ -96,7 +95,7 @@ public class NewsActivity extends AppCompatActivity {
     private void configureToolbar() {
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_close_black_24dp);
-        drawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.colorAccent));
+        drawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.statusbar));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

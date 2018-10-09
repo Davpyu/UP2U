@@ -36,7 +36,7 @@ public class HelpSettingActivity extends AppCompatActivity {
                 finish();
             }
         });
-        drawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.colorAccent));
+        drawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.statusbar));
     }
 
 }

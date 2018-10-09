@@ -4,7 +4,7 @@
     android:id="@+id/bs_sort"
     android:layout_width="match_parent"
     android:layout_height="200dp"
-    android:background="@color/colorAccent"
+    android:background="#1B1928"
     android:orientation="vertical"
     app:behavior_hideable="true"
     app:behavior_peekHeight="30dp"
