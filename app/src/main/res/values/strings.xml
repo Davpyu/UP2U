@@ -40,4 +40,7 @@
     <string name="gambar_video">Gambar / Video</string>
     <string name="no_connection_detected">No Connection Detected....</string>
     <string name="tag">tag</string>
+    <string name="bionullhim">No description about him</string>
+    <string name="bionullher">No description about her</string>
+    <string name="bionullme">No description about me...</string>
 </resources>

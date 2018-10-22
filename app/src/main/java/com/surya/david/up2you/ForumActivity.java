@@ -2,6 +2,7 @@ package com.surya.david.up2you;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -49,6 +50,7 @@ import butterknife.OnClick;
 
 public class ForumActivity extends AppCompatActivity {
 
+    public static final String EXTRADATA = "EXTRADATA";
     String key;
     FirebaseDatabase mDatabase;
     DatabaseReference mRef, mSref, mKref;
@@ -354,13 +356,21 @@ public class ForumActivity extends AppCompatActivity {
                     tag.setText(thr.getTag());
                     kThread.setText(thr.getKategori());
                     date.setText(thr.getDate());
-                    String uid = thr.getUserId();
+                    final String uid = thr.getUserId();
                     mSref.orderByKey().equalTo(uid).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             for (DataSnapshot data : dataSnapshot.getChildren()) {
                                 user ur = data.getValue(user.class);
                                 usr.setText(ur.getName());
+                                usr.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        Intent intent = new Intent(ForumActivity.this, ProfileActivity.class);
+                                        intent.putExtra(EXTRADATA, uid);
+                                        startActivity(intent);
+                                    }
+                                });
                             }
                         }
 

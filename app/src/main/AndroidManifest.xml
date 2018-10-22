@@ -58,7 +58,10 @@
         <activity
             android:name=".UpdateThreadActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ProfileActivity"></activity>
+        <activity
+            android:name=".ProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".EditProfileActivity"></activity>
     </application>
 
 </manifest>
