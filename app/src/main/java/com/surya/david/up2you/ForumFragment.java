@@ -2,7 +2,6 @@ package com.surya.david.up2you;
 
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,8 +18,9 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -70,6 +70,16 @@ public class ForumFragment extends Fragment {
     DatabaseReference mRef;
     FirebaseRecyclerAdapter<Thread, ForumViewHolder> firebaseRecyclerAdapter;
     FirebaseRecyclerOptions<Thread> options;
+    @BindView(R.id.searchimage)
+    ImageView searchimage;
+    @BindView(R.id.close)
+    ImageView close;
+    @BindView(R.id.closesort)
+    ImageView closesort;
+    @BindView(R.id.closefilter)
+    ImageView closefilter;
+    @BindView(R.id.searchtext)
+    EditText search;
 
     public ForumFragment() {
         // Required empty public constructor
@@ -111,7 +121,7 @@ public class ForumFragment extends Fragment {
                 mDatabase.getReference("Users").orderByKey().equalTo(model.getUserId()).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for (DataSnapshot username: dataSnapshot.getChildren()) {
+                        for (DataSnapshot username : dataSnapshot.getChildren()) {
                             user ur = username.getValue(user.class);
                             holder.nm.setText(Objects.requireNonNull(ur).getName());
                         }
@@ -135,20 +145,21 @@ public class ForumFragment extends Fragment {
                     @Override
                     public boolean onLongClick(View view) {
                         String uid = firebaseRecyclerAdapter.getItem(position).getUserId();
-                        if (Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid().equals(uid)){
+                        if (Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid().equals(uid)) {
                             final String[] listItem = getResources().getStringArray(R.array.menu);
                             AlertDialog.Builder mBuilder = new AlertDialog.Builder(getContext());
                             mBuilder.setTitle("What do you want to do?");
                             mBuilder.setItems(listItem, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
-                                    if (i == 0){
+                                    if (i == 0) {
                                         String key = firebaseRecyclerAdapter.getItem(position).getKey();
                                         Intent intent = new Intent(getContext(), UpdateThreadActivity.class);
                                         intent.putExtra(DATA, key);
                                         startActivity(intent);
 //                                        Toast.makeText(getContext(), key, Toast.LENGTH_SHORT).show();
-                                    }if (i == 1){
+                                    }
+                                    if (i == 1) {
                                         android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(Objects.requireNonNull(getContext()));
                                         builder.setMessage("Are you sure you want to delete?")
                                                 .setCancelable(false)
@@ -197,6 +208,9 @@ public class ForumFragment extends Fragment {
                     bnv.setVisibility(View.GONE);
                     coLayout.setVisibility(View.GONE);
                     addThread.setVisibility(View.GONE);
+                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                    sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                    behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                 } else if (dy < 0) {
                     bnv.setVisibility(View.VISIBLE);
                     coLayout.setVisibility(View.VISIBLE);
@@ -220,6 +234,7 @@ public class ForumFragment extends Fragment {
 
                     if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
                         sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                        addThread.setVisibility(View.GONE);
                         if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
                             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                         } else if (behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
@@ -230,6 +245,7 @@ public class ForumFragment extends Fragment {
                         }
                     } else {
                         sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                        addThread.setVisibility(View.VISIBLE);
                     }
 
                     return true;
@@ -237,6 +253,7 @@ public class ForumFragment extends Fragment {
 
                     if (bottomSheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
                         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                        addThread.setVisibility(View.GONE);
                         if (sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
                             sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                         } else if (behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
@@ -247,6 +264,7 @@ public class ForumFragment extends Fragment {
                         }
                     } else {
                         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                        addThread.setVisibility(View.VISIBLE);
                     }
 
                     return true;
@@ -254,6 +272,7 @@ public class ForumFragment extends Fragment {
 
                     if (behavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
                         behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                        addThread.setVisibility(View.GONE);
                         if (sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
                             sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                         } else if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
@@ -264,14 +283,10 @@ public class ForumFragment extends Fragment {
                         }
                     } else {
                         behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                        addThread.setVisibility(View.VISIBLE);
                     }
 
                     return true;
-                }
-                if (sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED || behavior.getState() == BottomSheetBehavior.STATE_EXPANDED || bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED){
-                    addThread.setVisibility(View.GONE);
-                }else if(sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED && behavior.getState() != BottomSheetBehavior.STATE_EXPANDED && bottomSheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED){
-                    addThread.setVisibility(View.VISIBLE);
                 }
                 return false;
             }
@@ -288,5 +303,23 @@ public class ForumFragment extends Fragment {
     public void onViewClicked() {
         Intent intent = new Intent(getActivity(), AddThreadActivity.class);
         startActivity(intent);
+    }
+
+    @OnClick(R.id.close)
+    public void onViewClick() {
+        behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        addThread.setVisibility(View.VISIBLE);
+    }
+
+    @OnClick(R.id.closesort)
+    public void onClosesortClicked() {
+        sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        addThread.setVisibility(View.VISIBLE);
+    }
+
+    @OnClick(R.id.closefilter)
+    public void onClosefilterClicked() {
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        addThread.setVisibility(View.VISIBLE);
     }
 }
