@@ -1064,6 +1064,10 @@
         "source": "/home/davidsurya/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/177546d39174fc91290a664a0ab721ea/res/drawable-mdpi-v4/abc_ic_menu_paste_mtrl_am_alpha.png"
     },
     {
+        "merged": "/home/davidsurya/AndroidStudioProjects/UP2YOU/app/build/intermediates/res/merged/debug/layout_activity_result_search_forum.xml.flat",
+        "source": "/home/davidsurya/AndroidStudioProjects/UP2YOU/app/src/main/res/layout/activity_result_search_forum.xml"
+    },
+    {
         "merged": "/home/davidsurya/AndroidStudioProjects/UP2YOU/app/build/intermediates/res/merged/debug/drawable_common_google_signin_btn_icon_light_normal.xml.flat",
         "source": "/home/davidsurya/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/dca02c3216f2c9ce5fa93c51fecbcab9/res/drawable/common_google_signin_btn_icon_light_normal.xml"
     },

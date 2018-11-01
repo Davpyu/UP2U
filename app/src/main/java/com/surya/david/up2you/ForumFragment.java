@@ -48,6 +48,7 @@ import butterknife.Unbinder;
 public class ForumFragment extends Fragment {
 
     public static final String DATA = "DATA";
+    public static final String SEARCH = "SEARCH";
     @BindView(R.id.add_thread)
     FloatingActionButton addThread;
     @BindView(R.id.bnv)
@@ -58,9 +59,7 @@ public class ForumFragment extends Fragment {
     LinearLayout bsFilter;
     @BindView(R.id.bs_search)
     LinearLayout bsSearch;
-    BottomSheetBehavior sheetBehavior;
-    BottomSheetBehavior bottomSheetBehavior;
-    BottomSheetBehavior behavior;
+    BottomSheetBehavior bottomSheetBehavior, sheetBehavior, behavior;
     @BindView(R.id.co_layout)
     CoordinatorLayout coLayout;
     Unbinder unbinder;
@@ -70,8 +69,6 @@ public class ForumFragment extends Fragment {
     DatabaseReference mRef;
     FirebaseRecyclerAdapter<Thread, ForumViewHolder> firebaseRecyclerAdapter;
     FirebaseRecyclerOptions<Thread> options;
-    @BindView(R.id.searchimage)
-    ImageView searchimage;
     @BindView(R.id.close)
     ImageView close;
     @BindView(R.id.closesort)
@@ -80,6 +77,8 @@ public class ForumFragment extends Fragment {
     ImageView closefilter;
     @BindView(R.id.searchtext)
     EditText search;
+    @BindView(R.id.searchimage)
+    ImageView searchimage;
 
     public ForumFragment() {
         // Required empty public constructor
@@ -92,6 +91,9 @@ public class ForumFragment extends Fragment {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_forum, container, false);
         unbinder = ButterKnife.bind(this, view);
+        sheetBehavior = BottomSheetBehavior.from(bsSort);
+        bottomSheetBehavior = BottomSheetBehavior.from(bsFilter);
+        behavior = BottomSheetBehavior.from(bsSearch);
         configureBnv();
         listThread.setHasFixedSize(true);
         listThread.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -105,7 +107,6 @@ public class ForumFragment extends Fragment {
                 holder.jdl.setText(model.getJudul());
                 holder.tag.setText(model.getTag());
                 holder.kategori.setText(model.getKategori());
-//                if (model.getImageUrl() != null) {
                 Picasso.get().load(model.getImageUrl()).into(holder.img, new Callback() {
                     @Override
                     public void onSuccess() {
@@ -117,7 +118,6 @@ public class ForumFragment extends Fragment {
                         Log.e("Image", e.getMessage());
                     }
                 });
-//                }
                 mDatabase.getReference("Users").orderByKey().equalTo(model.getUserId()).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -157,7 +157,6 @@ public class ForumFragment extends Fragment {
                                         Intent intent = new Intent(getContext(), UpdateThreadActivity.class);
                                         intent.putExtra(DATA, key);
                                         startActivity(intent);
-//                                        Toast.makeText(getContext(), key, Toast.LENGTH_SHORT).show();
                                     }
                                     if (i == 1) {
                                         android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(Objects.requireNonNull(getContext()));
@@ -175,7 +174,6 @@ public class ForumFragment extends Fragment {
                                                 });
                                         android.support.v7.app.AlertDialog alert = builder.create();
                                         alert.show();
-//                                        firebaseRecyclerAdapter.getRef(position).removeValue();
                                     }
                                 }
                             }).show();
@@ -227,9 +225,6 @@ public class ForumFragment extends Fragment {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int itemId = item.getItemId();
-                sheetBehavior = BottomSheetBehavior.from(bsSort);
-                bottomSheetBehavior = BottomSheetBehavior.from(bsFilter);
-                behavior = BottomSheetBehavior.from(bsSearch);
                 if (itemId == R.id.sort) {
 
                     if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
@@ -321,5 +316,14 @@ public class ForumFragment extends Fragment {
     public void onClosefilterClicked() {
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         addThread.setVisibility(View.VISIBLE);
+    }
+
+    @OnClick(R.id.searchimage)
+    public void onViewClicke() {
+        String searchquery= search.getText().toString().trim();
+        Intent intent = new Intent(getActivity(), ResultSearchForumActivity.class);
+        intent.putExtra(SEARCH, searchquery);
+        search.setText("");
+        startActivity(intent);
     }
 }

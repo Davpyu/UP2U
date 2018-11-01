@@ -78,7 +78,12 @@
         <activity
             android:name="com.surya.david.up2you.ProfileActivity"
             android:screenOrientation="portrait" />
-        <activity android:name="com.surya.david.up2you.EditProfileActivity" />
+        <activity
+            android:name="com.surya.david.up2you.EditProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.surya.david.up2you.ResultSearchForumActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.google.firebase.auth.internal.FederatedSignInActivity"
             android:excludeFromRecents="true"

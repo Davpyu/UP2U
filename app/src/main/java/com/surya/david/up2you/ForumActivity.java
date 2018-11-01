@@ -51,7 +51,7 @@ import butterknife.OnClick;
 public class ForumActivity extends AppCompatActivity {
 
     public static final String EXTRADATA = "EXTRADATA";
-    String key;
+    String key,key2;
     FirebaseDatabase mDatabase;
     DatabaseReference mRef, mSref, mKref;
     FirebaseAuth mAuth;
@@ -107,6 +107,7 @@ public class ForumActivity extends AppCompatActivity {
         setContentView(R.layout.activity_forum);
         ButterKnife.bind(this);
         key = getIntent().getStringExtra(ForumFragment.DATA);
+        key2 = getIntent().getStringExtra(ResultSearchForumActivity.DATA);
         listComment.setHasFixedSize(true);
         listComment.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         update = findViewById(R.id.update);
@@ -114,7 +115,11 @@ public class ForumActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         mRef = mDatabase.getReference("threads");
-        mKref = mDatabase.getReference("threads").child(key);
+        if (key != null){
+            mKref = mDatabase.getReference("threads").child(key);
+        }else if(key2 !=null){
+            mKref = mDatabase.getReference("threads").child(key2);
+        }
         mSref = mDatabase.getReference("Users");
         query = mKref.child("comment");
         listComment.setFocusable(false);
@@ -335,69 +340,136 @@ public class ForumActivity extends AppCompatActivity {
     }
 
     private void configureForum() {
-        mRef.orderByChild("key").equalTo(key).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot forumSnapshot : dataSnapshot.getChildren()) {
-                    Thread thr = forumSnapshot.getValue(Thread.class);
-                    Picasso.get().load(Objects.requireNonNull(thr).getImageUrl()).into(imgThread, new Callback() {
-                        @Override
-                        public void onSuccess() {
-
-                        }
-
-                        @Override
-                        public void onError(Exception e) {
-                            Log.d("Forum", e.getMessage());
-                        }
-                    });
-                    titleThread.setText(thr.getJudul());
-                    desc.setText(thr.getIsi());
-                    tag.setText(thr.getTag());
-                    kThread.setText(thr.getKategori());
-                    date.setText(thr.getDate());
-                    final String uid = thr.getUserId();
-                    mSref.orderByKey().equalTo(uid).addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            for (DataSnapshot data : dataSnapshot.getChildren()) {
-                                user ur = data.getValue(user.class);
-                                usr.setText(ur.getName());
-                                usr.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        Intent intent = new Intent(ForumActivity.this, ProfileActivity.class);
-                                        intent.putExtra(EXTRADATA, uid);
-                                        startActivity(intent);
-                                    }
-                                });
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-                            Log.d("username", databaseError.getCode() + "" + databaseError.getMessage());
-                        }
-                    });
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.d("Forum", databaseError.getMessage());
-            }
-        });
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            scroll.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+        if (key != null){
+            mRef.orderByChild("key").equalTo(key).addValueEventListener(new ValueEventListener() {
                 @Override
-                public void onScrollChange(View view, int i, int i1, int i2, int i3) {
-                    if (i1 > i3 && komentar.getVisibility() == View.VISIBLE) {
-                        komentar.setVisibility(View.GONE);
-                    } else if (i1 < i3) {
-                        komentar.setVisibility(View.VISIBLE);
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot forumSnapshot : dataSnapshot.getChildren()) {
+                        Thread thr = forumSnapshot.getValue(Thread.class);
+                        Picasso.get().load(Objects.requireNonNull(thr).getImageUrl()).into(imgThread, new Callback() {
+                            @Override
+                            public void onSuccess() {
+
+                            }
+
+                            @Override
+                            public void onError(Exception e) {
+                                Log.d("Forum", e.getMessage());
+                            }
+                        });
+                        titleThread.setText(thr.getJudul());
+                        desc.setText(thr.getIsi());
+                        tag.setText(thr.getTag());
+                        kThread.setText(thr.getKategori());
+                        date.setText(thr.getDate());
+                        final String uid = thr.getUserId();
+                        mSref.orderByKey().equalTo(uid).addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                for (DataSnapshot data : dataSnapshot.getChildren()) {
+                                    user ur = data.getValue(user.class);
+                                    usr.setText(ur.getName());
+                                    usr.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            Intent intent = new Intent(ForumActivity.this, ProfileActivity.class);
+                                            intent.putExtra(EXTRADATA, uid);
+                                            startActivity(intent);
+                                        }
+                                    });
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                Log.d("username", databaseError.getCode() + "" + databaseError.getMessage());
+                            }
+                        });
                     }
                 }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Log.d("Forum", databaseError.getMessage());
+                }
             });
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                scroll.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+                    @Override
+                    public void onScrollChange(View view, int i, int i1, int i2, int i3) {
+                        if (i1 > i3 && komentar.getVisibility() == View.VISIBLE) {
+                            komentar.setVisibility(View.GONE);
+                        } else if (i1 < i3) {
+                            komentar.setVisibility(View.VISIBLE);
+                        }
+                    }
+                });
+            }
+        }else if(key2 != null){
+            mRef.orderByChild("key").equalTo(key2).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot forumSnapshot : dataSnapshot.getChildren()) {
+                        Thread thr = forumSnapshot.getValue(Thread.class);
+                        Picasso.get().load(Objects.requireNonNull(thr).getImageUrl()).into(imgThread, new Callback() {
+                            @Override
+                            public void onSuccess() {
+
+                            }
+
+                            @Override
+                            public void onError(Exception e) {
+                                Log.d("Forum", e.getMessage());
+                            }
+                        });
+                        titleThread.setText(thr.getJudul());
+                        desc.setText(thr.getIsi());
+                        tag.setText(thr.getTag());
+                        kThread.setText(thr.getKategori());
+                        date.setText(thr.getDate());
+                        final String uid = thr.getUserId();
+                        mSref.orderByKey().equalTo(uid).addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                for (DataSnapshot data : dataSnapshot.getChildren()) {
+                                    user ur = data.getValue(user.class);
+                                    usr.setText(ur.getName());
+                                    usr.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            Intent intent = new Intent(ForumActivity.this, ProfileActivity.class);
+                                            intent.putExtra(EXTRADATA, uid);
+                                            startActivity(intent);
+                                        }
+                                    });
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                Log.d("username", databaseError.getCode() + "" + databaseError.getMessage());
+                            }
+                        });
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Log.d("Forum", databaseError.getMessage());
+                }
+            });
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                scroll.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+                    @Override
+                    public void onScrollChange(View view, int i, int i1, int i2, int i3) {
+                        if (i1 > i3 && komentar.getVisibility() == View.VISIBLE) {
+                            komentar.setVisibility(View.GONE);
+                        } else if (i1 < i3) {
+                            komentar.setVisibility(View.VISIBLE);
+                        }
+                    }
+                });
+            }
         }
     }
 
