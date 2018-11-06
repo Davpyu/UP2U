@@ -14,6 +14,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -28,6 +30,7 @@ import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 
@@ -36,15 +39,13 @@ import butterknife.Unbinder;
  */
 public class NewsFragment extends Fragment {
     public static final String EXTRA_DATA = "EXTRADATA";
+    public static final String SEARCH = "SEARCH";
     @BindView(R.id.bnv)
     BottomNavigationView bnv;
-    @BindView(R.id.bs_sort)
-    LinearLayout bsSort;
     @BindView(R.id.bs_filter)
     LinearLayout bsFilter;
     @BindView(R.id.bs_search)
     LinearLayout bsSearch;
-    BottomSheetBehavior sheetBehavior;
     BottomSheetBehavior bottomSheetBehavior;
     BottomSheetBehavior behavior;
     @BindView(R.id.co_layout)
@@ -57,8 +58,14 @@ public class NewsFragment extends Fragment {
     DatabaseReference mRef;
     FirebaseRecyclerAdapter<news, NewsAdapter> firebaseRecyclerAdapter;
     FirebaseRecyclerOptions<news> options;
-    @BindView(R.id.progress)
-    ProgressBar progress;
+    @BindView(R.id.closefilter)
+    ImageView closefilter;
+    @BindView(R.id.searchtext)
+    EditText searchtext;
+    @BindView(R.id.searchimage)
+    ImageView searchimage;
+    @BindView(R.id.close)
+    ImageView close;
 
     public NewsFragment() {
         // Required empty public constructor
@@ -70,6 +77,8 @@ public class NewsFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootview = inflater.inflate(R.layout.fragment_news, container, false);
         unbinder = ButterKnife.bind(this, rootview);
+        bottomSheetBehavior = BottomSheetBehavior.from(bsFilter);
+        behavior = BottomSheetBehavior.from(bsSearch);
         listNews.setHasFixedSize(true);
         listNews.setLayoutManager(new LinearLayoutManager(getContext()));
         mDatabase = FirebaseDatabase.getInstance();
@@ -102,6 +111,8 @@ public class NewsFragment extends Fragment {
                         int id = firebaseRecyclerAdapter.getItem(position).getId_berita();
                         Intent intent = new Intent(getContext(), NewsActivity.class);
                         intent.putExtra(EXTRA_DATA, id);
+                        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                        behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                         startActivity(intent);
                     }
                 });
@@ -114,7 +125,6 @@ public class NewsFragment extends Fragment {
                 return new NewsAdapter(view);
             }
         };
-        progress.setVisibility(View.INVISIBLE);
         firebaseRecyclerAdapter.startListening();
         listNews.setAdapter(firebaseRecyclerAdapter);
         listNews.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -124,6 +134,8 @@ public class NewsFragment extends Fragment {
                 if (dy > 0 && bnv.isShown()) {
                     bnv.setVisibility(View.GONE);
                     coLayout.setVisibility(View.GONE);
+                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                    behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                 } else if (dy < 0) {
                     bnv.setVisibility(View.VISIBLE);
                     coLayout.setVisibility(View.VISIBLE);
@@ -145,36 +157,11 @@ public class NewsFragment extends Fragment {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int itemId = item.getItemId();
-                sheetBehavior = BottomSheetBehavior.from(bsSort);
-                bottomSheetBehavior = BottomSheetBehavior.from(bsFilter);
-                behavior = BottomSheetBehavior.from(bsSearch);
-                if (itemId == R.id.sort) {
-
-                    if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
-                        sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-                        if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-                            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                        } else if (behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-                            behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                        } else if ((bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED || behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) && sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-                            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                            behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                        }
-                    } else {
-                        sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                    }
-
-                    return true;
-                } else if (itemId == R.id.filter) {
+                if (itemId == R.id.filter) {
 
                     if (bottomSheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
                         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-                        if (sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-                            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                        } else if (behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-                            behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                        } else if ((sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED || behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) && bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-                            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                        if (behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
                             behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                         }
                     } else {
@@ -186,12 +173,7 @@ public class NewsFragment extends Fragment {
 
                     if (behavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
                         behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-                        if (sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-                            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                        } else if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-                            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                        } else if ((sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED || bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) && behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-                            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                        if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
                             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                         }
                     } else {
@@ -203,5 +185,26 @@ public class NewsFragment extends Fragment {
                 return false;
             }
         });
+    }
+
+
+    @OnClick(R.id.closefilter)
+    public void onClosefilterClicked() {
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+    }
+
+    @OnClick(R.id.searchimage)
+    public void onSearchimageClicked() {
+        String searchquery= searchtext.getText().toString().trim();
+        Intent intent = new Intent(getActivity(), ResultSearchNewsActivity.class);
+        intent.putExtra(SEARCH, searchquery);
+        searchtext.setText("");
+        behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.close)
+    public void onViewClicked() {
+        behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
     }
 }

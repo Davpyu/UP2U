@@ -53,13 +53,11 @@ public class ForumFragment extends Fragment {
     FloatingActionButton addThread;
     @BindView(R.id.bnv)
     BottomNavigationView bnv;
-    @BindView(R.id.bs_sort)
-    LinearLayout bsSort;
     @BindView(R.id.bs_filter)
     LinearLayout bsFilter;
     @BindView(R.id.bs_search)
     LinearLayout bsSearch;
-    BottomSheetBehavior bottomSheetBehavior, sheetBehavior, behavior;
+    BottomSheetBehavior bottomSheetBehavior, behavior;
     @BindView(R.id.co_layout)
     CoordinatorLayout coLayout;
     Unbinder unbinder;
@@ -71,8 +69,6 @@ public class ForumFragment extends Fragment {
     FirebaseRecyclerOptions<Thread> options;
     @BindView(R.id.close)
     ImageView close;
-    @BindView(R.id.closesort)
-    ImageView closesort;
     @BindView(R.id.closefilter)
     ImageView closefilter;
     @BindView(R.id.searchtext)
@@ -91,9 +87,9 @@ public class ForumFragment extends Fragment {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_forum, container, false);
         unbinder = ButterKnife.bind(this, view);
-        sheetBehavior = BottomSheetBehavior.from(bsSort);
         bottomSheetBehavior = BottomSheetBehavior.from(bsFilter);
         behavior = BottomSheetBehavior.from(bsSearch);
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         configureBnv();
         listThread.setHasFixedSize(true);
         listThread.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -138,6 +134,8 @@ public class ForumFragment extends Fragment {
                         String key = firebaseRecyclerAdapter.getItem(position).getKey();
                         Intent intent = new Intent(getContext(), ForumActivity.class);
                         intent.putExtra(DATA, key);
+                        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                        behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                         startActivity(intent);
                     }
                 });
@@ -186,14 +184,8 @@ public class ForumFragment extends Fragment {
             @NonNull
             @Override
             public ForumViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                Thread model = new Thread();
-//                if (model.getImageUrl() != null) {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.lounge_item, parent, false);
                 return new ForumViewHolder(view);
-//                }else {
-//                    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.lounge_item_noimg, parent, false);
-//                    return new ForumViewHolder(view);
-//                }
             }
         };
         firebaseRecyclerAdapter.startListening();
@@ -207,7 +199,6 @@ public class ForumFragment extends Fragment {
                     coLayout.setVisibility(View.GONE);
                     addThread.setVisibility(View.GONE);
                     bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                    sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                     behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                 } else if (dy < 0) {
                     bnv.setVisibility(View.VISIBLE);
@@ -225,36 +216,12 @@ public class ForumFragment extends Fragment {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int itemId = item.getItemId();
-                if (itemId == R.id.sort) {
-
-                    if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
-                        sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-                        addThread.setVisibility(View.GONE);
-                        if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-                            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                        } else if (behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-                            behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                        } else if ((bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED || behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) && sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-                            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                            behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                        }
-                    } else {
-                        sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                        addThread.setVisibility(View.VISIBLE);
-                    }
-
-                    return true;
-                } else if (itemId == R.id.filter) {
+                if (itemId == R.id.filter) {
 
                     if (bottomSheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
                         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
                         addThread.setVisibility(View.GONE);
-                        if (sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-                            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                        } else if (behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-                            behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                        } else if ((sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED || behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) && bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-                            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                        if (behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
                             behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                         }
                     } else {
@@ -268,12 +235,7 @@ public class ForumFragment extends Fragment {
                     if (behavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
                         behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
                         addThread.setVisibility(View.GONE);
-                        if (sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-                            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                        } else if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-                            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                        } else if ((sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED || bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) && behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-                            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                        if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
                             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                         }
                     } else {
@@ -306,11 +268,6 @@ public class ForumFragment extends Fragment {
         addThread.setVisibility(View.VISIBLE);
     }
 
-    @OnClick(R.id.closesort)
-    public void onClosesortClicked() {
-        sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-        addThread.setVisibility(View.VISIBLE);
-    }
 
     @OnClick(R.id.closefilter)
     public void onClosefilterClicked() {
@@ -324,6 +281,7 @@ public class ForumFragment extends Fragment {
         Intent intent = new Intent(getActivity(), ResultSearchForumActivity.class);
         intent.putExtra(SEARCH, searchquery);
         search.setText("");
+        behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         startActivity(intent);
     }
 }

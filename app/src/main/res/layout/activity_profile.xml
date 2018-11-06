@@ -14,7 +14,8 @@
 
         <include layout="@layout/toolbar" />
 
-        <RelativeLayout
+        <ImageView
+            android:id="@+id/fotosampul"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_below="@id/toolbar"
@@ -25,7 +26,8 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="150dp" />
+            android:layout_marginTop="150dp"
+            android:src="@drawable/profile"/>
 
         <TextView
             android:id="@+id/usr_nm"

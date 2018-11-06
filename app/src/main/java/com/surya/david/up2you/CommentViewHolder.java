@@ -11,8 +11,8 @@ public class CommentViewHolder extends RecyclerView.ViewHolder {
     CircleImageView profileimg;
     public CommentViewHolder(View itemView) {
         super(itemView);
-        name = (TextView) itemView.findViewById(R.id.nm_user);
-        isi = (TextView) itemView.findViewById(R.id.isikomen);
-        profileimg = (CircleImageView) itemView.findViewById(R.id.img_profile);
+        name = itemView.findViewById(R.id.nm_user);
+        isi = itemView.findViewById(R.id.isikomen);
+        profileimg = itemView.findViewById(R.id.img_profile);
     }
 }

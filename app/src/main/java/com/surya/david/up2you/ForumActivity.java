@@ -128,9 +128,28 @@ public class ForumActivity extends AppCompatActivity {
         komentar.bringToFront();
         coLayout.bringToFront();
         coLayout1.bringToFront();
+        configurepp();
         configureForum();
         configureComment();
         configureToolbar();
+    }
+
+    private void configurepp() {
+        String uid = mUser.getUid();
+        mSref.child(uid).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                user ur = dataSnapshot.getValue(user.class);
+                String ft = Objects.requireNonNull(ur).getFoto();
+                if (ft != null && !ft.equals("")){
+                    Picasso.get().load(ft).into(imgProfile);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.d("Comment", databaseError.getCode() + "" + databaseError.getMessage());
+            }
+        });
     }
 
     private void configureComment() {
@@ -144,29 +163,29 @@ public class ForumActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for (DataSnapshot bla : dataSnapshot.getChildren()) {
                             user ur = bla.getValue(user.class);
-                            holder.name.setText(ur.getName());
-//                            Picasso.get()
-//                                    .load(ur.getFoto())
-//                                    .placeholder(R.mipmap.ic_launcher)
-//                                    .into(holder.profileimg, new Callback() {
-//                                        @Override
-//                                        public void onSuccess() {
-//
-//                                        }
-//
-//                                        @Override
-//                                        public void onError(Exception e) {
-//                                            Log.d("Profile Image", e.getMessage());
-//                                            Toast.makeText(ForumActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
-//                                        }
-//                                    });
+                            holder.name.setText(Objects.requireNonNull(ur).getName());
+                            String ft = ur.getFoto();
+                            if (ft != null && !ft.equals("")){
+                                Picasso.get().load(ft).into(holder.profileimg, new Callback() {
+                                    @Override
+                                    public void onSuccess() {
+
+                                    }
+
+                                    @Override
+                                    public void onError(Exception e) {
+                                        Log.d("Profile Image", e.getMessage());
+                                    }
+                                });
+                            }else if(ft == null || ft.equals("")){
+                                Picasso.get().load(R.drawable.profile).into(holder.profileimg);
+                            }
                         }
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
                         Log.d("Comment", databaseError.getCode() + "" + databaseError.getMessage());
-                        Toast.makeText(ForumActivity.this, databaseError.getCode() + "" + databaseError.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -174,7 +193,6 @@ public class ForumActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         String uid = firebaseRecyclerAdapter.getItem(position).getUserId();
                         if (mUser.getUid().equals(uid)){
-//                            Toast.makeText(ForumActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
                             final String[] listItem = getResources().getStringArray(R.array.menu);
                             AlertDialog.Builder mBuild = new AlertDialog.Builder(ForumActivity.this);
                             mBuild.setTitle("What do you want to do?");

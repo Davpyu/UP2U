@@ -155,10 +155,19 @@ public class AddThreadActivity extends AppCompatActivity {
             isithread.requestFocus();
             return;
         }
-        if (isi.length() < 500){
-            isithread.setError("Please fill content more than 500");
-            isithread.requestFocus();
-            return;
+        if (tg.equals("#fyi")){
+            if (isi.length() < 500){
+                isithread.setError("Please fill content more than 500");
+                isithread.requestFocus();
+                return;
+            }
+        }
+        if (tg.equals("#ask")){
+            if (isi.length() < 10){
+                isithread.setError("Please fill content more than 10");
+                isithread.requestFocus();
+                return;
+            }
         }
         if (imgUri != null) {
             th.putFile(imgUri)

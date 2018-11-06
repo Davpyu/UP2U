@@ -61,10 +61,13 @@
         <activity
             android:name=".ProfileActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".EditProfileActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ResultSearchForumActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".EditProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ResultSearchForumActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ResultSearchNewsActivity"></activity>
     </application>
 
 </manifest>

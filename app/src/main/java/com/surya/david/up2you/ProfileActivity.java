@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -18,6 +20,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
 
@@ -53,6 +57,14 @@ public class ProfileActivity extends AppCompatActivity {
     @BindView(R.id.edit_profile)
     FloatingActionButton editProfile;
     String uid;
+    @BindView(R.id.fotosampul)
+    ImageView fotosampul;
+    @BindView(R.id.bd)
+    TextView bd;
+    @BindView(R.id.layout1)
+    LinearLayout layout1;
+    @BindView(R.id.gd)
+    TextView gd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,10 +76,10 @@ public class ProfileActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         uid = getIntent().getStringExtra(ForumActivity.EXTRADATA);
-        if (uid != null){
-            if (uid.equals(mUser.getUid())){
+        if (uid != null) {
+            if (uid.equals(mUser.getUid())) {
                 editProfile.setVisibility(View.VISIBLE);
-            }else{
+            } else {
                 editProfile.setVisibility(View.GONE);
             }
         }
@@ -88,7 +100,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void configureUser() {
-        if (uid != null){
+        if (uid != null) {
             mRef.child(uid).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -97,12 +109,17 @@ public class ProfileActivity extends AppCompatActivity {
                     String bo = ur.getBio();
                     if (bo != null && !bo.equals("")) {
                         bio.setText(bo);
-                    }else if (bo == null || bo.equals("")){
-                        if (ur.getJen_kel().equals("Laki Laki")){
+                    } else if (bo == null || bo.equals("")) {
+                        if (ur.getJen_kel().equals("Laki Laki")) {
                             bio.setText(R.string.bionullhim);
-                        }if (ur.getJen_kel().equals("Perempuan")){
+                        }
+                        if (ur.getJen_kel().equals("Perempuan")) {
                             bio.setText(R.string.bionullher);
                         }
+                    }
+                    String ft = ur.getFoto();
+                    if (ft != null && !ft.equals("")){
+                        Picasso.get().load(ft).into(imgProfile);
                     }
                     email.setText(ur.getEmail());
                     birth.setText(ur.getTl());
@@ -116,7 +133,7 @@ public class ProfileActivity extends AppCompatActivity {
                     Log.d("Profile", databaseError.getCode() + "" + databaseError.getMessage());
                 }
             });
-        }else{
+        } else {
             mRef.child(Objects.requireNonNull(mUser).getUid()).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -125,8 +142,12 @@ public class ProfileActivity extends AppCompatActivity {
                     String bo = ur.getBio();
                     if (bo != null && !bo.equals("")) {
                         bio.setText(bo);
-                    }else if (bo == null || bo.equals("")){
+                    } else if (bo == null || bo.equals("")) {
                         bio.setText(R.string.bionullme);
+                    }
+                    String ft = ur.getFoto();
+                    if (ft != null && !ft.equals("")){
+                        Picasso.get().load(ft).into(imgProfile);
                     }
                     email.setText(ur.getEmail());
                     birth.setText(ur.getTl());

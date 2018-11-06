@@ -4,6 +4,7 @@ public class user {
     public String name, email, jen_kel, tl, bio, foto;
     public Boolean status;
 
+
     public String getName() {
         return name;
     }
@@ -63,14 +64,13 @@ public class user {
     public user() {
     }
 
-    public user(String name, String email, String jen_kel, String tl, String bio, String foto, Boolean stts) {
-
+    public user(String name, String email, String jen_kel, String tl, String bio, String foto, Boolean status) {
         this.name = name;
         this.email = email;
         this.jen_kel = jen_kel;
         this.tl = tl;
         this.bio = bio;
         this.foto = foto;
-        this.status = stts;
+        this.status = status;
     }
 }

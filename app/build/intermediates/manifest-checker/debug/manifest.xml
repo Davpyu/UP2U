@@ -84,6 +84,7 @@
         <activity
             android:name="com.surya.david.up2you.ResultSearchForumActivity"
             android:screenOrientation="portrait" />
+        <activity android:name="com.surya.david.up2you.ResultSearchNewsActivity" />
         <activity
             android:name="com.google.firebase.auth.internal.FederatedSignInActivity"
             android:excludeFromRecents="true"

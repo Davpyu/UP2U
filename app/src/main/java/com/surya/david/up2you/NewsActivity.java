@@ -18,6 +18,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
+import java.util.Objects;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -39,7 +41,7 @@ public class NewsActivity extends AppCompatActivity {
     TextView kNews;
     @BindView(R.id.author)
     TextView author;
-    int id;
+    int id,id2;
     @BindView(R.id.img_news)
     ImageView imgNews;
     @BindView(R.id.drawer_layout)
@@ -54,42 +56,77 @@ public class NewsActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance();
         mReference = mDatabase.getReference().child("news");
         id = getIntent().getIntExtra(NewsFragment.EXTRA_DATA, 0);
+        id2 = getIntent().getIntExtra(ResultSearchNewsActivity.EXTRA_DATA, 0);
         configureNews();
         configureToolbar();
     }
 
     private void configureNews() {
-        mReference.orderByChild("id_berita").equalTo(id).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot newsSnapshot : dataSnapshot.getChildren()) {
-                    news nws = newsSnapshot.getValue(news.class);
-                    titleNews.setText(nws.getTitle());
-                    kota.setText(nws.getKota());
-                    date.setText(nws.getDate());
-                    desc.setText(nws.getIsi());
-                    author.setText(nws.getAuthor());
-                    kNews.setText(nws.getKategori());
-                    Picasso.get().load(nws.getImage()).into(imgNews, new Callback() {
-                        @Override
-                        public void onSuccess() {
+        if (!String.valueOf(id).equals("0")){
+            mReference.orderByChild("id_berita").equalTo(id).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot newsSnapshot : dataSnapshot.getChildren()) {
+                        news nws = newsSnapshot.getValue(news.class);
+                        titleNews.setText(Objects.requireNonNull(nws).getTitle());
+                        kota.setText(nws.getKota());
+                        date.setText(nws.getDate());
+                        desc.setText(nws.getIsi());
+                        author.setText(nws.getAuthor());
+                        kNews.setText(nws.getKategori());
+                        Picasso.get().load(nws.getImage()).into(imgNews, new Callback() {
+                            @Override
+                            public void onSuccess() {
 
-                        }
+                            }
 
-                        @Override
-                        public void onError(Exception e) {
-                            Log.d("news", e.getMessage());
-                        }
-                    });
+                            @Override
+                            public void onError(Exception e) {
+                                Log.d("news", e.getMessage());
+                            }
+                        });
+                    }
+
                 }
 
-            }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Log.d("News", databaseError.getCode() + "" + databaseError.getMessage());
+                }
+            });
+        }else if(!String.valueOf(id2).equals("0")){
+            mReference.orderByChild("id_berita").equalTo(id2).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot newsSnapshot : dataSnapshot.getChildren()) {
+                        news nws = newsSnapshot.getValue(news.class);
+                        titleNews.setText(Objects.requireNonNull(nws).getTitle());
+                        kota.setText(nws.getKota());
+                        date.setText(nws.getDate());
+                        desc.setText(nws.getIsi());
+                        author.setText(nws.getAuthor());
+                        kNews.setText(nws.getKategori());
+                        Picasso.get().load(nws.getImage()).into(imgNews, new Callback() {
+                            @Override
+                            public void onSuccess() {
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+                            }
 
-            }
-        });
+                            @Override
+                            public void onError(Exception e) {
+                                Log.d("news", e.getMessage());
+                            }
+                        });
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Log.d("News", databaseError.getCode() + "" + databaseError.getMessage());
+                }
+            });
+        }
     }
 
     private void configureToolbar() {

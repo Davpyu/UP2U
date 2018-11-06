@@ -20,6 +20,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +32,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
+
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -65,12 +70,24 @@ public class HomeActivity extends AppCompatActivity {
     private void configureUser() {
         View header = navigationView.getHeaderView(0);
         final TextView usrnm = (TextView)header.findViewById(R.id.nm_profile);
+        final ImageView usrimg = header.findViewById(R.id.usr_profile);
         if (ur != null){
             mDatabase.child("Users").child(ur.getUid()).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     user usr = dataSnapshot.getValue(user.class);
-                    usrnm.setText(usr.getName());
+                    usrnm.setText(Objects.requireNonNull(usr).getName());
+                    Picasso.get().load(usr.getFoto()).into(usrimg, new Callback() {
+                        @Override
+                        public void onSuccess() {
+
+                        }
+
+                        @Override
+                        public void onError(Exception e) {
+                            Toast.makeText(HomeActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
 
                 @Override
