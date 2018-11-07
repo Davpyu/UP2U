@@ -56,6 +56,8 @@ public class GeneralSettingActivity extends AppCompatActivity {
 
     @OnClick(R.id.change_email)
     public void onChangeEmailClicked() {
+        Intent intent = new Intent(getApplicationContext(), ChangeEmailActivity.class);
+        startActivity(intent);
     }
 
     @OnClick(R.id.change_pw)

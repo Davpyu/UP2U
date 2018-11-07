@@ -77,17 +77,19 @@ public class HomeActivity extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     user usr = dataSnapshot.getValue(user.class);
                     usrnm.setText(Objects.requireNonNull(usr).getName());
-                    Picasso.get().load(usr.getFoto()).into(usrimg, new Callback() {
-                        @Override
-                        public void onSuccess() {
+                    if (usr.getFoto() != null && !usr.getFoto().equals("")){
+                        Picasso.get().load(usr.getFoto()).into(usrimg, new Callback() {
+                            @Override
+                            public void onSuccess() {
 
-                        }
+                            }
 
-                        @Override
-                        public void onError(Exception e) {
-                            Toast.makeText(HomeActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                            @Override
+                            public void onError(Exception e) {
+                                Toast.makeText(HomeActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
                 }
 
                 @Override

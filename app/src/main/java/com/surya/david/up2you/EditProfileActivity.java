@@ -180,7 +180,7 @@ public class EditProfileActivity extends AppCompatActivity {
     public void onViewClicked() {
         final String username = nmProfile.getText().toString().trim();
         final String desc = bio.getText().toString().trim();
-        if (!username.equals("") || !desc.equals("")) {
+        if (!username.equals("")) {
             if (imgUri != null) {
                 final StorageReference pp = mSRef.child(uid).child(uid + "_1." + getFileExtension(imgUri));
                 pp.putFile(imgUri)
@@ -208,7 +208,11 @@ public class EditProfileActivity extends AppCompatActivity {
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                         progressbar.setVisibility(View.GONE);
                                         dataSnapshot.getRef().child("name").setValue(username);
-                                        dataSnapshot.getRef().child("bio").setValue(desc);
+                                        if (!desc.equals("")){
+                                            dataSnapshot.getRef().child("bio").setValue(desc);
+                                        }else if (desc.equals("")){
+                                            dataSnapshot.getRef().child("bio").setValue("");
+                                        }
                                         dataSnapshot.getRef().child("foto").setValue(fotoprofil);
                                         Toast.makeText(EditProfileActivity.this, "Profile Updated !!!", Toast.LENGTH_SHORT).show();
                                         finish();
@@ -227,7 +231,11 @@ public class EditProfileActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         progressbar.setVisibility(View.GONE);
                         dataSnapshot.getRef().child("name").setValue(username);
-                        dataSnapshot.getRef().child("bio").setValue(desc);
+                        if (!desc.equals("")){
+                            dataSnapshot.getRef().child("bio").setValue(desc);
+                        }else if (desc.equals("")){
+                            dataSnapshot.getRef().child("bio").setValue("");
+                        }
                         Toast.makeText(EditProfileActivity.this, "Profile Updated !!!", Toast.LENGTH_SHORT).show();
                         finish();
                     }
@@ -237,15 +245,11 @@ public class EditProfileActivity extends AppCompatActivity {
                         Log.d("Profile", databaseError.getCode() + "" + databaseError.getMessage());
                     }
                 });
-//                Toast.makeText(EditProfileActivity.this, "Please choose image for Photo Profile", Toast.LENGTH_SHORT).show();
             }
         } else {
             if (username.equals("")) {
                 nmProfile.setError("Please fill this field");
                 nmProfile.requestFocus();
-            } else if (desc.equals("")) {
-                bio.setError("Please fill this field");
-                bio.requestFocus();
             }
         }
     }

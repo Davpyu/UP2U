@@ -15,7 +15,7 @@ import java.lang.Override;
 public class ForgotPasswordActivity_ViewBinding implements Unbinder {
   private ForgotPasswordActivity target;
 
-  private View view2131296526;
+  private View view2131296529;
 
   @UiThread
   public ForgotPasswordActivity_ViewBinding(ForgotPasswordActivity target) {
@@ -29,7 +29,7 @@ public class ForgotPasswordActivity_ViewBinding implements Unbinder {
     View view;
     view = Utils.findRequiredView(source, R.id.submit_email, "field 'submitemail' and method 'onViewClicked'");
     target.submitemail = Utils.castView(view, R.id.submit_email, "field 'submitemail'", Button.class);
-    view2131296526 = view;
+    view2131296529 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -49,7 +49,7 @@ public class ForgotPasswordActivity_ViewBinding implements Unbinder {
     target.submitemail = null;
     target.email = null;
 
-    view2131296526.setOnClickListener(null);
-    view2131296526 = null;
+    view2131296529.setOnClickListener(null);
+    view2131296529 = null;
   }
 }
