@@ -20,7 +20,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -57,6 +60,10 @@ public class ChangeEmailActivity extends AppCompatActivity {
     DatabaseReference mRef;
     @BindView(R.id.tryagain)
     Button tryagain;
+    @BindView(R.id.titlee)
+    TextView titlee;
+    @BindView(R.id.password)
+    EditText password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +81,7 @@ public class ChangeEmailActivity extends AppCompatActivity {
         tryagain.setVisibility(View.GONE);
         send.setVisibility(View.GONE);
         titleemail.setVisibility(View.GONE);
+        email.setVisibility(View.GONE);
         configureLayout();
         configureToolbar();
     }
@@ -124,42 +132,72 @@ public class ChangeEmailActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        final String eml = email.getText().toString().trim();
-        if (eml.isEmpty()) {
-            email.setError("Please fill this field");
-            email.requestFocus();
+        final String pass = password.getText().toString().trim();
+        if (pass.isEmpty()) {
+            password.setError("Please fill this field");
+            password.requestFocus();
         }
-        if (!Patterns.EMAIL_ADDRESS.matcher(eml).matches()) {
-            email.setError("Enter a valid email");
-            email.requestFocus();
-        }
-        if (!eml.isEmpty()){
+        if (!pass.isEmpty()) {
             notverify.setVisibility(View.VISIBLE);
             progress.setVisibility(View.VISIBLE);
             titleemail.setVisibility(View.GONE);
             send.setVisibility(View.GONE);
             tryagain.setVisibility(View.GONE);
-            mUser.updateEmail(eml).addOnCompleteListener(new OnCompleteListener<Void>() {
+            String emailcurrent = mUser.getEmail();
+            AuthCredential credential = EmailAuthProvider.getCredential(emailcurrent, pass);
+            mUser.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
                         progress.setVisibility(View.GONE);
-                        mRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                dataSnapshot.getRef().child("email").setValue(eml);
-                                mUser.reload();
-                                finish();
-                            }
+                        titlee.setText("Change your Email");
+                        email.setVisibility(View.VISIBLE);
+                        password.setVisibility(View.GONE);
+                        final String em = email.getText().toString().trim();
+                        if (em.isEmpty()) {
+                            email.setError("Please fill this field");
+                            email.requestFocus();
+                        }
+                        if (!Patterns.EMAIL_ADDRESS.matcher(em).matches()) {
+                            email.setError("Enter a valid email");
+                            email.requestFocus();
+                        }
+                        if (!em.isEmpty()) {
+                            progress.setVisibility(View.VISIBLE);
+                            mUser.updateEmail(em).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        progress.setVisibility(View.GONE);
+                                        mRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                dataSnapshot.getRef().child("email").setValue(em);
+                                                Toast.makeText(ChangeEmailActivity.this, "Email Changed", Toast.LENGTH_SHORT).show();
+                                                titleemail.setVisibility(View.VISIBLE);
+                                                titleemail.setText("Email Updated!!\nPlease check on your inbox");
+                                            }
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-                                Log.d("Update Email", databaseError.getCode() + "" + databaseError.getMessage());
-                            }
-                        });
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                                Log.d("Update Email", databaseError.getCode() + "" + databaseError.getMessage());
+                                            }
+                                        });
+                                    }
+                                }
+                            });
+                        }
                     }
                 }
-            });
+            })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            progress.setVisibility(View.GONE);
+                            Toast.makeText(ChangeEmailActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Log.d("Reauthenticate", e.getMessage());
+                        }
+                    });
         }
         return true;
     }
@@ -208,7 +246,7 @@ public class ChangeEmailActivity extends AppCompatActivity {
                     mUser.reload();
                     progress.setVisibility(View.GONE);
                     configureLayout();
-                }else{
+                } else {
                     dataSnapshot.getRef().child("status").setValue(false);
                     mUser.reload();
                     progress.setVisibility(View.GONE);

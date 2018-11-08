@@ -68,7 +68,8 @@
             android:name=".ResultSearchForumActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".ResultSearchNewsActivity" />
-        <activity android:name=".ChangeEmailActivity"></activity>
+        <activity android:name=".ChangeEmailActivity" />
+        <activity android:name=".ChangePasswordActivity"></activity>
     </application>
 
 </manifest>

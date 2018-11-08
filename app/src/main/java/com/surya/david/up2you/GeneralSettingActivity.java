@@ -62,5 +62,7 @@ public class GeneralSettingActivity extends AppCompatActivity {
 
     @OnClick(R.id.change_pw)
     public void onChangePwClicked() {
+        Intent intent = new Intent(getApplicationContext(), ChangePasswordActivity.class);
+        startActivity(intent);
     }
 }

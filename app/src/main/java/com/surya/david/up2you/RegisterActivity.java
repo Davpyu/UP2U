@@ -109,8 +109,13 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
         if (!pw.equals(con_pass)) {
-            confirmPass.setError("Password not valid, Please re-enter your vonfirm password");
+            confirmPass.setError("Password not valid, Please re-enter your confirm password");
             confirmPass.requestFocus();
+            return;
+        }
+        if (pw.length() < 6){
+            pass.setError("Password at least 6 character");
+            pass.requestFocus();
             return;
         }
         if (t_l.isEmpty() || t_l.equals("Tanggal Lahir")) {
