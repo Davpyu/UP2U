@@ -1,5 +1,6 @@
 package com.surya.david.up2you;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.widget.DrawerLayout;
@@ -41,8 +42,6 @@ public class ChangePasswordActivity extends AppCompatActivity {
     EditText confirmPassword;
     @BindView(R.id.ll1)
     LinearLayout ll1;
-    @BindView(R.id.progress)
-    ProgressBar progress;
     @BindView(R.id.drawerlayout)
     DrawerLayout drawerlayout;
     FirebaseAuth mAuth;
@@ -51,6 +50,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
     DatabaseReference mRef;
     @BindView(R.id.newpassword)
     EditText newpassword;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +62,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance();
         mRef = mDatabase.getReference("Users").child(mUser.getUid());
         ll1.setVisibility(View.GONE);
-        progress.setVisibility(View.GONE);
-        toolbar.setTitle("");
+        toolbar.setTitle("Update Password");
         configureToolbar();
     }
 
@@ -91,6 +90,9 @@ public class ChangePasswordActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         final String pass = password.getText().toString().trim();
         newpassword.setVisibility(View.INVISIBLE);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Please wait...");
+        progressDialog.setCancelable(false);
         if (pass.isEmpty()) {
             password.setError("Please fill your old password here");
             password.requestFocus();
@@ -98,12 +100,12 @@ public class ChangePasswordActivity extends AppCompatActivity {
         if (!pass.isEmpty()) {
             String email = mUser.getEmail();
             AuthCredential credential = EmailAuthProvider.getCredential(email, pass);
-            progress.setVisibility(View.VISIBLE);
+            progressDialog.show();
             mUser.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
-                        progress.setVisibility(View.GONE);
+                        progressDialog.hide();
                         titlee.setText("Enter your new password");
                         ll1.setVisibility(View.VISIBLE);
                         password.setVisibility(View.INVISIBLE);
@@ -127,12 +129,12 @@ public class ChangePasswordActivity extends AppCompatActivity {
                             password.requestFocus();
                         }
                         if (!newpass.isEmpty() && !conpass.isEmpty() && conpass.equals(newpass) && newpass.length() >= 6) {
-                            progress.setVisibility(View.VISIBLE);
+                            progressDialog.show();
                             mUser.updatePassword(newpass).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
-                                        progress.setVisibility(View.GONE);
+                                        progressDialog.hide();
                                         Toast.makeText(ChangePasswordActivity.this, "Password Updated", Toast.LENGTH_SHORT).show();
                                         finish();
                                     }
@@ -144,7 +146,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    progress.setVisibility(View.GONE);
+                    progressDialog.hide();
                     Toast.makeText(ChangePasswordActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     Log.d("Reauthenticate", e.getMessage());
                 }

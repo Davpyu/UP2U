@@ -1,9 +1,12 @@
 package com.surya.david.up2you;
 
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -46,8 +49,6 @@ public class ChangeEmailActivity extends AppCompatActivity {
     LinearLayout changeEmail;
     @BindView(R.id.titleemail)
     TextView titleemail;
-    @BindView(R.id.progress)
-    ProgressBar progress;
     @BindView(R.id.notverify)
     RelativeLayout notverify;
     @BindView(R.id.drawerlayout)
@@ -64,6 +65,7 @@ public class ChangeEmailActivity extends AppCompatActivity {
     TextView titlee;
     @BindView(R.id.password)
     EditText password;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,14 +76,16 @@ public class ChangeEmailActivity extends AppCompatActivity {
         mUser = mAuth.getCurrentUser();
         mDatabase = FirebaseDatabase.getInstance();
         mRef = mDatabase.getReference("Users").child(mUser.getUid());
-        toolbar.setTitle("");
+        toolbar.setTitle("Update Email");
         changeEmail.setVisibility(View.GONE);
         notverify.setVisibility(View.GONE);
-        progress.setVisibility(View.GONE);
         tryagain.setVisibility(View.GONE);
         send.setVisibility(View.GONE);
         titleemail.setVisibility(View.GONE);
         email.setVisibility(View.GONE);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Please wait...");
+        progressDialog.setCancelable(false);
         configureLayout();
         configureToolbar();
     }
@@ -98,7 +102,6 @@ public class ChangeEmailActivity extends AppCompatActivity {
                 } else {
                     changeEmail.setVisibility(View.GONE);
                     notverify.setVisibility(View.VISIBLE);
-                    progress.setVisibility(View.GONE);
                     tryagain.setVisibility(View.GONE);
                 }
             }
@@ -138,18 +141,14 @@ public class ChangeEmailActivity extends AppCompatActivity {
             password.requestFocus();
         }
         if (!pass.isEmpty()) {
-            notverify.setVisibility(View.VISIBLE);
-            progress.setVisibility(View.VISIBLE);
-            titleemail.setVisibility(View.GONE);
-            send.setVisibility(View.GONE);
-            tryagain.setVisibility(View.GONE);
             String emailcurrent = mUser.getEmail();
             AuthCredential credential = EmailAuthProvider.getCredential(emailcurrent, pass);
+            progressDialog.show();
             mUser.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
-                        progress.setVisibility(View.GONE);
+                        progressDialog.hide();
                         titlee.setText("Change your Email");
                         email.setVisibility(View.VISIBLE);
                         password.setVisibility(View.GONE);
@@ -163,12 +162,12 @@ public class ChangeEmailActivity extends AppCompatActivity {
                             email.requestFocus();
                         }
                         if (!em.isEmpty()) {
-                            progress.setVisibility(View.VISIBLE);
+                            progressDialog.show();
                             mUser.updateEmail(em).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
-                                        progress.setVisibility(View.GONE);
+                                        progressDialog.hide();
                                         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -193,7 +192,7 @@ public class ChangeEmailActivity extends AppCompatActivity {
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            progress.setVisibility(View.GONE);
+                            progressDialog.hide();
                             Toast.makeText(ChangeEmailActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                             Log.d("Reauthenticate", e.getMessage());
                         }
@@ -204,15 +203,15 @@ public class ChangeEmailActivity extends AppCompatActivity {
 
     @OnClick(R.id.send)
     public void onViewClicked() {
-        progress.setVisibility(View.VISIBLE);
+        progressDialog.show();
         send.setVisibility(View.GONE);
         titleemail.setVisibility(View.GONE);
         mUser.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
+                    progressDialog.hide();
                     Toast.makeText(ChangeEmailActivity.this, "Verification email sent", Toast.LENGTH_SHORT).show();
-                    progress.setVisibility(View.GONE);
                     tryagain.setVisibility(View.VISIBLE);
                     titleemail.setVisibility(View.VISIBLE);
                 }
@@ -228,28 +227,69 @@ public class ChangeEmailActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                String pass = password.getText().toString().trim();
+                String em = email.getText().toString().trim();
+                if (!pass.isEmpty() || !em.isEmpty()){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(ChangeEmailActivity.this);
+                    builder.setMessage("Discard your changes?")
+                            .setCancelable(false)
+                            .setPositiveButton("Discard", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    finish();
+                                }
+                            })
+                            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }
+                            });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }
             }
         });
         drawerlayout.setStatusBarBackgroundColor(getResources().getColor(R.color.statusbar));
     }
 
+    @Override
+    public void onBackPressed() {
+        String pass = password.getText().toString().trim();
+        String em = email.getText().toString().trim();
+        if (!pass.isEmpty() || !em.isEmpty()){
+            AlertDialog.Builder builder = new AlertDialog.Builder(ChangeEmailActivity.this);
+            builder.setMessage("Discard your changes?")
+                    .setCancelable(false)
+                    .setPositiveButton("Discard", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            finish();
+                        }
+                    })
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
+    }
+
     @OnClick(R.id.tryagain)
     public void onViewClick() {
         titleemail.setText("Verification Email sent,\nclick Refresh if you have verified your account");
-        progress.setVisibility(View.VISIBLE);
+        progressDialog.show();
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (mUser.isEmailVerified()) {
                     dataSnapshot.getRef().child("status").setValue(true);
+                    progressDialog.hide();
                     mUser.reload();
-                    progress.setVisibility(View.GONE);
                     configureLayout();
                 } else {
                     dataSnapshot.getRef().child("status").setValue(false);
+                    progressDialog.hide();
                     mUser.reload();
-                    progress.setVisibility(View.GONE);
                 }
             }
 

@@ -84,9 +84,15 @@
         <activity
             android:name="com.surya.david.up2you.ResultSearchForumActivity"
             android:screenOrientation="portrait" />
-        <activity android:name="com.surya.david.up2you.ResultSearchNewsActivity" />
-        <activity android:name="com.surya.david.up2you.ChangeEmailActivity" />
-        <activity android:name="com.surya.david.up2you.ChangePasswordActivity" />
+        <activity
+            android:name="com.surya.david.up2you.ResultSearchNewsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.surya.david.up2you.ChangeEmailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.surya.david.up2you.ChangePasswordActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.google.firebase.auth.internal.FederatedSignInActivity"
             android:excludeFromRecents="true"
